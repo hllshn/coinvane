@@ -40,7 +40,6 @@ import com.abraxel.cryptocurrency.websocket.WebSocketService;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.Volley;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -97,6 +96,9 @@ public class MainActivity extends AppCompatActivity implements WebSocketService.
         
         // WebSocket servisini başlat
         startWebSocketService();
+        
+        // Açılışta güncel fiyatları API'den çek
+        fetchCryptoData();
     }
     
     /**
@@ -112,8 +114,8 @@ public class MainActivity extends AppCompatActivity implements WebSocketService.
         errorMessage = findViewById(R.id.error_message);
         recyclerView = findViewById(R.id.recycleView);
         
-        // RequestQueue'yu bir kez oluştur
-        requestQueue = Volley.newRequestQueue(this);
+        // Uygulama genelinde paylaşılan tek RequestQueue
+        requestQueue = VolleySingleton.getInstance(context).getRequestQueue();
 
         // Veri listesini başlat - tüm kripto paraların statik listesi
         cryptoCurrenciesList = CryptoCurrencies.createStaticCryptoList();

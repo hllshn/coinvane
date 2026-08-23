@@ -2,16 +2,30 @@ package com.abraxel.cryptocurrency.formatter;
 
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
 
-import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
+/**
+ * Index bazlı grafik için: değeri mum indeksi olarak alır,
+ * ilgili zaman damgasına bakarak etiket üretir.
+ */
 public class LineChartXAxisFormatter extends IndexAxisValueFormatter {
+    private final SimpleDateFormat timeFormat;
+    private final List<Long> candleTimes;
+
+    public LineChartXAxisFormatter(List<Long> candleTimes) {
+        this.candleTimes = candleTimes;
+        timeFormat = new SimpleDateFormat("dd.MM HH:mm", Locale.getDefault());
+    }
+
     @Override
     public String getFormattedValue(float value) {
-        long emissionsMilliSince1970Time = ((long) value);
-        Date timeMilliseconds = new Date(emissionsMilliSince1970Time);
-        DateFormat dateTimeFormat = DateFormat.getDateInstance(DateFormat.MEDIUM, Locale.getDefault());
-        return dateTimeFormat.format(timeMilliseconds);
+        int index = Math.round(value);
+        if (candleTimes != null && index >= 0 && index < candleTimes.size()) {
+            return timeFormat.format(new Date(candleTimes.get(index)));
+        }
+        return "";
     }
 }

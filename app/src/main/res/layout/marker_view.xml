@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/marker_bg"
+    android:paddingStart="8dp"
+    android:paddingEnd="8dp"
+    android:paddingTop="5dp"
+    android:paddingBottom="5dp">
+
+    <TextView
+        android:id="@+id/marker_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="01.01 12:00"
+        android:textColor="#FFFFFF"
+        android:textSize="10sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/marker_ohlc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="K: 0  Y: 0  D: 0  A: 0"
+        android:textColor="#EAEAEA"
+        android:textSize="10sp" />
+</LinearLayout>

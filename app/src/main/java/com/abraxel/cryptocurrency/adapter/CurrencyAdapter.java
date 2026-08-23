@@ -146,7 +146,7 @@ public class CurrencyAdapter extends RecyclerView.Adapter<CurrencyAdapter.ViewHo
             currencyImageView = itemView.findViewById(R.id.currencyLogo);
             coinName = itemView.findViewById(R.id.coinName);
             pair = itemView.findViewById(R.id.pair);
-            last = itemView.findViewById(R.id.last);
+            last = itemView.findViewById(R.id.card_price);
             percent = itemView.findViewById(R.id.percent);
             high = itemView.findViewById(R.id.high);
             low = itemView.findViewById(R.id.low);
@@ -164,8 +164,11 @@ public class CurrencyAdapter extends RecyclerView.Adapter<CurrencyAdapter.ViewHo
             // Çift (pair) bilgisini göster - detay ekranında görüntülenecek
             pair.setText(currency.getPair());
             
-            // Fiyat ve diğer detaylar detay ekranında gösterilecek
-            last.setVisibility(View.GONE);
+            // Güncel fiyat kartta gösterilir
+            last.setText(String.format("%s ₺", currency.getFormattedPrice()));
+            last.setVisibility(View.VISIBLE);
+
+            // Diğer detaylar detay ekranında gösterilecek
             percent.setVisibility(View.GONE);
             high.setVisibility(View.GONE);
             low.setVisibility(View.GONE);

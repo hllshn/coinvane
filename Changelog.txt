@@ -1,3 +1,9 @@
+V. 6.0.0
+Live prices shown on home screen cards
+Target SDK upgraded to Android 15 (API 35)
+Redesigned candle chart with OHLC tooltip on selection
+Faster startup and smoother realtime updates
+
 V. 1.01
 Added Landscape Mode
 Added support for all resolations (QVGA,  wxga,fwvga

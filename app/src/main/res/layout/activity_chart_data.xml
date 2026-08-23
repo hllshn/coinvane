@@ -30,7 +30,9 @@
                 android:text="Bitcoin (BTC-TRY)"
                 android:textColor="@android:color/black"
                 android:textSize="20sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:maxLines="1"
+                android:ellipsize="end" />
 
             <TextView
                 android:id="@+id/price_text"
@@ -48,7 +50,11 @@
                 android:layout_marginTop="4dp"
                 android:text="En Yüksek: 47,123.45 ₺ / En Düşük: 42,876.12 ₺"
                 android:textColor="@android:color/black"
-                android:textSize="14sp" />
+                android:textSize="14sp"
+                app:autoSizeTextType="uniform"
+                app:autoSizeMinTextSize="10sp"
+                app:autoSizeMaxTextSize="14sp"
+                android:maxLines="1" />
 
             <TextView
                 android:id="@+id/volume_text"
@@ -71,11 +77,14 @@
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
-    <com.github.mikephil.charting.charts.LineChart
+    <com.github.mikephil.charting.charts.CandleStickChart
         android:id="@+id/line_chart"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="4dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
