@@ -84,6 +84,9 @@ public class MainActivity extends AppCompatActivity implements WebSocketService.
         
         // Bildirim kanalını oluştur
         createNotificationChannel();
+
+        // Android 13+ için bildirim izni (ön plan servisi bildirimi ve hatırlatıcılar için gerekli)
+        requestNotificationPermissionIfNeeded();
         
         // RecyclerView'ı kur
         setupRecyclerView();
@@ -511,6 +514,20 @@ public class MainActivity extends AppCompatActivity implements WebSocketService.
             channel.setDescription(Constants.NOTIFICATION_CHANNEL_DESC);
             NotificationManager notificationManager = getSystemService(NotificationManager.class);
             notificationManager.createNotificationChannel(channel);
+        }
+    }
+
+    // Android 13+ (API 33) üzerinde bildirim göstermek için çalışma zamanı izni
+    private static final int NOTIFICATION_PERMISSION_REQUEST_CODE = 1001;
+
+    private void requestNotificationPermissionIfNeeded() {
+        if (android.os.Build.VERSION.SDK_INT >= 33 /* TIRAMISU */) {
+            if (checkSelfPermission(android.Manifest.permission.POST_NOTIFICATIONS)
+                    != android.content.pm.PackageManager.PERMISSION_GRANTED) {
+                requestPermissions(
+                        new String[]{android.Manifest.permission.POST_NOTIFICATIONS},
+                        NOTIFICATION_PERMISSION_REQUEST_CODE);
+            }
         }
     }
 
