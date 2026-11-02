@@ -1,18 +1,30 @@
-*.iml
-.gradle
-/local.properties
-/.idea/caches/build_file_checksums.ser
-/.idea/libraries
-/.idea/modules.xml
-/.idea/workspace.xml
-.DS_Store
-/build
-/captures
-.externalNativeBuild
+# Gradle / build
+.gradle/
+build/
+captures/
+.externalNativeBuild/
+.cxx/
+.kotlin/
 
+# IDE / OS
 .idea/
+*.iml
+.DS_Store
 
+# Yerel ortam
+local.properties
 
-app/google-services.json
+# İmzalama — anahtarlar ve şifreler asla commit'lenmez
+keystore.properties
+*.jks
+*.keystore
 
+# Derleme çıktıları
+*.apk
+*.aab
+app/release/
 app/debug/
+output-metadata.json
+
+# Firebase
+google-services.json

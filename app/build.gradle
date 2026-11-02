@@ -10,31 +10,29 @@ android {
         versionName "6.0.0"
         vectorDrawables.useSupportLibrary = true
     }
-    signingConfigs {
-        debug {
-            storeFile file('/Users/xelil/project-envs/myAndroidKey.jks')
-            storePassword 'hayuha12'
-            keyAlias 'key0'
-            keyPassword 'hayuha12'
-        }
-        release {
-            storeFile file('/Users/xelil/project-envs/myAndroidKey.jks')
-            storePassword 'hayuha12'
-            keyPassword 'hayuha12'
-            keyAlias 'key0'
+    // İmza bilgileri repoda tutulmaz: kök dizindeki keystore.properties'ten okunur.
+    def keystorePropsFile = rootProject.file('keystore.properties')
+    if (keystorePropsFile.exists()) {
+        def keystoreProps = new Properties()
+        keystorePropsFile.withInputStream { keystoreProps.load(it) }
+        signingConfigs {
+            release {
+                storeFile file(keystoreProps['storeFile'])
+                storePassword keystoreProps['storePassword']
+                keyAlias keystoreProps['keyAlias']
+                keyPassword keystoreProps['keyPassword']
+            }
         }
     }
-
 
     buildTypes {
         release {
             minifyEnabled true
             shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            signingConfig signingConfigs.release
-        }
-        debug {
-            signingConfig signingConfigs.debug
+            if (keystorePropsFile.exists()) {
+                signingConfig signingConfigs.release
+            }
         }
     }
     buildFeatures {
