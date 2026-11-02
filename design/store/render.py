@@ -6,7 +6,7 @@ Kullanım (repo kökünden):  python3 design/store/render.py [--only en-US,tr-TR
 1. Binance'ten anlık fiyatları ve BTC 1 saatlik mumlarını, ExchangeRate-API'den kurları çeker.
 2. Uygulamanın kendi metinlerini app/src/main/res/values*/strings.xml dosyalarından okur.
 3. design/store/data.js'i yazar ve screenshots.html'i her dil/ekran için headless Chrome ile fotoğraflar.
-Çıktı: fastlane/metadata/android/<locale>/images/phoneScreenshots/<n>.jpg
+Çıktı: fastlane/metadata/android/<locale>/images/{phone,sevenInch,tenInch}Screenshots/<n>.jpg
 """
 import argparse, base64, json, os, re, subprocess, sys, tempfile, time, urllib.parse, urllib.request
 import xml.etree.ElementTree as ET
@@ -169,6 +169,7 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--only", help="virgülle ayrılmış Play locale listesi")
     ap.add_argument("--shots", default="1,2,3,4,5,6")
+    ap.add_argument("--devices", default="phone,tablet7,tablet10", help="phone, tablet7, tablet10")
     args = ap.parse_args()
 
     data = fetch_data()
@@ -182,21 +183,26 @@ def main():
     locales = args.only.split(",") if args.only else list(LOCALES)
     shots = [int(s) for s in args.shots.split(",")]
     page = "file://" + os.path.join(HERE, "screenshots.html")
+    # cihaz → (fastlane klasörü, URL eki, pencere boyutu, ölçek)
+    devices = {"phone": ("phoneScreenshots", "", "1080,1920", "1"),
+               "tablet7": ("sevenInchScreenshots", "&dev=tablet", "1920,1080", "1"),
+               "tablet10": ("tenInchScreenshots", "&dev=tablet", "1920,1080", "1.3333333")}
     with tempfile.TemporaryDirectory() as tmp:
         for loc in locales:
-            out_dir = os.path.join(ROOT, "fastlane", "metadata", "android", loc, "images", "phoneScreenshots")
-            os.makedirs(out_dir, exist_ok=True)
-            for s in shots:
-                png = os.path.join(tmp, "%s-%d.png" % (loc, s))
-                subprocess.run([CHROME, "--headless=new", "--disable-gpu", "--hide-scrollbars", "--no-first-run",
-                                "--force-device-scale-factor=1", "--window-size=1080,1920",
-                                "--virtual-time-budget=8000", "--screenshot=" + png,
-                                "%s?loc=%s&s=%d" % (page, loc, s)], check=True, capture_output=True)
-                jpg = os.path.join(out_dir, "%d.jpg" % s)
-                subprocess.run(["sips", "-s", "format", "jpeg", "-s", "formatOptions", "88", png, "--out", jpg],
-                               check=True, capture_output=True)
-                print(loc, s, os.path.getsize(jpg) // 1024, "KB")
-
+            for dev in args.devices.split(","):
+                folder, query, size, scale = devices[dev]
+                out_dir = os.path.join(ROOT, "fastlane", "metadata", "android", loc, "images", folder)
+                os.makedirs(out_dir, exist_ok=True)
+                for s in shots:
+                    png = os.path.join(tmp, "%s-%s-%d.png" % (loc, dev, s))
+                    subprocess.run([CHROME, "--headless=new", "--disable-gpu", "--hide-scrollbars", "--no-first-run",
+                                    "--force-device-scale-factor=" + scale, "--window-size=" + size,
+                                    "--virtual-time-budget=8000", "--screenshot=" + png,
+                                    "%s?loc=%s&s=%d%s" % (page, loc, s, query)], check=True, capture_output=True)
+                    jpg = os.path.join(out_dir, "%d.jpg" % s)
+                    subprocess.run(["sips", "-s", "format", "jpeg", "-s", "formatOptions", "88", png, "--out", jpg],
+                                   check=True, capture_output=True)
+                    print(loc, dev, s, os.path.getsize(jpg) // 1024, "KB")
 
 if __name__ == "__main__":
     main()

@@ -48,7 +48,7 @@ devreye girer. Dosya yoksa Firebase hiç derlemeye girmez. (`google-services.jso
 - Logo ve mağaza görsellerinin kaynakları `design/` altında (SVG)
 
 ### Mağaza görselleri
-- `python3 design/store/render.py`: her Play dili için 6 ekran görüntüsü (1080×1920). Anlık Binance fiyatları,
+- `python3 design/store/render.py`: her Play dili için 6 telefon (1080×1920), 6 adet 7 inç (1920×1080) ve 6 adet 10 inç (2560×1440) tablet ekran görüntüsü. Anlık Binance fiyatları,
   gerçek BTC mumları ve uygulamanın kendi `strings.xml` metinleriyle; her ülke kendi para biriminde.
 - `python3 design/store/listings.py`: 11 dilde başlık ("Coinvane: …"), kısa/uzun açıklama ve dile özel tanıtım görseli.
 - Tanıtım filmi (İngilizce, 30 sn): https://www.youtube.com/watch?v=O6LOn6S6Vr0 (tüm dillerde `video.txt`)

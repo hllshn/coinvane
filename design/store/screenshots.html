@@ -103,6 +103,19 @@
   .opt { display:flex; align-items:center; gap:16px; padding:10px 24px; font-size:15px }
   .radio { width:20px; height:20px; border-radius:50%; border:2px solid #8C93A6; flex:none; position:relative }
   .radio.on { border-color:var(--brand) } .radio.on::after { content:""; position:absolute; inset:3px; border-radius:50%; background:var(--brand) }
+
+  /* Yatay tablet modu (?dev=tablet): 1920×1080 tuval; 10 inç için 4/3 ölçekle 2560×1440 alınır */
+  body.tablet, html.tablet { width:1920px; height:1080px }
+  body.tablet .cap { left:96px; right:auto; width:520px; top:0; bottom:0; justify-content:center }
+  body.tablet .cap h1 { font-size:78px }
+  body.tablet .cap p { font-size:34px }
+  body.tablet .phone { left:680px; top:150px; width:1160px; height:780px; border-radius:48px; padding:20px }
+  body.tablet .screen { border-radius:30px }
+  body.tablet .app { width:900px; height:605px; transform:scale(1.2444) }
+  body.tablet .dlg { left:50%; right:auto; width:420px; margin-left:-210px; top:60px }
+  body.tablet .widget { width:420px; margin:24px auto 0 }
+  body.tablet .grid { width:600px; margin:28px auto 0; grid-template-columns:repeat(8, 1fr) }
+  body.tablet .clock { margin-top:20px }
 </style>
 </head>
 <body>
@@ -112,6 +125,9 @@
 <script>
 const q = new URLSearchParams(location.search);
 const LOC = q.get('loc') || 'en-US', SHOT = +(q.get('s') || 1);
+const TABLET = q.get('dev') === 'tablet';
+if (TABLET) { document.documentElement.classList.add('tablet'); document.body.classList.add('tablet'); }
+const CW = TABLET ? 868 : 380; // grafik genişliği (dp)
 const L = DATA.locales[LOC], S = L.strings, CODE = L.currency, RATE = DATA.fx[CODE] || 1;
 const TAG = L.tag; // BCP-47 etiketi (biçimlendirme için)
 document.documentElement.lang = TAG;
@@ -216,7 +232,7 @@ function screenChart() {
   const c = coin('BTC'), h = DATA.holding;
   return detailTop(c, true) +
     '<div class="ints"><div class="seg"><div>' + S.interval_15m + '</div><div class="on">' + S.interval_1h + '</div><div>' + S.interval_4h + '</div><div>' + S.interval_1d + '</div><div>' + S.interval_1w + '</div></div><div class="ib">' + svg('line').replace('<svg', '<svg style="fill:#AAB8FF"') + '</div></div>' +
-    '<div class="chartbox">' + chartSvg(380, 300) + '</div>' +
+    '<div class="chartbox">' + chartSvg(CW, TABLET ? 250 : 300) + '</div>' +
     '<div class="card hold"><div class="t"><div class="l">' + S.holding_title + '</div><div class="v">' + price(h.amount * c.last) + '</div><div class="a">' + f(S.holding_amount_value, num(h.amount, 8), 'BTC') + '</div></div>' +
     pill(((c.last - h.cost) / h.cost) * 100).replace(/>[^<]*</, '>' + f(S.profit_value, signed(h.amount * (c.last - h.cost) * RATE), pct((c.last - h.cost) / h.cost * 100)) + '<') + '</div></div>';
 }
@@ -230,7 +246,7 @@ function screenAlerts() {
   const chip = (t, s) => '<div class="achip">' + f(s, fmtCur(t)) + svg('close') + '</div>';
   return note + detailTop(c, true) +
     '<div class="ints"><div class="seg"><div>' + S.interval_15m + '</div><div>' + S.interval_1h + '</div><div class="on">' + S.interval_4h + '</div><div>' + S.interval_1d + '</div><div>' + S.interval_1w + '</div></div><div class="ib">' + svg('line').replace('<svg', '<svg style="fill:#AAB8FF"') + '</div></div>' +
-    '<div class="chartbox" style="height:220px">' + chartSvg(380, 220) + '</div>' +
+    '<div class="chartbox" style="height:220px">' + chartSvg(CW, TABLET ? 170 : 220) + '</div>' +
     '<div class="ttl">' + S.alerts_title + '</div><div class="achips">' + chip(tBelow, S.alert_chip_below) + chip(Math.round(c.last * RATE * 1.06 / roundTo()) * roundTo(), S.alert_chip_above) + '</div>' +
     '<div class="btn tonal">' + svg('bell') + S.set_alert + '</div><div class="btn outl">' + svg('portfolio') + S.holding_edit + '</div></div>';
 }
