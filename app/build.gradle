@@ -1,15 +1,25 @@
-apply plugin: 'com.android.application'
+plugins {
+    id 'com.android.application'
+}
 
 android {
+    namespace = 'com.abraxel.cryptocurrency'
+    compileSdk = 37
+
     defaultConfig {
-        compileSdk 35
-        applicationId "com.abraxel.cryptocurrency"
-        minSdkVersion 21
-        targetSdkVersion 35
-        versionCode 23
-        versionName "6.0.0"
-        vectorDrawables.useSupportLibrary = true
+        applicationId = 'com.abraxel.cryptocurrency'
+        minSdk = 24
+        targetSdk = 37
+        versionCode = 24
+        versionName = '7.0.0'
+        testInstrumentationRunner = 'androidx.test.runner.AndroidJUnitRunner'
     }
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
+    }
+
     // İmza bilgileri repoda tutulmaz: kök dizindeki keystore.properties'ten okunur.
     def keystorePropsFile = rootProject.file('keystore.properties')
     if (keystorePropsFile.exists()) {
@@ -17,53 +27,45 @@ android {
         keystorePropsFile.withInputStream { keystoreProps.load(it) }
         signingConfigs {
             release {
-                storeFile file(keystoreProps['storeFile'])
-                storePassword keystoreProps['storePassword']
-                keyAlias keystoreProps['keyAlias']
-                keyPassword keystoreProps['keyPassword']
+                storeFile = file(keystoreProps['storeFile'])
+                storePassword = keystoreProps['storePassword']
+                keyAlias = keystoreProps['keyAlias']
+                keyPassword = keystoreProps['keyPassword']
             }
         }
     }
 
     buildTypes {
         release {
-            minifyEnabled true
-            shrinkResources true
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            minifyEnabled = true
+            shrinkResources = true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             if (keystorePropsFile.exists()) {
-                signingConfig signingConfigs.release
+                signingConfig = signingConfigs.release
             }
         }
     }
+
     buildFeatures {
-        viewBinding true
+        viewBinding = true
     }
-    namespace 'com.abraxel.cryptocurrency'
+
+    testOptions {
+        unitTests.returnDefaultValues = true
+    }
 }
 
 dependencies {
-    constraints {
-        implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.8.0") {
-            because("kotlin-stdlib-jdk7 is now a part of kotlin-stdlib")
-        }
-        implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.8.0") {
-            because("kotlin-stdlib-jdk8 is now a part of kotlin-stdlib")
-        }
-    }
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-    compileOnly('org.projectlombok:lombok:1.18.34')
-    annotationProcessor('org.projectlombok:lombok:1.18.34')
-    implementation 'androidx.appcompat:appcompat:1.7.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.2.1'
-    implementation 'androidx.cardview:cardview:1.0.0'
-    implementation 'com.google.android.material:material:1.12.0'
-    implementation 'com.squareup.okhttp3:okhttp:4.12.0'
-    implementation 'com.android.volley:volley:1.2.1'
-    implementation 'androidx.navigation:navigation-fragment:2.8.9'
-    implementation 'androidx.navigation:navigation-ui:2.8.9'
-    implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
+    implementation 'androidx.appcompat:appcompat:1.8.0'
+    implementation 'androidx.activity:activity:1.13.0'
+    implementation 'androidx.recyclerview:recyclerview:1.4.0'
+    implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.2.0'
+    implementation 'androidx.work:work-runtime:2.12.0'
+    implementation 'com.google.android.material:material:1.14.0'
+    implementation 'com.squareup.okhttp3:okhttp:5.5.1'
+    implementation 'com.github.bumptech.glide:glide:5.0.9'
     implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
-    implementation 'com.github.DanielMartinus:Stepper-Touch:1.0.1'
 
-    implementation "androidx.work:work-runtime:2.9.1"
+    testImplementation 'junit:junit:4.13.2'
+    testImplementation 'org.json:json:20260814' // android.jar'daki org.json stub'larının yerine gerçek uygulama
 }

@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        app:navigationIcon="?attr/homeAsUpIndicator"
+        app:subtitleTextAppearance="?attr/textAppearanceLabelMedium"
+        tools:subtitle="Bitcoin"
+        tools:title="BTC/TRY" />
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingHorizontal="16dp"
+            android:paddingBottom="16dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/icon"
+                    android:layout_width="44dp"
+                    android:layout_height="44dp"
+                    android:contentDescription="@string/coin_logo"
+                    android:src="@drawable/ic_coin_placeholder" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="14dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/price"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFeatureSettings="tnum"
+                        android:maxLines="1"
+                        android:textAppearance="?attr/textAppearanceHeadlineMedium"
+                        tools:text="3.842.059,00 ₺" />
+
+                    <TextView
+                        android:id="@+id/change"
+                        style="@style/Kripto.Pill"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        tools:text="+1,38%" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <com.google.android.material.card.MaterialCardView
+                style="@style/Widget.Material3.CardView.Filled"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                app:cardBackgroundColor="@color/surface_card">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="14dp">
+
+                    <LinearLayout style="@style/Kripto.Stat">
+                        <TextView style="@style/Kripto.StatLabel" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/high_24h" />
+                        <TextView android:id="@+id/high" style="@style/Kripto.StatValue" android:layout_width="wrap_content" android:layout_height="wrap_content" tools:text="3.930.480 ₺" />
+                    </LinearLayout>
+
+                    <LinearLayout style="@style/Kripto.Stat">
+                        <TextView style="@style/Kripto.StatLabel" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/low_24h" />
+                        <TextView android:id="@+id/low" style="@style/Kripto.StatValue" android:layout_width="wrap_content" android:layout_height="wrap_content" tools:text="3.840.440 ₺" />
+                    </LinearLayout>
+
+                    <LinearLayout style="@style/Kripto.Stat">
+                        <TextView style="@style/Kripto.StatLabel" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/volume_24h" />
+                        <TextView android:id="@+id/volume" style="@style/Kripto.StatValue" android:layout_width="wrap_content" android:layout_height="wrap_content" tools:text="337,35 Mn ₺" />
+                    </LinearLayout>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.button.MaterialButtonToggleGroup
+                android:id="@+id/intervals"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                app:checkedButton="@id/interval_1h"
+                app:selectionRequired="true"
+                app:singleSelection="true">
+
+                <Button android:id="@+id/interval_15m" style="?attr/materialButtonOutlinedStyle" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="@string/interval_15m" />
+                <Button android:id="@+id/interval_1h" style="?attr/materialButtonOutlinedStyle" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="@string/interval_1h" />
+                <Button android:id="@+id/interval_4h" style="?attr/materialButtonOutlinedStyle" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="@string/interval_4h" />
+                <Button android:id="@+id/interval_1d" style="?attr/materialButtonOutlinedStyle" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="@string/interval_1d" />
+                <Button android:id="@+id/interval_1w" style="?attr/materialButtonOutlinedStyle" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="@string/interval_1w" />
+            </com.google.android.material.button.MaterialButtonToggleGroup>
+
+            <com.github.mikephil.charting.charts.CandleStickChart
+                android:id="@+id/chart"
+                android:layout_width="match_parent"
+                android:layout_height="340dp"
+                android:layout_marginTop="8dp" />
+
+            <TextView
+                android:id="@+id/alerts_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/alerts_title"
+                android:textAppearance="?attr/textAppearanceTitleSmall"
+                android:visibility="gone" />
+
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/alerts"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/set_alert"
+                style="@style/Widget.Material3.Button.TonalButton.Icon"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:text="@string/set_alert"
+                app:icon="@drawable/ic_alarm_add" />
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+</LinearLayout>

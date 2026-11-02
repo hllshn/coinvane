@@ -1,26 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#2196F3</color>
-    <color name="colorPrimaryDark">#1976D2</color>
-    <color name="colorAccent">#00BCD4</color>
-    <color name="colorBackground">#F8F9FA</color>
-    <color name="colorConnectionOk">#E8F5E9</color>
-    <color name="colorConnectionError">#FFEBEE</color>
-    <color name="colorPositive">#4CAF50</color>
-    <color name="colorNegative">#F44336</color>
-    <color name="colorTextPrimary">#212121</color>
-    <color name="colorTextSecondary">#757575</color>
-    <color name="colorDivider">#EEEEEE</color>
-    
-    <!-- Material Design için ek renk tanımlamaları -->
-    <color name="colorOnPrimary">#FFFFFF</color>
-    <color name="colorPrimaryContainer">#E3F2FD</color>
-    <color name="colorOnPrimaryContainer">#004B91</color>
-    <color name="colorSecondary">#2196F3</color>
-    <color name="colorOnSecondary">#FFFFFF</color>
-    <color name="colorSurface">#FFFFFF</color>
-    <color name="colorOnSurface">#212121</color>
-    <color name="colorOnBackground">#212121</color>
-    <color name="colorError">#B00020</color>
-    <color name="colorOnError">#FFFFFF</color>
+    <color name="brand">#3D5AFE</color>
+    <color name="brand_container">#E0E5FF</color>
+    <color name="on_brand_container">#0A1A66</color>
+    <color name="surface">#F7F8FC</color>
+    <color name="surface_card">#FFFFFF</color>
+    <color name="up">#0E9F5A</color>
+    <color name="down">#E0334C</color>
+    <color name="up_container">#1F0E9F5A</color>
+    <color name="down_container">#1FE0334C</color>
+    <color name="chart_grid">#14000000</color>
+    <color name="chart_text">#8A8F9E</color>
 </resources>

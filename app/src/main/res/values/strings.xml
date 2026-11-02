@@ -1,44 +1,50 @@
 <resources>
-    <string name="app_name">KRIPTO PARA</string>
-    <string name="BTCName">BITCOIN</string>
-    <string name="BTCPrice">BTCPrice</string>
-    <string name="BTCChange">BTCChange</string>
-    <string name="button">YENILE</string>
-    <string name="BTCHigh">BTCHigh</string>
-    <string name="BTCLow">BTCLow</string>
-    <string name="ETHName">ETHEREUM</string>
-    <string name="ETHPrice">ETHPrice</string>
-    <string name="ETHChange">ETHChange</string>
-    <string name="ETHHigh">ETHHigh</string>
-    <string name="ETHLow">ETHLow</string>
-    <string name="Time">Time</string>
-    <string name="todo">TODO</string>
-    <string name="CurrentPrice">"Güncel Fiyat : "</string>
-    <string name="TurkishLiraSymbol"> TL</string>
-    <string name="Space">" "</string>
-    <string name="Changing">Değişim(24s) : </string>
-    <string name="High">En Yüksek(24s) : </string>
-    <string name="Low">En Düşük(24s) : </string>
-    <string name="Percent">%</string>
-    <string name="set_alarm">Alarm Oluştur</string>
-    <string name="search">Ara</string>
-    <string name="title_activity_coin_reminde">CoinRemindeActivity</string>
-    <string name="set_desired_value">Bildirilmesini istediğiniz değeri giriniz.</string>
-    <string name="btn_text_set_reminder">Hatırlatıcıyı Kur</string>
-    <string name="reminder_set_successful">Hatırlatıcı Başarıyla Kuruldu :)</string>
-    <string name="data_could_not_be_saved">Veri Kaydedilemedi!</string>
-    <string name="same_value_error">Bildirim gönderilmesi istenen değer, güncel değer ile aynı olamaz.</string>
-    
-    <!-- Yeni Eklenen Metinler -->
-    <string name="loading_message">Yükleniyor...</string>
-    <string name="error_data_processing">Veri işlenirken bir hata oluştu: </string>
-    <string name="error_data_loading">Veri yüklenirken bir hata oluştu. Lütfen internet bağlantınızı kontrol edin.</string>
-    <string name="search_hint">ARA</string>
-    
-    <!-- WebSocket Durum Metinleri -->
-    <string name="websocket_connected">Gerçek zamanlı veri akışı aktif</string>
-    <string name="websocket_disconnected">Gerçek zamanlı veri akışı kesildi</string>
-    <string name="websocket_connecting">Bağlantı kuruluyor…</string>
-    <string name="websocket_error">Bağlantı hatası</string>
-    <string name="reconnect">Yeniden Bağlan</string>
+    <string name="app_name">Kripto Para</string>
+
+    <!-- Ana ekran -->
+    <string name="search">Coin ara</string>
+    <string name="tab_all">Hacim</string>
+    <string name="tab_favorites">Favoriler</string>
+    <string name="tab_gainers">Yükselenler</string>
+    <string name="tab_losers">Düşenler</string>
+    <string name="status_live">● Canlı · %1$d parite</string>
+    <string name="status_connecting">○ Bağlanıyor…</string>
+    <string name="volume_short">Hacim %1$s</string>
+    <string name="empty_results">Sonuç bulunamadı</string>
+    <string name="empty_favorites">Henüz favori yok.\nBir coini favorilere eklemek için yıldıza dokunun.</string>
+    <string name="error_load">Fiyatlar yüklenemedi. İnternet bağlantınızı kontrol edin.</string>
+    <string name="retry">Tekrar dene</string>
+    <string name="favorite">Favori</string>
+    <string name="coin_logo">Coin logosu</string>
+
+    <!-- Detay ekranı -->
+    <string name="high_24h">24s En Yüksek</string>
+    <string name="low_24h">24s En Düşük</string>
+    <string name="volume_24h">24s Hacim</string>
+    <string name="chart_loading">Grafik yükleniyor…</string>
+    <string name="chart_error">Grafik verisi alınamadı</string>
+    <string name="interval_15m">15dk</string>
+    <string name="interval_1h">1s</string>
+    <string name="interval_4h">4s</string>
+    <string name="interval_1d">1G</string>
+    <string name="interval_1w">1H</string>
+    <string name="marker_ohlc">A %1$s\nY %2$s\nD %3$s\nK %4$s</string>
+
+    <!-- Alarmlar -->
+    <string name="set_alert">Fiyat alarmı kur</string>
+    <string name="alerts_title">Aktif alarmlar</string>
+    <string name="alert_hint">Hedef fiyat (₺)</string>
+    <string name="alert_helper">Alarmlar yaklaşık 15 dakikada bir kontrol edilir.</string>
+    <string name="alert_save">Kur</string>
+    <string name="cancel">Vazgeç</string>
+    <string name="alert_invalid">Geçerli ve güncel fiyattan farklı bir değer girin</string>
+    <string name="alert_saved">Alarm kuruldu</string>
+    <string name="alert_removed">Alarm silindi</string>
+    <string name="alert_chip_above">≥ %1$s</string>
+    <string name="alert_chip_below">≤ %1$s</string>
+    <string name="alert_channel_name">Fiyat alarmları</string>
+    <string name="alert_title">%1$s hedefe ulaştı</string>
+    <string name="alert_text_above">Fiyat %1$s üzerine çıktı · Şu an %2$s</string>
+    <string name="alert_text_below">Fiyat %1$s altına indi · Şu an %2$s</string>
+    <string name="notifications_denied">Bildirim izni olmadan alarm bildirimi gösterilemez</string>
 </resources>

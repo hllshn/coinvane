@@ -1,21 +1,2 @@
--keep class com.abraxel.cryptocurrency.MainActivity.*{ *; }
--keep class com.abraxel.cryptocurrency.MethodServer.*{ *; }
--keep class com.abraxel.cryptocurrency.adapter.CurrencyAdapter.*{ *; }
--keep class com.abraxel.cryptocurrency.model.CryptoCurrencies.*{ *; }
--keepnames class okhttp3.internal.publicsuffix.PublicSuffixDatabase
-
-
-# OkHttp platform used only on JVM and when Conscrypt and other security providers are available.
--dontwarn org.conscrypt.**
--dontwarn org.bouncycastle.**
--dontwarn org.openjsse.**
--dontwarn javax.**
--dontwarn lombok.**
--dontwarn org.apache.**
--dontwarn com.sun.**
--dontwarn **retrofit**
-
-# Suppress warnings for LoudnessCodecController
--dontwarn android.media.LoudnessCodecController$OnLoudnessCodecUpdateListener
--dontwarn android.media.LoudnessCodecController
-
+# Uygulama yansıma (reflection) veya Serializable kullanmadığı için özel -keep kuralı gerekmez.
+# OkHttp, Glide ve WorkManager kendi consumer kurallarını getirir.
