@@ -46,3 +46,9 @@ devreye girer. Dosya yoksa Firebase hiç derlemeye girmez. (`google-services.jso
 ### Mağaza
 - Play Store metinleri 11 dilde `fastlane/metadata/android/` altında (fastlane `supply` formatı)
 - Logo ve mağaza görsellerinin kaynakları `design/` altında (SVG)
+
+### Mağaza görselleri
+- `python3 design/store/render.py`: her Play dili için 6 ekran görüntüsü (1080×1920). Anlık Binance fiyatları,
+  gerçek BTC mumları ve uygulamanın kendi `strings.xml` metinleriyle; her ülke kendi para biriminde.
+- `python3 design/store/listings.py`: 11 dilde başlık ("Coinvane: …"), kısa/uzun açıklama ve dile özel tanıtım görseli.
+- Tanıtım filmi (İngilizce, 30 sn): claude.ai'deki "Coinvane Promo Film" artifact'ı; MP4 oradan dışa aktarılır.

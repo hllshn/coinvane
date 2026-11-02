@@ -28,3 +28,4 @@ output-metadata.json
 
 # Firebase
 google-services.json
+design/store/data.js
