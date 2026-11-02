@@ -7,6 +7,7 @@ Gerçek grafikler: mum/çizgi, hacim çubukları, 15dk–1H aralıkları, son mu
 Fiyat alarmları: uygulama açıkken anında, kapalıyken arka planda
 Portföy: toplam bakiye, 24s değişim, kâr/zarar
 Ana ekran widget'ı, favoriler, coin logoları
+Uygulama içi puanlama (yeterince kullananlara bir kez)
 Kalıcı bildirim ve arka plan servisi kaldırıldı; pil tüketimi azaldı
 Hedef SDK Android 17 (API 37), minimum Android 8.0
 

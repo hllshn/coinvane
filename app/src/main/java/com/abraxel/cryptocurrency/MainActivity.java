@@ -99,6 +99,10 @@ public class MainActivity extends AppCompatActivity implements CoinAdapter.Liste
             binding.list.scrollToPosition(0);
         });
         binding.refresh.setRefreshing(true);
+        if (savedInstanceState == null) { // ekran döndürme değil, gerçek açılış
+            ReviewPrompt.countLaunch(this);
+            handler.postDelayed(() -> ReviewPrompt.maybeAsk(this), 4000); // liste oturduktan sonra
+        }
     }
 
     @Override
