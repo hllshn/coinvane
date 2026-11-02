@@ -190,8 +190,19 @@ Os preços são apenas informativos e não constituem recomendação de investim
 行情数据：Binance 公开 API · 汇率：ExchangeRate-API。
 价格仅供参考，不构成投资建议。"""),
 }
-CHANGELOG = {"en-US": "Coinvane is here: 700+ coins, 25 currencies, 11 languages, portfolio, widget and instant price alerts.",
-             "tr-TR": "Kripto Para artık Coinvane: 700+ coin, 25 para birimi, 11 dil, portföy, widget ve anlık fiyat alarmları."}
+CHANGELOG = {
+    "en-US": "Coinvane is here: 700+ coins, 25 currencies, 11 languages, portfolio, widget and instant price alerts.",
+    "tr-TR": "Kripto Para artık Coinvane: 700+ coin, 25 para birimi, 11 dil, portföy, widget ve anlık fiyat alarmları.",
+    "de-DE": "Willkommen bei Coinvane: 700+ Coins, 25 Währungen, 11 Sprachen, Portfolio, Widget und sofortige Kursalarme.",
+    "fr-FR": "Voici Coinvane : 700+ cryptos, 25 devises, 11 langues, portefeuille, widget et alertes de prix instantanées.",
+    "es-ES": "Llega Coinvane: 700+ monedas, 25 divisas, 11 idiomas, cartera, widget y alertas de precio al instante.",
+    "pt-BR": "Chegou o Coinvane: 700+ moedas, 25 moedas fiduciárias, 11 idiomas, carteira, widget e alertas na hora.",
+    "ru-RU": "Встречайте Coinvane: 700+ монет, 25 валют, 11 языков, портфель, виджет и мгновенные оповещения о ценах.",
+    "ar": "مرحبًا بـ Coinvane: أكثر من 700 عملة و25 عملة محلية و11 لغة ومحفظة وأداة للشاشة الرئيسية وتنبيهات فورية.",
+    "ja-JP": "Coinvane 登場：700以上のコイン、25通貨、11言語、ポートフォリオ、ウィジェット、即時価格アラート。",
+    "ko-KR": "Coinvane 출시: 700개 이상 코인, 25개 통화, 11개 언어, 포트폴리오, 위젯, 즉시 가격 알림.",
+    "zh-CN": "Coinvane 来了：700+ 币种、25 种货币、11 种语言、资产组合、桌面小部件与即时价格提醒。",
+}
 for loc, (title, short, full) in M.items():
     assert len(title) <= 30, (loc, len(title))
     assert len(short) <= 80, (loc, len(short))
@@ -200,8 +211,8 @@ for loc, (title, short, full) in M.items():
     os.makedirs(os.path.join(d, "changelogs"), exist_ok=True)
     for name, text in (("title", title), ("short_description", short), ("full_description", full)):
         open(os.path.join(d, name + ".txt"), "w").write(text + "\n")
-    if loc in CHANGELOG:
-        open(os.path.join(d, "changelogs", "24.txt"), "w").write(CHANGELOG[loc] + "\n")
+    assert len(CHANGELOG[loc]) <= 500, loc
+    open(os.path.join(d, "changelogs", "24.txt"), "w").write(CHANGELOG[loc] + "\n")
 print("ok", len(M))
 
 # --- Tanıtım görseli (1024×500), her dilin kendi sloganıyla. Gerekli: rsvg-convert (brew install librsvg) ---
