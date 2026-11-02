@@ -1,0 +1,15 @@
+Coinvane shows where the crypto market is heading — live, in your own currency and language.
+
+• Live prices for 700+ coins, updated every second
+• Real candlestick and line charts with volume: 15m, 1H, 4H, 1D, 1W
+• Price alerts that fire instantly while the app is open and in the background when it is closed
+• Portfolio: track holdings, total balance, 24h change and profit/loss
+• Home screen widget with your favorite coins
+• 25 currencies (USD, EUR, GBP, TRY, JPY, KRW, BRL, INR…) and 11 languages
+• Favorites, gainers and losers, fast search
+• Light and dark theme, Material You colors
+
+No account, no ads, no tracking. Your favorites, alerts and portfolio stay on your device.
+
+Market data: Binance public API · Exchange rates: ExchangeRate-API.
+Prices are for information only and are not investment advice.

@@ -1,0 +1,15 @@
+Coinvane kripto piyasasının yönünü gösterir — canlı, kendi para biriminiz ve dilinizde.
+
+• 700'den fazla coinin saniye saniye güncellenen canlı fiyatı
+• Hacimli gerçek mum ve çizgi grafikleri: 15dk, 1s, 4s, 1G, 1H
+• Uygulama açıkken anında, kapalıyken arka planda çalışan fiyat alarmları
+• Portföy: varlıklarınızı, toplam bakiyeyi, 24 saatlik değişimi ve kâr/zararı izleyin
+• Favori coinlerinizi gösteren ana ekran widget'ı
+• 25 para birimi (TRY, USD, EUR, GBP, JPY…) ve 11 dil
+• Favoriler, yükselenler/düşenler, hızlı arama
+• Açık ve koyu tema, Material You renkleri
+
+Hesap yok, reklam yok, takip yok. Favorileriniz, alarmlarınız ve portföyünüz cihazınızda kalır.
+
+Piyasa verisi: Binance public API · Döviz kurları: ExchangeRate-API.
+Fiyatlar bilgi amaçlıdır, yatırım tavsiyesi değildir.
