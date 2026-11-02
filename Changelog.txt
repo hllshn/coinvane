@@ -1,3 +1,15 @@
+V. 7.0.0 — Kripto Para artık Coinvane
+Yeni ad ve logo: Coinvane
+700+ coin canlı (eski: 15 coin); yalnızca ekrandaki coinler canlı dinlenir (az veri)
+25 para birimi ve 11 dil (Arapça dahil sağdan sola düzen)
+Yeni tasarım: Material 3, açık/koyu tema, Material You renkleri, sekmeler
+Gerçek grafikler: mum/çizgi, hacim çubukları, 15dk–1H aralıkları, son mum canlı
+Fiyat alarmları: uygulama açıkken anında, kapalıyken arka planda
+Portföy: toplam bakiye, 24s değişim, kâr/zarar
+Ana ekran widget'ı, favoriler, coin logoları
+Kalıcı bildirim ve arka plan servisi kaldırıldı; pil tüketimi azaldı
+Hedef SDK Android 17 (API 37), minimum Android 8.0
+
 V. 6.0.0
 Live prices shown on home screen cards
 Target SDK upgraded to Android 15 (API 35)
