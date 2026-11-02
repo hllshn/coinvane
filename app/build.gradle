@@ -2,13 +2,20 @@ plugins {
     id 'com.android.application'
 }
 
+// Crashlytics: Firebase projesinin google-services.json dosyası app/ altına konunca kendiliğinden açılır.
+def firebaseEnabled = file('google-services.json').exists()
+if (firebaseEnabled) {
+    apply plugin: 'com.google.gms.google-services'
+    apply plugin: 'com.google.firebase.crashlytics'
+}
+
 android {
     namespace = 'com.abraxel.cryptocurrency'
     compileSdk = 37
 
     defaultConfig {
         applicationId = 'com.abraxel.cryptocurrency'
-        minSdk = 24
+        minSdk = 26
         targetSdk = 37
         versionCode = 24
         versionName = '7.0.0'
@@ -48,6 +55,11 @@ android {
 
     buildFeatures {
         viewBinding = true
+        buildConfig = true
+    }
+
+    androidResources {
+        generateLocaleConfig = true // Android 13+ sistem ayarlarında uygulama dili seçimi
     }
 
     testOptions {
@@ -65,6 +77,12 @@ dependencies {
     implementation 'com.squareup.okhttp3:okhttp:5.5.1'
     implementation 'com.github.bumptech.glide:glide:5.0.9'
     implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
+    implementation 'androidx.profileinstaller:profileinstaller:1.4.1' // baseline-prof.txt'yi cihaza kurar
+
+    if (firebaseEnabled) {
+        implementation platform('com.google.firebase:firebase-bom:35.1.0')
+        implementation 'com.google.firebase:firebase-crashlytics'
+    }
 
     testImplementation 'junit:junit:4.13.2'
     testImplementation 'org.json:json:20260814' // android.jar'daki org.json stub'larının yerine gerçek uygulama

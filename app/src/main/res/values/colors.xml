@@ -11,4 +11,8 @@
     <color name="down_container">#1FE0334C</color>
     <color name="chart_grid">#14000000</color>
     <color name="chart_text">#8A8F9E</color>
+    <color name="widget_bg">#FFFFFFFF</color>
+    <color name="widget_text">#FF101423</color>
+    <color name="widget_text_secondary">#FF6B7280</color>
+    <color name="widget_accent">#FF3D5AFE</color>
 </resources>

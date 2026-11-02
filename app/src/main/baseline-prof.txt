@@ -1,0 +1,9 @@
+# Başlangıç profili: açılış ve liste kaydırma yolundaki sınıflar kurulumda önceden derlenir (ProfileInstaller).
+HSPLcom/abraxel/cryptocurrency/**->**(**)**
+Lcom/abraxel/cryptocurrency/**;
+HSPLcom/abraxel/cryptocurrency/data/**->**(**)**
+HSPLandroidx/recyclerview/widget/**->**(**)**
+Landroidx/recyclerview/widget/**;
+HSPLokhttp3/**->**(**)**
+Lokhttp3/**;
+HSPLcom/bumptech/glide/**->**(**)**

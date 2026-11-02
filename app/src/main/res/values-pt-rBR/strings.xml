@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="search">Buscar moedas</string>
+    <string name="tab_all">Volume</string>
+    <string name="tab_favorites">Favoritas</string>
+    <string name="tab_gainers">Em alta</string>
+    <string name="tab_losers">Em baixa</string>
+    <string name="status_connecting">○ Conectando…</string>
+    <string name="volume_short">Vol. %1$s</string>
+    <string name="empty_results">Nenhum resultado</string>
+    <string name="empty_favorites">Nenhuma favorita ainda.\nToque na estrela de uma moeda para adicioná-la.</string>
+    <string name="error_load">Não foi possível carregar os preços. Verifique sua conexão.</string>
+    <string name="retry">Tentar novamente</string>
+    <string name="favorite">Favorita</string>
+    <string name="favorite_add">Adicionar às favoritas</string>
+    <string name="favorite_remove">Remover das favoritas</string>
+    <string name="coin_logo">Logo da moeda</string>
+    <string name="back">Voltar</string>
+    <string name="high_24h">Máx. 24h</string>
+    <string name="low_24h">Mín. 24h</string>
+    <string name="volume_24h">Volume 24h</string>
+    <string name="chart_loading">Carregando gráfico…</string>
+    <string name="chart_error">Não foi possível carregar o gráfico</string>
+    <string name="interval_15m">15m</string>
+    <string name="interval_1h">1H</string>
+    <string name="interval_4h">4H</string>
+    <string name="interval_1d">1D</string>
+    <string name="interval_1w">1S</string>
+    <string name="marker_ohlc">A %1$s\nM %2$s\nm %3$s\nF %4$s</string>
+    <string name="chart_show_line">Gráfico de linha</string>
+    <string name="chart_show_candles">Candles</string>
+    <string name="set_alert">Criar alerta de preço</string>
+    <string name="alerts_title">Alertas ativos</string>
+    <string name="alert_hint">Preço-alvo</string>
+    <string name="alert_helper">Aviso imediato com o app aberto; caso contrário, em ~15 minutos.</string>
+    <string name="alert_save">Criar</string>
+    <string name="cancel">Cancelar</string>
+    <string name="alert_invalid">Informe um preço válido diferente do atual</string>
+    <string name="alert_saved">Alerta criado</string>
+    <string name="alert_removed">Alerta removido</string>
+    <string name="alert_chip_above">≥ %1$s</string>
+    <string name="alert_chip_below">≤ %1$s</string>
+    <string name="alert_channel_name">Alertas de preço</string>
+    <string name="alert_title">%1$s atingiu sua meta</string>
+    <string name="alert_text_above">O preço subiu acima de %1$s · Agora %2$s</string>
+    <string name="alert_text_below">O preço caiu abaixo de %1$s · Agora %2$s</string>
+    <string name="notifications_denied">Sem permissão de notificação, os alertas não podem avisar você</string>
+    <string name="portfolio">Carteira</string>
+    <string name="portfolio_total">Saldo total</string>
+    <string name="portfolio_empty">Sua carteira está vazia.\nAbra uma moeda e toque em “Adicionar à carteira”.</string>
+    <string name="change_24h_value">24h %1$s (%2$s)</string>
+    <string name="profit_value">L/P %1$s (%2$s)</string>
+    <string name="holding_title">Sua posição</string>
+    <string name="holding_add">Adicionar à carteira</string>
+    <string name="holding_edit">Editar posição</string>
+    <string name="holding_amount">Quantidade</string>
+    <string name="holding_avg_price">Preço médio de compra (opcional)</string>
+    <string name="holding_avg_price_helper">Usado para calcular lucro e prejuízo</string>
+    <string name="holding_amount_value">%1$s %2$s</string>
+    <string name="save">Salvar</string>
+    <string name="remove">Remover</string>
+    <string name="invalid_number">Informe um número válido</string>
+    <string name="settings">Configurações</string>
+    <string name="settings_language">Idioma</string>
+    <string name="settings_currency">Moeda</string>
+    <string name="settings_theme">Tema</string>
+    <string name="settings_dynamic_colors">Usar cores do sistema</string>
+    <string name="language_system">Padrão do sistema</string>
+    <string name="widget_description">Preços ao vivo das suas moedas favoritas</string>
+    <string name="about_text"><![CDATA[Coinvane %1$s<br>Dados de mercado: <a href="https://www.binance.com">Binance</a> · Câmbio: <a href="https://www.exchangerate-api.com">ExchangeRate-API</a> · Ícones: CoinCap, cryptocurrency-icons<br>Os preços são apenas informativos e não constituem recomendação de investimento.]]></string>
+    <plurals name="status_live">
+        <item quantity="one">● Ao vivo · %d par</item>
+        <item quantity="many">● Ao vivo · %d pares</item>
+        <item quantity="other">● Ao vivo · %d pares</item>
+    </plurals>
+    <string-array name="theme_options">
+        <item>Padrão do sistema</item>
+        <item>Claro</item>
+        <item>Escuro</item>
+    </string-array>
+    <string-array name="compact_suffixes">
+        <item>" mil"</item>
+        <item>" mi"</item>
+        <item>" bi"</item>
+        <item>" tri"</item>
+    </string-array>
+</resources>

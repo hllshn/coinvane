@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="search">Rechercher</string>
+    <string name="tab_all">Volume</string>
+    <string name="tab_favorites">Favoris</string>
+    <string name="tab_gainers">Hausses</string>
+    <string name="tab_losers">Baisses</string>
+    <string name="status_connecting">○ Connexion…</string>
+    <string name="volume_short">Vol. %1$s</string>
+    <string name="empty_results">Aucun résultat</string>
+    <string name="empty_favorites">Aucun favori pour l’instant.\nTouchez l’étoile d’une crypto pour l’ajouter.</string>
+    <string name="error_load">Impossible de charger les cours. Vérifiez votre connexion Internet.</string>
+    <string name="retry">Réessayer</string>
+    <string name="favorite">Favori</string>
+    <string name="favorite_add">Ajouter aux favoris</string>
+    <string name="favorite_remove">Retirer des favoris</string>
+    <string name="coin_logo">Logo de la crypto</string>
+    <string name="back">Retour</string>
+    <string name="high_24h">Plus haut 24 h</string>
+    <string name="low_24h">Plus bas 24 h</string>
+    <string name="volume_24h">Volume 24 h</string>
+    <string name="chart_loading">Chargement du graphique…</string>
+    <string name="chart_error">Impossible de charger le graphique</string>
+    <string name="interval_15m">15 min</string>
+    <string name="interval_1h">1 h</string>
+    <string name="interval_4h">4 h</string>
+    <string name="interval_1d">1 J</string>
+    <string name="interval_1w">1 S</string>
+    <string name="marker_ohlc">O %1$s\nH %2$s\nB %3$s\nC %4$s</string>
+    <string name="chart_show_line">Graphique linéaire</string>
+    <string name="chart_show_candles">Chandeliers</string>
+    <string name="set_alert">Créer une alerte de prix</string>
+    <string name="alerts_title">Alertes actives</string>
+    <string name="alert_hint">Prix cible</string>
+    <string name="alert_helper">Notification immédiate si l’app est ouverte, sinon sous ~15 minutes.</string>
+    <string name="alert_save">Créer</string>
+    <string name="cancel">Annuler</string>
+    <string name="alert_invalid">Saisissez un prix valide, différent du prix actuel</string>
+    <string name="alert_saved">Alerte créée</string>
+    <string name="alert_removed">Alerte supprimée</string>
+    <string name="alert_chip_above">≥ %1$s</string>
+    <string name="alert_chip_below">≤ %1$s</string>
+    <string name="alert_channel_name">Alertes de prix</string>
+    <string name="alert_title">%1$s a atteint votre objectif</string>
+    <string name="alert_text_above">Le prix a dépassé %1$s · Actuellement %2$s</string>
+    <string name="alert_text_below">Le prix est passé sous %1$s · Actuellement %2$s</string>
+    <string name="notifications_denied">Sans l’autorisation de notification, les alertes ne peuvent pas s’afficher</string>
+    <string name="portfolio">Portefeuille</string>
+    <string name="portfolio_total">Solde total</string>
+    <string name="portfolio_empty">Votre portefeuille est vide.\nOuvrez une crypto et touchez « Ajouter au portefeuille ».</string>
+    <string name="change_24h_value">24 h %1$s (%2$s)</string>
+    <string name="profit_value">P/P %1$s (%2$s)</string>
+    <string name="holding_title">Votre position</string>
+    <string name="holding_add">Ajouter au portefeuille</string>
+    <string name="holding_edit">Modifier la position</string>
+    <string name="holding_amount">Quantité</string>
+    <string name="holding_avg_price">Prix d’achat moyen (facultatif)</string>
+    <string name="holding_avg_price_helper">Sert au calcul des plus/moins-values</string>
+    <string name="holding_amount_value">%1$s %2$s</string>
+    <string name="save">Enregistrer</string>
+    <string name="remove">Supprimer</string>
+    <string name="invalid_number">Saisissez un nombre valide</string>
+    <string name="settings">Paramètres</string>
+    <string name="settings_language">Langue</string>
+    <string name="settings_currency">Devise</string>
+    <string name="settings_theme">Thème</string>
+    <string name="settings_dynamic_colors">Utiliser les couleurs du système</string>
+    <string name="language_system">Langue du système</string>
+    <string name="widget_description">Cours en direct de vos cryptos favorites</string>
+    <string name="about_text"><![CDATA[Coinvane %1$s<br>Données de marché : <a href="https://www.binance.com">Binance</a> · Taux de change : <a href="https://www.exchangerate-api.com">ExchangeRate-API</a> · Icônes : CoinCap, cryptocurrency-icons<br>Les cours sont fournis à titre indicatif et ne constituent pas un conseil en investissement.]]></string>
+    <plurals name="status_live">
+        <item quantity="one">● En direct · %d paire</item>
+        <item quantity="many">● En direct · %d paires</item>
+        <item quantity="other">● En direct · %d paires</item>
+    </plurals>
+    <string-array name="theme_options">
+        <item>Valeur système</item>
+        <item>Clair</item>
+        <item>Sombre</item>
+    </string-array>
+    <string-array name="compact_suffixes">
+        <item>" k"</item>
+        <item>" M"</item>
+        <item>" Md"</item>
+        <item>" Bn"</item>
+    </string-array>
+</resources>

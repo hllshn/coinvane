@@ -10,14 +10,14 @@ import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.abraxel.cryptocurrency.data.Coin;
-import com.abraxel.cryptocurrency.data.Format;
+import com.abraxel.cryptocurrency.data.Money;
 import com.abraxel.cryptocurrency.databinding.ItemCoinBinding;
 
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-/** Ana liste. Fark hesabı (DiffUtil) arka planda yapılır; fiyat değişince satır kısa süre renklenir. */
+/** Ana liste. Fark hesabı (DiffUtil) arka planda yapılır; fiyat değişince fiyat kısa süre renklenir. */
 class CoinAdapter extends ListAdapter<Coin, CoinAdapter.Holder> {
     interface Listener {
         void onCoinClick(Coin coin);
@@ -31,14 +31,21 @@ class CoinAdapter extends ListAdapter<Coin, CoinAdapter.Holder> {
 
     private final Listener listener;
     private Set<String> favorites = new HashSet<>();
+    private Money money;
 
-    CoinAdapter(Listener listener) {
+    CoinAdapter(Listener listener, Money money) {
         super(DIFF);
         this.listener = listener;
+        this.money = money;
     }
 
     void setFavorites(Set<String> favorites) {
         this.favorites = favorites;
+        notifyItemRangeChanged(0, getItemCount());
+    }
+
+    void setMoney(Money money) {
+        this.money = money;
         notifyItemRangeChanged(0, getItemCount());
     }
 
@@ -54,7 +61,10 @@ class CoinAdapter extends ListAdapter<Coin, CoinAdapter.Holder> {
         ItemCoinBinding b = holder.binding;
         b.symbol.setText(coin.base);
         Ui.loadIcon(b.icon, coin.base);
-        b.favorite.setImageResource(favorites.contains(coin.symbol) ? R.drawable.ic_star : R.drawable.ic_star_outline);
+        boolean favorite = favorites.contains(coin.symbol);
+        b.favorite.setImageResource(favorite ? R.drawable.ic_star : R.drawable.ic_star_outline);
+        b.favorite.setContentDescription(b.getRoot().getContext().getString(
+                favorite ? R.string.favorite_remove : R.string.favorite_add));
         b.getRoot().setOnClickListener(v -> listener.onCoinClick(coin));
         b.favorite.setOnClickListener(v -> listener.onFavoriteClick(coin));
         bindValues(b, coin);
@@ -75,10 +85,10 @@ class CoinAdapter extends ListAdapter<Coin, CoinAdapter.Holder> {
         b.price.postDelayed(() -> b.price.setTextColor(b.symbol.getCurrentTextColor()), 700);
     }
 
-    private static void bindValues(ItemCoinBinding b, Coin coin) {
-        String volume = b.getRoot().getContext().getString(R.string.volume_short, Format.compactPrice(coin.quoteVolume));
+    private void bindValues(ItemCoinBinding b, Coin coin) {
+        String volume = b.getRoot().getContext().getString(R.string.volume_short, money.compact(coin.quoteVolume));
         b.subtitle.setText(coin.name().equals(coin.base) ? volume : coin.name() + " · " + volume);
-        b.price.setText(Format.price(coin.last));
+        b.price.setText(money.price(coin.last));
         b.price.setTextColor(b.symbol.getCurrentTextColor());
         Ui.bindChange(b.change, coin.changePercent());
     }

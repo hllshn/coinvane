@@ -10,12 +10,11 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.Call;
@@ -56,14 +55,23 @@ public final class Binance {
         T parse(String body) throws JSONException;
     }
 
-    /** Tüm TRY paritelerinin 24 saatlik özeti, hacme göre sıralı. */
-    public static Call fetchTryCoins(Result<List<Coin>> result) {
-        return get(REST + "ticker/24hr?type=MINI", Binance::parseTryCoins, result);
+    /** Tüm USDT paritelerinin 24 saatlik özeti, hacme göre sıralı. */
+    public static Call fetchCoins(Result<List<Coin>> result) {
+        return get(REST + "ticker/24hr?type=MINI", Binance::parseCoins, result);
     }
 
-    /** Tek paritenin 24 saatlik özeti (detay ekranının ilk açılışı için). */
-    public static Call fetchCoin(String symbol, Result<Coin> result) {
-        return get(REST + "ticker/24hr?type=MINI&symbol=" + symbol, body -> parseTicker(new JSONObject(body)), result);
+    /** Belirli pariteler (portföy, detay). */
+    public static Call fetchCoins(Collection<String> symbols, Result<List<Coin>> result) {
+        return get(symbolsUrl(symbols), Binance::parseCoins, result);
+    }
+
+    /** Arka plan işçileri (alarm, widget) için senkron sorgu. */
+    public static List<Coin> fetchCoinsBlocking(Collection<String> symbols) throws IOException {
+        try {
+            return parseCoins(getBlocking(CLIENT, symbolsUrl(symbols)));
+        } catch (JSONException e) {
+            throw new IOException(e);
+        }
     }
 
     /** interval: Binance kline aralığı (15m, 1h, 4h, 1d, 1w). */
@@ -72,19 +80,23 @@ public final class Binance {
                 Binance::parseCandles, result);
     }
 
-    /** Arka plan işçisi için senkron fiyat sorgusu. */
-    public static Map<String, Double> fetchPricesBlocking(Collection<String> symbols) throws IOException {
-        JSONArray list = new JSONArray(symbols);
-        String url = REST + "ticker/price?symbols=" + URLEncoder.encode(list.toString(), "UTF-8");
-        try (Response response = CLIENT.newCall(new Request.Builder().url(url).build()).execute()) {
-            if (!response.isSuccessful()) throw new IOException("HTTP " + response.code());
-            return parsePrices(response.body().string());
-        } catch (JSONException e) {
-            throw new IOException(e);
+    private static String symbolsUrl(Collection<String> symbols) {
+        try {
+            return REST + "ticker/24hr?type=MINI&symbols="
+                    + URLEncoder.encode(new JSONArray(symbols).toString(), "UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            throw new IllegalStateException(e);
         }
     }
 
-    private static <T> Call get(String url, Parser<T> parser, Result<T> result) {
+    static String getBlocking(OkHttpClient client, String url) throws IOException {
+        try (Response response = client.newCall(new Request.Builder().url(url).build()).execute()) {
+            if (!response.isSuccessful()) throw new IOException("HTTP " + response.code());
+            return response.body().string();
+        }
+    }
+
+    static <T> Call get(String url, Parser<T> parser, Result<T> result) {
         Call call = CLIENT.newCall(new Request.Builder().url(url).build());
         call.enqueue(new Callback() {
             @Override
@@ -97,9 +109,9 @@ public final class Binance {
                 try (ResponseBody body = response.body()) {
                     if (!response.isSuccessful()) throw new IOException("HTTP " + response.code());
                     T value = parser.parse(body.string());
-                    MAIN.post(() -> result.onSuccess(value));
+                    if (!call.isCanceled()) MAIN.post(() -> result.onSuccess(value));
                 } catch (IOException | JSONException e) {
-                    MAIN.post(() -> result.onError(e));
+                    if (!call.isCanceled()) MAIN.post(() -> result.onError(e));
                 }
             }
         });
@@ -108,27 +120,20 @@ public final class Binance {
 
     // --- Ayrıştırıcılar (birim testli) ---
 
-    static List<Coin> parseTryCoins(String json) throws JSONException {
+    static List<Coin> parseCoins(String json) throws JSONException {
         JSONArray array = new JSONArray(json);
         List<Coin> coins = new ArrayList<>();
         for (int i = 0; i < array.length(); i++) {
             JSONObject o = array.getJSONObject(i);
-            String symbol = o.getString("symbol");
             // Son 24 saatte hiç işlem görmeyenler (askıya alınmış/delist) gösterilmez
-            if (!symbol.endsWith(Coin.QUOTE) || symbol.equals(Coin.QUOTE) || o.optLong("count") == 0) {
-                continue;
-            }
-            coins.add(parseTicker(o));
+            if (!Coin.isListable(o.getString("symbol")) || o.optLong("count") == 0) continue;
+            coins.add(new Coin(o.getString("symbol"),
+                    o.getDouble("lastPrice"), o.getDouble("openPrice"),
+                    o.getDouble("highPrice"), o.getDouble("lowPrice"),
+                    o.getDouble("quoteVolume")));
         }
         coins.sort((a, b) -> Double.compare(b.quoteVolume, a.quoteVolume));
         return coins;
-    }
-
-    static Coin parseTicker(JSONObject o) throws JSONException {
-        return new Coin(o.getString("symbol"),
-                o.getDouble("lastPrice"), o.getDouble("openPrice"),
-                o.getDouble("highPrice"), o.getDouble("lowPrice"),
-                o.getDouble("quoteVolume"));
     }
 
     static List<Candle> parseCandles(String json) throws JSONException {
@@ -136,19 +141,10 @@ public final class Binance {
         List<Candle> candles = new ArrayList<>(array.length());
         for (int i = 0; i < array.length(); i++) {
             JSONArray k = array.getJSONArray(i);
-            candles.add(new Candle(k.getLong(0), k.getDouble(1), k.getDouble(2), k.getDouble(3), k.getDouble(4)));
+            candles.add(new Candle(k.getLong(0), k.getDouble(1), k.getDouble(2), k.getDouble(3), k.getDouble(4),
+                    k.getDouble(5)));
         }
         return candles;
-    }
-
-    static Map<String, Double> parsePrices(String json) throws JSONException {
-        JSONArray array = new JSONArray(json);
-        Map<String, Double> prices = new HashMap<>();
-        for (int i = 0; i < array.length(); i++) {
-            JSONObject o = array.getJSONObject(i);
-            prices.put(o.getString("symbol"), o.getDouble("price"));
-        }
-        return prices;
     }
 
     /** WebSocket "<symbol>@miniTicker" olayı. */
@@ -160,6 +156,7 @@ public final class Binance {
     /** WebSocket "<symbol>@kline_<interval>" olayı. */
     public static Candle parseKlineEvent(JSONObject d) throws JSONException {
         JSONObject k = d.getJSONObject("k");
-        return new Candle(k.getLong("t"), k.getDouble("o"), k.getDouble("h"), k.getDouble("l"), k.getDouble("c"));
+        return new Candle(k.getLong("t"), k.getDouble("o"), k.getDouble("h"), k.getDouble("l"), k.getDouble("c"),
+                k.getDouble("v"));
     }
 }

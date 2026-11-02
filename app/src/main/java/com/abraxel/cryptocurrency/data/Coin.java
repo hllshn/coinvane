@@ -2,25 +2,36 @@ package com.abraxel.cryptocurrency.data;
 
 import androidx.annotation.NonNull;
 
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Set;
 
-/** Bir TRY paritesinin 24 saatlik özeti (Binance mini ticker). Değişmez. */
+/**
+ * Bir coinin 24 saatlik özeti (Binance <BASE>USDT mini ticker). Tüm fiyatlar USD (USDT) cinsindendir;
+ * kullanıcının para birimine çevirme işi {@link Money}'nindir. Değişmez.
+ */
 public final class Coin {
-    public static final String QUOTE = "TRY";
+    public static final String QUOTE = "USDT";
 
-    public final String symbol;      // BTCTRY
+    /** Binance'te USDT paritesi olan fiat paralar coin listesinde gösterilmez. */
+    private static final Set<String> FIAT_BASES = new HashSet<>(Arrays.asList(
+            "EUR", "GBP", "AUD", "TRY", "BRL", "JPY", "RUB", "UAH", "ARS", "ZAR", "PLN", "RON", "MXN", "COP",
+            "CZK", "NGN", "IDR"));
+
+    public final String symbol;      // BTCUSDT
     public final String base;        // BTC
     public final double last;
     public final double open;        // 24 saat önceki fiyat
     public final double high;
     public final double low;
-    public final double quoteVolume; // 24 saatlik TRY hacmi
+    public final double quoteVolume; // 24 saatlik USD hacmi
 
     public Coin(String symbol, double last, double open, double high, double low, double quoteVolume) {
         this.symbol = symbol;
-        this.base = symbol.endsWith(QUOTE) ? symbol.substring(0, symbol.length() - QUOTE.length()) : symbol;
+        this.base = base(symbol);
         this.last = last;
         this.open = open;
         this.high = high;
@@ -28,26 +39,34 @@ public final class Coin {
         this.quoteVolume = quoteVolume;
     }
 
+    public static String base(String symbol) {
+        return symbol.endsWith(QUOTE) ? symbol.substring(0, symbol.length() - QUOTE.length()) : symbol;
+    }
+
+    public static String symbolOf(String base) {
+        return base + QUOTE;
+    }
+
+    /** Listelenebilir bir coin paritesi mi? (USDT kotasyonlu, fiat değil) */
+    public static boolean isListable(String symbol) {
+        if (!symbol.endsWith(QUOTE) || symbol.length() <= QUOTE.length()) return false;
+        String base = base(symbol);
+        return !base.equals(QUOTE) && !FIAT_BASES.contains(base);
+    }
+
     public double changePercent() {
         return open == 0 ? 0 : (last - open) / open * 100;
     }
 
-    /** Bilinen coinler için tam ad, diğerleri için sembol. */
+    /** Bilinen coinler için tam ad, diğerleri için sembol. Marka adları çevrilmez. */
     public String name() {
-        String name = NAMES.get(base);
-        return name != null ? name : base;
-    }
-
-    public String pairLabel() {
-        return base + "/" + QUOTE;
-    }
-
-    public static String pairLabel(String symbol) {
-        return new Coin(symbol, 0, 0, 0, 0, 0).pairLabel();
+        return name(symbol);
     }
 
     public static String name(String symbol) {
-        return new Coin(symbol, 0, 0, 0, 0, 0).name();
+        String base = base(symbol);
+        String name = NAMES.get(base);
+        return name != null ? name : base;
     }
 
     @Override
@@ -75,11 +94,11 @@ public final class Coin {
     static {
         String[][] names = {
                 {"BTC", "Bitcoin"}, {"ETH", "Ethereum"}, {"BNB", "BNB"}, {"XRP", "XRP"},
-                {"USDT", "Tether"}, {"USDC", "USD Coin"}, {"SOL", "Solana"}, {"ADA", "Cardano"},
-                {"DOGE", "Dogecoin"}, {"TRX", "TRON"}, {"AVAX", "Avalanche"}, {"DOT", "Polkadot"},
-                {"LINK", "Chainlink"}, {"LTC", "Litecoin"}, {"BCH", "Bitcoin Cash"}, {"XLM", "Stellar"},
-                {"ATOM", "Cosmos"}, {"NEAR", "NEAR Protocol"}, {"SHIB", "Shiba Inu"}, {"PEPE", "Pepe"},
-                {"SUI", "Sui"}, {"APT", "Aptos"}, {"ARB", "Arbitrum"}, {"OP", "Optimism"},
+                {"USDT", "Tether"}, {"USDC", "USD Coin"}, {"FDUSD", "First Digital USD"}, {"SOL", "Solana"},
+                {"ADA", "Cardano"}, {"DOGE", "Dogecoin"}, {"TRX", "TRON"}, {"AVAX", "Avalanche"},
+                {"DOT", "Polkadot"}, {"LINK", "Chainlink"}, {"LTC", "Litecoin"}, {"BCH", "Bitcoin Cash"},
+                {"XLM", "Stellar"}, {"ATOM", "Cosmos"}, {"NEAR", "NEAR Protocol"}, {"SHIB", "Shiba Inu"},
+                {"PEPE", "Pepe"}, {"SUI", "Sui"}, {"APT", "Aptos"}, {"ARB", "Arbitrum"}, {"OP", "Optimism"},
                 {"FIL", "Filecoin"}, {"ETC", "Ethereum Classic"}, {"ALGO", "Algorand"}, {"ICP", "Internet Computer"},
                 {"INJ", "Injective"}, {"FET", "Artificial Superintelligence"}, {"GRT", "The Graph"},
                 {"SAND", "The Sandbox"}, {"MANA", "Decentraland"}, {"AXS", "Axie Infinity"}, {"APE", "ApeCoin"},
@@ -87,6 +106,8 @@ public final class Coin {
                 {"FLOKI", "Floki"}, {"PAXG", "PAX Gold"}, {"STX", "Stacks"}, {"TON", "Toncoin"},
                 {"UNI", "Uniswap"}, {"AAVE", "Aave"}, {"RENDER", "Render"}, {"WLD", "Worldcoin"},
                 {"SEI", "Sei"}, {"TIA", "Celestia"}, {"BONK", "Bonk"}, {"WIF", "dogwifhat"},
+                {"HBAR", "Hedera"}, {"MKR", "Maker"}, {"CRV", "Curve"}, {"LDO", "Lido DAO"}, {"ENA", "Ethena"},
+                {"JUP", "Jupiter"}, {"PYTH", "Pyth Network"}, {"KAS", "Kaspa"}, {"TAO", "Bittensor"},
         };
         for (String[] n : names) NAMES.put(n[0], n[1]);
     }

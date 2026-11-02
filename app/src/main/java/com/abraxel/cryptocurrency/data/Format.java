@@ -1,58 +1,45 @@
 package com.abraxel.cryptocurrency.data;
 
 import java.math.BigDecimal;
-import java.text.DecimalFormat;
-import java.text.DecimalFormatSymbols;
 import java.util.Locale;
 
-/** Türkçe biçimlendirme: 3.842.059,00 ₺ · +1,38% · 337,35 Mn ₺ */
+/** Para biriminden bağımsız biçimlendirme ve kullanıcı girdisi ayrıştırma. */
 public final class Format {
-    private static final Locale TR = Locale.forLanguageTag("tr-TR");
-    private static final DecimalFormatSymbols SYMBOLS = DecimalFormatSymbols.getInstance(TR);
-
     private Format() {
     }
 
-    public static String price(double value) {
-        return number(value) + " ₺";
-    }
-
-    /** ≥1 için 2 hane; küçük fiyatlarda (ör. PEPE) anlamlı haneler kaybolmasın diye 8 haneye kadar. */
-    public static String number(double value) {
-        String pattern = Math.abs(value) >= 1 ? "#,##0.00" : "#,##0.0000####";
-        return new DecimalFormat(pattern, SYMBOLS).format(value);
-    }
-
-    public static String percent(double value) {
-        return String.format(TR, "%+.2f%%", value);
-    }
-
-    public static String compactPrice(double value) {
-        double abs = Math.abs(value);
-        if (abs >= 1e9) return compact(value / 1e9) + " Mr ₺";
-        if (abs >= 1e6) return compact(value / 1e6) + " Mn ₺";
-        if (abs >= 1e3) return compact(value / 1e3) + " Bin ₺";
-        return compact(value) + " ₺";
+    public static String percent(double value, Locale locale) {
+        return String.format(locale, "%+.2f%%", value);
     }
 
     /** Kullanıcının düzenleyebileceği sade sayı: gruplama yok, ondalık ayırıcı nokta. */
     public static String plain(double value) {
-        return BigDecimal.valueOf(value).stripTrailingZeros().toPlainString();
+        BigDecimal d = BigDecimal.valueOf(value);
+        d = d.setScale(Math.abs(value) >= 1 ? 2 : 8, java.math.RoundingMode.HALF_UP);
+        return d.stripTrailingZeros().toPlainString();
     }
 
-    /** "4.000.000,5", "4.000.000", "4000000.5", "4000000,5" girdilerini kabul eder. Geçersizse NaN. */
+    /**
+     * Dil fark etmeksizin yaygın girdileri kabul eder: "4,000,000.5", "4.000.000,5", "4000000,5", "4.000.000".
+     * Son ayırıcı ondalık kabul edilir; aynı ayırıcı birden çok kez geçiyorsa binlik ayırıcıdır. Geçersizse NaN.
+     */
     public static double parse(String text) {
-        String s = text.trim().replace(" ", "").replace("₺", "");
-        if (s.contains(",")) s = s.replace(".", "").replace(',', '.');
-        else if (s.indexOf('.') != s.lastIndexOf('.')) s = s.replace(".", ""); // 4.000.000
+        String s = text.trim().replaceAll("[^0-9.,\\-]", "");
+        int dot = s.lastIndexOf('.');
+        int comma = s.lastIndexOf(',');
+        if (dot >= 0 && comma >= 0) {
+            char decimal = dot > comma ? '.' : ',';
+            char group = decimal == '.' ? ',' : '.';
+            s = s.replace(String.valueOf(group), "").replace(decimal, '.');
+        } else if (comma >= 0) {
+            s = s.indexOf(',') != comma ? s.replace(",", "") : s.replace(',', '.');
+        } else if (dot >= 0 && s.indexOf('.') != dot) {
+            s = s.replace(".", "");
+        }
         try {
-            return Double.parseDouble(s);
+            return s.isEmpty() ? Double.NaN : Double.parseDouble(s);
         } catch (NumberFormatException e) {
             return Double.NaN;
         }
-    }
-
-    private static String compact(double value) {
-        return new DecimalFormat("#,##0.##", SYMBOLS).format(value);
     }
 }

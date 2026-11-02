@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="search">Coin ara</string>
+    <string name="tab_all">Hacim</string>
+    <string name="tab_favorites">Favoriler</string>
+    <string name="tab_gainers">Yükselenler</string>
+    <string name="tab_losers">Düşenler</string>
+    <string name="status_connecting">○ Bağlanıyor…</string>
+    <string name="volume_short">Hacim %1$s</string>
+    <string name="empty_results">Sonuç bulunamadı</string>
+    <string name="empty_favorites">Henüz favori yok.\nBir coini eklemek için yıldıza dokunun.</string>
+    <string name="error_load">Fiyatlar yüklenemedi. İnternet bağlantınızı kontrol edin.</string>
+    <string name="retry">Tekrar dene</string>
+    <string name="favorite">Favori</string>
+    <string name="favorite_add">Favorilere ekle</string>
+    <string name="favorite_remove">Favorilerden çıkar</string>
+    <string name="coin_logo">Coin logosu</string>
+    <string name="back">Geri</string>
+    <string name="high_24h">24s En Yüksek</string>
+    <string name="low_24h">24s En Düşük</string>
+    <string name="volume_24h">24s Hacim</string>
+    <string name="chart_loading">Grafik yükleniyor…</string>
+    <string name="chart_error">Grafik verisi alınamadı</string>
+    <string name="interval_15m">15dk</string>
+    <string name="interval_1h">1s</string>
+    <string name="interval_4h">4s</string>
+    <string name="interval_1d">1G</string>
+    <string name="interval_1w">1H</string>
+    <string name="marker_ohlc">A %1$s\nY %2$s\nD %3$s\nK %4$s</string>
+    <string name="chart_show_line">Çizgi grafik</string>
+    <string name="chart_show_candles">Mum grafik</string>
+    <string name="set_alert">Fiyat alarmı kur</string>
+    <string name="alerts_title">Aktif alarmlar</string>
+    <string name="alert_hint">Hedef fiyat</string>
+    <string name="alert_helper">Uygulama açıkken anında, kapalıyken ~15 dakika içinde bildirilir.</string>
+    <string name="alert_save">Kur</string>
+    <string name="cancel">Vazgeç</string>
+    <string name="alert_invalid">Güncel fiyattan farklı, geçerli bir değer girin</string>
+    <string name="alert_saved">Alarm kuruldu</string>
+    <string name="alert_removed">Alarm silindi</string>
+    <string name="alert_chip_above">≥ %1$s</string>
+    <string name="alert_chip_below">≤ %1$s</string>
+    <string name="alert_channel_name">Fiyat alarmları</string>
+    <string name="alert_title">%1$s hedefe ulaştı</string>
+    <string name="alert_text_above">Fiyat %1$s üzerine çıktı · Şu an %2$s</string>
+    <string name="alert_text_below">Fiyat %1$s altına indi · Şu an %2$s</string>
+    <string name="notifications_denied">Bildirim izni olmadan alarm bildirimi gösterilemez</string>
+    <string name="portfolio">Portföy</string>
+    <string name="portfolio_total">Toplam bakiye</string>
+    <string name="portfolio_empty">Portföyünüz boş.\nBir coin açıp “Portföye ekle”ye dokunun.</string>
+    <string name="change_24h_value">24s %1$s (%2$s)</string>
+    <string name="profit_value">K/Z %1$s (%2$s)</string>
+    <string name="holding_title">Pozisyonunuz</string>
+    <string name="holding_add">Portföye ekle</string>
+    <string name="holding_edit">Pozisyonu düzenle</string>
+    <string name="holding_amount">Adet</string>
+    <string name="holding_avg_price">Ortalama alış fiyatı (isteğe bağlı)</string>
+    <string name="holding_avg_price_helper">Kâr/zarar hesabında kullanılır</string>
+    <string name="holding_amount_value">%1$s %2$s</string>
+    <string name="save">Kaydet</string>
+    <string name="remove">Sil</string>
+    <string name="invalid_number">Geçerli bir sayı girin</string>
+    <string name="settings">Ayarlar</string>
+    <string name="settings_language">Dil</string>
+    <string name="settings_currency">Para birimi</string>
+    <string name="settings_theme">Tema</string>
+    <string name="settings_dynamic_colors">Sistem renklerini kullan</string>
+    <string name="language_system">Sistem dili</string>
+    <string name="widget_description">Favori coinlerinizin canlı fiyatları</string>
+    <string name="about_text"><![CDATA[Coinvane %1$s<br>Piyasa verisi: <a href="https://www.binance.com">Binance</a> · Döviz kurları: <a href="https://www.exchangerate-api.com">ExchangeRate-API</a> · İkonlar: CoinCap, cryptocurrency-icons<br>Fiyatlar bilgi amaçlıdır, yatırım tavsiyesi değildir.]]></string>
+    <plurals name="status_live">
+        <item quantity="one">● Canlı · %d parite</item>
+        <item quantity="other">● Canlı · %d parite</item>
+    </plurals>
+    <string-array name="theme_options">
+        <item>Sistem varsayılanı</item>
+        <item>Açık</item>
+        <item>Koyu</item>
+    </string-array>
+    <string-array name="compact_suffixes">
+        <item>" Bin"</item>
+        <item>" Mn"</item>
+        <item>" Mr"</item>
+        <item>" Tn"</item>
+    </string-array>
+</resources>

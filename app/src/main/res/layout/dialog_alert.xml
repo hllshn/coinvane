@@ -9,7 +9,7 @@
     android:paddingTop="8dp"
     android:hint="@string/alert_hint"
     app:helperText="@string/alert_helper"
-    app:suffixText="₺">
+    >
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/input"

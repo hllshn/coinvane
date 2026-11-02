@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="search">搜索币种</string>
+    <string name="tab_all">成交额</string>
+    <string name="tab_favorites">自选</string>
+    <string name="tab_gainers">涨幅榜</string>
+    <string name="tab_losers">跌幅榜</string>
+    <string name="status_connecting">○ 连接中…</string>
+    <string name="volume_short">成交额 %1$s</string>
+    <string name="empty_results">无结果</string>
+    <string name="empty_favorites">暂无自选。\n点击币种旁的星标即可添加。</string>
+    <string name="error_load">无法加载价格，请检查网络连接。</string>
+    <string name="retry">重试</string>
+    <string name="favorite">自选</string>
+    <string name="favorite_add">添加到自选</string>
+    <string name="favorite_remove">从自选移除</string>
+    <string name="coin_logo">币种图标</string>
+    <string name="back">返回</string>
+    <string name="high_24h">24小时最高</string>
+    <string name="low_24h">24小时最低</string>
+    <string name="volume_24h">24小时成交额</string>
+    <string name="chart_loading">正在加载图表…</string>
+    <string name="chart_error">无法加载图表数据</string>
+    <string name="interval_15m">15分</string>
+    <string name="interval_1h">1小时</string>
+    <string name="interval_4h">4小时</string>
+    <string name="interval_1d">1日</string>
+    <string name="interval_1w">1周</string>
+    <string name="marker_ohlc">开 %1$s\n高 %2$s\n低 %3$s\n收 %4$s</string>
+    <string name="chart_show_line">折线图</string>
+    <string name="chart_show_candles">K线图</string>
+    <string name="set_alert">设置价格提醒</string>
+    <string name="alerts_title">有效提醒</string>
+    <string name="alert_hint">目标价格</string>
+    <string name="alert_helper">应用打开时立即提醒，否则约 15 分钟内提醒。</string>
+    <string name="alert_save">设置</string>
+    <string name="cancel">取消</string>
+    <string name="alert_invalid">请输入与当前价格不同的有效价格</string>
+    <string name="alert_saved">提醒已设置</string>
+    <string name="alert_removed">提醒已删除</string>
+    <string name="alert_chip_above">≥ %1$s</string>
+    <string name="alert_chip_below">≤ %1$s</string>
+    <string name="alert_channel_name">价格提醒</string>
+    <string name="alert_title">%1$s 已达到目标价</string>
+    <string name="alert_text_above">价格已升破 %1$s · 当前 %2$s</string>
+    <string name="alert_text_below">价格已跌破 %1$s · 当前 %2$s</string>
+    <string name="notifications_denied">未授予通知权限，价格提醒无法通知您</string>
+    <string name="portfolio">资产组合</string>
+    <string name="portfolio_total">总资产</string>
+    <string name="portfolio_empty">您的资产组合为空。\n打开任一币种并点击“添加到资产组合”。</string>
+    <string name="change_24h_value">24小时 %1$s (%2$s)</string>
+    <string name="profit_value">盈亏 %1$s (%2$s)</string>
+    <string name="holding_title">您的持仓</string>
+    <string name="holding_add">添加到资产组合</string>
+    <string name="holding_edit">编辑持仓</string>
+    <string name="holding_amount">数量</string>
+    <string name="holding_avg_price">平均买入价（可选）</string>
+    <string name="holding_avg_price_helper">用于计算盈亏</string>
+    <string name="holding_amount_value">%1$s %2$s</string>
+    <string name="save">保存</string>
+    <string name="remove">删除</string>
+    <string name="invalid_number">请输入有效数字</string>
+    <string name="settings">设置</string>
+    <string name="settings_language">语言</string>
+    <string name="settings_currency">计价货币</string>
+    <string name="settings_theme">主题</string>
+    <string name="settings_dynamic_colors">使用系统颜色</string>
+    <string name="language_system">跟随系统</string>
+    <string name="widget_description">自选币种实时价格</string>
+    <string name="about_text"><![CDATA[Coinvane %1$s<br>行情数据：<a href="https://www.binance.com">Binance</a> · 汇率：<a href="https://www.exchangerate-api.com">ExchangeRate-API</a> · 图标：CoinCap、cryptocurrency-icons<br>价格仅供参考，不构成投资建议。]]></string>
+    <plurals name="status_live">
+        <item quantity="other">● 实时 · %d 个交易对</item>
+    </plurals>
+    <string-array name="theme_options">
+        <item>跟随系统</item>
+        <item>浅色</item>
+        <item>深色</item>
+    </string-array>
+    <string-array name="compact_suffixes">
+        <item>"K"</item>
+        <item>"M"</item>
+        <item>"B"</item>
+        <item>"T"</item>
+    </string-array>
+</resources>

@@ -7,43 +7,50 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.abraxel.cryptocurrency.R;
-import com.abraxel.cryptocurrency.data.Format;
+import com.abraxel.cryptocurrency.data.Money;
 import com.github.mikephil.charting.components.MarkerView;
 import com.github.mikephil.charting.data.CandleEntry;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.highlight.Highlight;
 
-import java.text.SimpleDateFormat;
+import java.text.DateFormat;
 import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 
-/** Seçilen mumun zamanını ve OHLC değerlerini gösterir; grafik kenarından taşmaz. */
+/** Seçilen mumun zamanını ve OHLC (çizgi modunda kapanış) değerini gösterir; grafik kenarından taşmaz. */
 @SuppressLint("ViewConstructor")
 final class CandleMarkerView extends MarkerView {
     private static final float MARGIN = 8f;
 
     private final TextView time;
-    private final TextView ohlc;
+    private final TextView values;
     private final List<Long> times;
-    private final SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy HH:mm", Locale.getDefault());
+    private final DateFormat format = DateFormat.getDateTimeInstance(DateFormat.MEDIUM, DateFormat.SHORT);
+    private Money money;
 
-    CandleMarkerView(Context context, List<Long> times) {
+    CandleMarkerView(Context context, List<Long> times, Money money) {
         super(context, R.layout.marker_view);
         this.times = times;
+        this.money = money;
         time = findViewById(R.id.marker_time);
-        ohlc = findViewById(R.id.marker_ohlc);
+        values = findViewById(R.id.marker_ohlc);
+    }
+
+    void setMoney(Money money) {
+        this.money = money;
     }
 
     @Override
     public void refreshContent(Entry e, Highlight highlight) {
+        int i = Math.round(e.getX());
+        time.setText(i >= 0 && i < times.size() ? format.format(new Date(times.get(i))) : "");
         if (e instanceof CandleEntry) {
             CandleEntry c = (CandleEntry) e;
-            int i = Math.round(c.getX());
-            time.setText(i >= 0 && i < times.size() ? format.format(new Date(times.get(i))) : "");
-            ohlc.setText(getContext().getString(R.string.marker_ohlc,
-                    Format.number(c.getOpen()), Format.number(c.getHigh()),
-                    Format.number(c.getLow()), Format.number(c.getClose())));
+            values.setText(getContext().getString(R.string.marker_ohlc,
+                    money.format(c.getOpen()), money.format(c.getHigh()),
+                    money.format(c.getLow()), money.format(c.getClose())));
+        } else {
+            values.setText(money.format(e.getY()));
         }
         super.refreshContent(e, highlight);
     }

@@ -97,27 +97,78 @@
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
-            <com.google.android.material.button.MaterialButtonToggleGroup
-                android:id="@+id/intervals"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                app:checkedButton="@id/interval_1h"
-                app:selectionRequired="true"
-                app:singleSelection="true">
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
 
-                <Button android:id="@+id/interval_15m" style="?attr/materialButtonOutlinedStyle" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="@string/interval_15m" />
-                <Button android:id="@+id/interval_1h" style="?attr/materialButtonOutlinedStyle" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="@string/interval_1h" />
-                <Button android:id="@+id/interval_4h" style="?attr/materialButtonOutlinedStyle" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="@string/interval_4h" />
-                <Button android:id="@+id/interval_1d" style="?attr/materialButtonOutlinedStyle" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="@string/interval_1d" />
-                <Button android:id="@+id/interval_1w" style="?attr/materialButtonOutlinedStyle" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="@string/interval_1w" />
-            </com.google.android.material.button.MaterialButtonToggleGroup>
+                <com.google.android.material.button.MaterialButtonToggleGroup
+                    android:id="@+id/intervals"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    app:selectionRequired="true"
+                    app:singleSelection="true">
 
-            <com.github.mikephil.charting.charts.CandleStickChart
+                    <Button android:id="@+id/interval_15m" style="?attr/materialButtonOutlinedStyle" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:paddingHorizontal="0dp" android:text="@string/interval_15m" />
+                    <Button android:id="@+id/interval_1h" style="?attr/materialButtonOutlinedStyle" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:paddingHorizontal="0dp" android:text="@string/interval_1h" />
+                    <Button android:id="@+id/interval_4h" style="?attr/materialButtonOutlinedStyle" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:paddingHorizontal="0dp" android:text="@string/interval_4h" />
+                    <Button android:id="@+id/interval_1d" style="?attr/materialButtonOutlinedStyle" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:paddingHorizontal="0dp" android:text="@string/interval_1d" />
+                    <Button android:id="@+id/interval_1w" style="?attr/materialButtonOutlinedStyle" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:paddingHorizontal="0dp" android:text="@string/interval_1w" />
+                </com.google.android.material.button.MaterialButtonToggleGroup>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/chart_type"
+                    style="?attr/materialIconButtonStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    app:icon="@drawable/ic_chart_line" />
+            </LinearLayout>
+
+            <com.github.mikephil.charting.charts.CombinedChart
                 android:id="@+id/chart"
                 android:layout_width="match_parent"
                 android:layout_height="340dp"
                 android:layout_marginTop="8dp" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/holding_card"
+                style="@style/Widget.Material3.CardView.Filled"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:visibility="gone"
+                app:cardBackgroundColor="@color/surface_card">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:padding="14dp">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView style="@style/Kripto.StatLabel" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/holding_title" />
+                        <TextView android:id="@+id/holding_value" style="@style/Kripto.StatValue" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textAppearance="?attr/textAppearanceTitleMedium" tools:text="$3,210.00" />
+                        <TextView android:id="@+id/holding_amount" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textAppearance="?attr/textAppearanceBodySmall" android:textColor="?attr/colorOnSurfaceVariant" tools:text="0.05 BTC" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/holding_profit"
+                        style="@style/Kripto.Pill"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        tools:text="+$120.00 (+3.88%)" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
 
             <TextView
                 android:id="@+id/alerts_title"
@@ -141,6 +192,14 @@
                 android:layout_marginTop="12dp"
                 android:text="@string/set_alert"
                 app:icon="@drawable/ic_alarm_add" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/edit_holding"
+                style="@style/Widget.Material3.Button.OutlinedButton.Icon"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/holding_add"
+                app:icon="@drawable/ic_portfolio" />
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 </LinearLayout>

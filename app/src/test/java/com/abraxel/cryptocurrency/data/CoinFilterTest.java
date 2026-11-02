@@ -12,9 +12,9 @@ import java.util.Set;
 
 public class CoinFilterTest {
     // sembol, son, açılış (değişim %), hacim
-    private final Coin btc = new Coin("BTCTRY", 110, 100, 0, 0, 1000); // +10%
-    private final Coin eth = new Coin("ETHTRY", 95, 100, 0, 0, 500);   // -5%
-    private final Coin sol = new Coin("SOLTRY", 102, 100, 0, 0, 800);  // +2%
+    private final Coin btc = new Coin("BTCUSDT", 110, 100, 0, 0, 1000); // +10%
+    private final Coin eth = new Coin("ETHUSDT", 95, 100, 0, 0, 500);   // -5%
+    private final Coin sol = new Coin("SOLUSDT", 102, 100, 0, 0, 800);  // +2%
     private final List<Coin> all = Arrays.asList(eth, sol, btc);
     private final Set<String> none = Collections.emptySet();
 
@@ -37,7 +37,7 @@ public class CoinFilterTest {
 
     @Test
     public void favorites_onlyFavorites() {
-        Set<String> favorites = new HashSet<>(Arrays.asList("ETHTRY", "SOLTRY"));
+        Set<String> favorites = new HashSet<>(Arrays.asList("ETHUSDT", "SOLUSDT"));
         assertEquals(Arrays.asList("SOL", "ETH"), symbols(CoinFilter.apply(all, null, CoinFilter.Mode.FAVORITES, favorites)));
         assertEquals(Collections.emptyList(), symbols(CoinFilter.apply(all, "", CoinFilter.Mode.FAVORITES, none)));
     }

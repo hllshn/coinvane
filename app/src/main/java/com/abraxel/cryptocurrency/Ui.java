@@ -1,5 +1,6 @@
 package com.abraxel.cryptocurrency;
 
+import android.content.Context;
 import android.content.res.ColorStateList;
 import android.view.View;
 import android.widget.ImageView;
@@ -15,13 +16,13 @@ import com.bumptech.glide.Glide;
 
 import java.util.Locale;
 
-/** Liste ve detay ekranının paylaştığı küçük görünüm yardımcıları. */
-final class Ui {
+/** Ekranların paylaştığı küçük görünüm yardımcıları. */
+public final class Ui {
     private Ui() {
     }
 
     /** Edge-to-edge (API 35+ zorunlu): içerik sistem çubuklarının altında kalmasın. */
-    static void padForSystemBars(View root) {
+    public static void padForSystemBars(View root) {
         ViewCompat.setOnApplyWindowInsetsListener(root, (v, insets) -> {
             Insets bars = insets.getInsets(WindowInsetsCompat.Type.systemBars() | WindowInsetsCompat.Type.displayCutout());
             v.setPadding(bars.left, bars.top, bars.right, bars.bottom);
@@ -29,8 +30,12 @@ final class Ui {
         });
     }
 
+    public static Locale locale(Context context) {
+        return context.getResources().getConfiguration().getLocales().get(0);
+    }
+
     /** Coin logosu: CoinCap CDN, yoksa spothq ikon seti, o da yoksa nötr yer tutucu. */
-    static void loadIcon(ImageView view, String base) {
+    public static void loadIcon(ImageView view, String base) {
         String b = base.toLowerCase(Locale.ROOT);
         Glide.with(view)
                 .load("https://assets.coincap.io/assets/icons/" + b + "@2x.png")
@@ -42,11 +47,14 @@ final class Ui {
     }
 
     /** Yüzde değişim etiketi: yeşil/kırmızı zemin. */
-    static void bindChange(TextView view, double percent) {
-        boolean up = percent >= 0;
-        view.setText(Format.percent(percent));
-        view.setTextColor(ContextCompat.getColor(view.getContext(), up ? R.color.up : R.color.down));
-        view.setBackgroundTintList(ColorStateList.valueOf(
-                ContextCompat.getColor(view.getContext(), up ? R.color.up_container : R.color.down_container)));
+    public static void bindChange(TextView view, double percent) {
+        view.setText(Format.percent(percent, locale(view.getContext())));
+        tint(view, percent >= 0);
+    }
+
+    public static void tint(TextView view, boolean up) {
+        Context c = view.getContext();
+        view.setTextColor(ContextCompat.getColor(c, up ? R.color.up : R.color.down));
+        view.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(c, up ? R.color.up_container : R.color.down_container)));
     }
 }

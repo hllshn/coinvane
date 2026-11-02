@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="search">Поиск монет</string>
+    <string name="tab_all">Объём</string>
+    <string name="tab_favorites">Избранное</string>
+    <string name="tab_gainers">Рост</string>
+    <string name="tab_losers">Падение</string>
+    <string name="status_connecting">○ Подключение…</string>
+    <string name="volume_short">Объём %1$s</string>
+    <string name="empty_results">Ничего не найдено</string>
+    <string name="empty_favorites">В избранном пока пусто.\nНажмите на звёздочку у монеты, чтобы добавить её.</string>
+    <string name="error_load">Не удалось загрузить цены. Проверьте подключение к интернету.</string>
+    <string name="retry">Повторить</string>
+    <string name="favorite">Избранное</string>
+    <string name="favorite_add">Добавить в избранное</string>
+    <string name="favorite_remove">Удалить из избранного</string>
+    <string name="coin_logo">Логотип монеты</string>
+    <string name="back">Назад</string>
+    <string name="high_24h">Макс. за 24 ч</string>
+    <string name="low_24h">Мин. за 24 ч</string>
+    <string name="volume_24h">Объём за 24 ч</string>
+    <string name="chart_loading">Загрузка графика…</string>
+    <string name="chart_error">Не удалось загрузить график</string>
+    <string name="interval_15m">15м</string>
+    <string name="interval_1h">1ч</string>
+    <string name="interval_4h">4ч</string>
+    <string name="interval_1d">1Д</string>
+    <string name="interval_1w">1Н</string>
+    <string name="marker_ohlc">О %1$s\nМакс %2$s\nМин %3$s\nЗ %4$s</string>
+    <string name="chart_show_line">Линейный график</string>
+    <string name="chart_show_candles">Свечи</string>
+    <string name="set_alert">Создать ценовое оповещение</string>
+    <string name="alerts_title">Активные оповещения</string>
+    <string name="alert_hint">Целевая цена</string>
+    <string name="alert_helper">Сразу, если приложение открыто, иначе в течение ~15 минут.</string>
+    <string name="alert_save">Создать</string>
+    <string name="cancel">Отмена</string>
+    <string name="alert_invalid">Введите корректную цену, отличную от текущей</string>
+    <string name="alert_saved">Оповещение создано</string>
+    <string name="alert_removed">Оповещение удалено</string>
+    <string name="alert_chip_above">≥ %1$s</string>
+    <string name="alert_chip_below">≤ %1$s</string>
+    <string name="alert_channel_name">Ценовые оповещения</string>
+    <string name="alert_title">%1$s достиг цели</string>
+    <string name="alert_text_above">Цена поднялась выше %1$s · Сейчас %2$s</string>
+    <string name="alert_text_below">Цена опустилась ниже %1$s · Сейчас %2$s</string>
+    <string name="notifications_denied">Без разрешения на уведомления оповещения не смогут сработать</string>
+    <string name="portfolio">Портфель</string>
+    <string name="portfolio_total">Общий баланс</string>
+    <string name="portfolio_empty">Ваш портфель пуст.\nОткройте монету и нажмите «Добавить в портфель».</string>
+    <string name="change_24h_value">24ч %1$s (%2$s)</string>
+    <string name="profit_value">П/У %1$s (%2$s)</string>
+    <string name="holding_title">Ваша позиция</string>
+    <string name="holding_add">Добавить в портфель</string>
+    <string name="holding_edit">Изменить позицию</string>
+    <string name="holding_amount">Количество</string>
+    <string name="holding_avg_price">Средняя цена покупки (необязательно)</string>
+    <string name="holding_avg_price_helper">Используется для расчёта прибыли и убытков</string>
+    <string name="holding_amount_value">%1$s %2$s</string>
+    <string name="save">Сохранить</string>
+    <string name="remove">Удалить</string>
+    <string name="invalid_number">Введите корректное число</string>
+    <string name="settings">Настройки</string>
+    <string name="settings_language">Язык</string>
+    <string name="settings_currency">Валюта</string>
+    <string name="settings_theme">Тема</string>
+    <string name="settings_dynamic_colors">Использовать цвета системы</string>
+    <string name="language_system">Как в системе</string>
+    <string name="widget_description">Курсы избранных монет в реальном времени</string>
+    <string name="about_text"><![CDATA[Coinvane %1$s<br>Рыночные данные: <a href="https://www.binance.com">Binance</a> · Курсы валют: <a href="https://www.exchangerate-api.com">ExchangeRate-API</a> · Иконки: CoinCap, cryptocurrency-icons<br>Цены носят информационный характер и не являются инвестиционной рекомендацией.]]></string>
+    <plurals name="status_live">
+        <item quantity="one">● Онлайн · %d пара</item>
+        <item quantity="few">● Онлайн · %d пары</item>
+        <item quantity="many">● Онлайн · %d пар</item>
+        <item quantity="other">● Онлайн · %d пары</item>
+    </plurals>
+    <string-array name="theme_options">
+        <item>Как в системе</item>
+        <item>Светлая</item>
+        <item>Тёмная</item>
+    </string-array>
+    <string-array name="compact_suffixes">
+        <item>" тыс."</item>
+        <item>" млн"</item>
+        <item>" млрд"</item>
+        <item>" трлн"</item>
+    </string-array>
+</resources>

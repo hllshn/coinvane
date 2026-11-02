@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="search">Coins suchen</string>
+    <string name="tab_all">Volumen</string>
+    <string name="tab_favorites">Favoriten</string>
+    <string name="tab_gainers">Gewinner</string>
+    <string name="tab_losers">Verlierer</string>
+    <string name="status_connecting">○ Verbinde…</string>
+    <string name="volume_short">Vol. %1$s</string>
+    <string name="empty_results">Keine Ergebnisse</string>
+    <string name="empty_favorites">Noch keine Favoriten.\nTippe auf den Stern, um einen Coin hinzuzufügen.</string>
+    <string name="error_load">Kurse konnten nicht geladen werden. Prüfe deine Internetverbindung.</string>
+    <string name="retry">Erneut versuchen</string>
+    <string name="favorite">Favorit</string>
+    <string name="favorite_add">Zu Favoriten hinzufügen</string>
+    <string name="favorite_remove">Aus Favoriten entfernen</string>
+    <string name="coin_logo">Coin-Logo</string>
+    <string name="back">Zurück</string>
+    <string name="high_24h">24h-Hoch</string>
+    <string name="low_24h">24h-Tief</string>
+    <string name="volume_24h">24h-Volumen</string>
+    <string name="chart_loading">Chart wird geladen…</string>
+    <string name="chart_error">Chartdaten konnten nicht geladen werden</string>
+    <string name="interval_15m">15m</string>
+    <string name="interval_1h">1H</string>
+    <string name="interval_4h">4H</string>
+    <string name="interval_1d">1T</string>
+    <string name="interval_1w">1W</string>
+    <string name="marker_ohlc">E %1$s\nH %2$s\nT %3$s\nS %4$s</string>
+    <string name="chart_show_line">Liniendiagramm</string>
+    <string name="chart_show_candles">Kerzenchart</string>
+    <string name="set_alert">Kursalarm festlegen</string>
+    <string name="alerts_title">Aktive Alarme</string>
+    <string name="alert_hint">Zielkurs</string>
+    <string name="alert_helper">Bei geöffneter App sofort, sonst innerhalb von ~15 Minuten.</string>
+    <string name="alert_save">Festlegen</string>
+    <string name="cancel">Abbrechen</string>
+    <string name="alert_invalid">Gib einen gültigen Kurs ein, der vom aktuellen abweicht</string>
+    <string name="alert_saved">Alarm festgelegt</string>
+    <string name="alert_removed">Alarm entfernt</string>
+    <string name="alert_chip_above">≥ %1$s</string>
+    <string name="alert_chip_below">≤ %1$s</string>
+    <string name="alert_channel_name">Kursalarme</string>
+    <string name="alert_title">%1$s hat dein Ziel erreicht</string>
+    <string name="alert_text_above">Kurs über %1$s gestiegen · Jetzt %2$s</string>
+    <string name="alert_text_below">Kurs unter %1$s gefallen · Jetzt %2$s</string>
+    <string name="notifications_denied">Ohne Benachrichtigungsberechtigung können keine Alarme angezeigt werden</string>
+    <string name="portfolio">Portfolio</string>
+    <string name="portfolio_total">Gesamtsaldo</string>
+    <string name="portfolio_empty">Dein Portfolio ist leer.\nÖffne einen Coin und tippe auf „Zum Portfolio hinzufügen“.</string>
+    <string name="change_24h_value">24h %1$s (%2$s)</string>
+    <string name="profit_value">G/V %1$s (%2$s)</string>
+    <string name="holding_title">Dein Bestand</string>
+    <string name="holding_add">Zum Portfolio hinzufügen</string>
+    <string name="holding_edit">Bestand bearbeiten</string>
+    <string name="holding_amount">Menge</string>
+    <string name="holding_avg_price">Durchschnittlicher Kaufpreis (optional)</string>
+    <string name="holding_avg_price_helper">Wird für Gewinn und Verlust verwendet</string>
+    <string name="holding_amount_value">%1$s %2$s</string>
+    <string name="save">Speichern</string>
+    <string name="remove">Entfernen</string>
+    <string name="invalid_number">Gib eine gültige Zahl ein</string>
+    <string name="settings">Einstellungen</string>
+    <string name="settings_language">Sprache</string>
+    <string name="settings_currency">Währung</string>
+    <string name="settings_theme">Design</string>
+    <string name="settings_dynamic_colors">Systemfarben verwenden</string>
+    <string name="language_system">Systemstandard</string>
+    <string name="widget_description">Live-Kurse deiner Lieblingscoins</string>
+    <string name="about_text"><![CDATA[Coinvane %1$s<br>Marktdaten: <a href="https://www.binance.com">Binance</a> · Wechselkurse: <a href="https://www.exchangerate-api.com">ExchangeRate-API</a> · Icons: CoinCap, cryptocurrency-icons<br>Kurse dienen nur zur Information und sind keine Anlageberatung.]]></string>
+    <plurals name="status_live">
+        <item quantity="one">● Live · %d Paar</item>
+        <item quantity="other">● Live · %d Paare</item>
+    </plurals>
+    <string-array name="theme_options">
+        <item>Systemstandard</item>
+        <item>Hell</item>
+        <item>Dunkel</item>
+    </string-array>
+    <string-array name="compact_suffixes">
+        <item>" Tsd."</item>
+        <item>" Mio."</item>
+        <item>" Mrd."</item>
+        <item>" Bio."</item>
+    </string-array>
+</resources>

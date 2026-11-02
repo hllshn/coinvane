@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="search">ابحث عن عملة</string>
+    <string name="tab_all">الحجم</string>
+    <string name="tab_favorites">المفضلة</string>
+    <string name="tab_gainers">الأكثر ارتفاعًا</string>
+    <string name="tab_losers">الأكثر انخفاضًا</string>
+    <string name="status_connecting">○ جارٍ الاتصال…</string>
+    <string name="volume_short">الحجم %1$s</string>
+    <string name="empty_results">لا توجد نتائج</string>
+    <string name="empty_favorites">لا توجد عملات مفضلة بعد.\nانقر على النجمة لإضافة عملة.</string>
+    <string name="error_load">تعذّر تحميل الأسعار. تحقّق من اتصالك بالإنترنت.</string>
+    <string name="retry">إعادة المحاولة</string>
+    <string name="favorite">مفضلة</string>
+    <string name="favorite_add">إضافة إلى المفضلة</string>
+    <string name="favorite_remove">إزالة من المفضلة</string>
+    <string name="coin_logo">شعار العملة</string>
+    <string name="back">رجوع</string>
+    <string name="high_24h">أعلى سعر 24 س</string>
+    <string name="low_24h">أدنى سعر 24 س</string>
+    <string name="volume_24h">حجم 24 س</string>
+    <string name="chart_loading">جارٍ تحميل الرسم البياني…</string>
+    <string name="chart_error">تعذّر تحميل بيانات الرسم البياني</string>
+    <string name="interval_15m">15د</string>
+    <string name="interval_1h">1س</string>
+    <string name="interval_4h">4س</string>
+    <string name="interval_1d">1ي</string>
+    <string name="interval_1w">1أ</string>
+    <string name="marker_ohlc">افتتاح %1$s\nأعلى %2$s\nأدنى %3$s\nإغلاق %4$s</string>
+    <string name="chart_show_line">رسم خطي</string>
+    <string name="chart_show_candles">الشموع</string>
+    <string name="set_alert">ضبط تنبيه سعر</string>
+    <string name="alerts_title">التنبيهات النشطة</string>
+    <string name="alert_hint">السعر المستهدف</string>
+    <string name="alert_helper">فورًا عندما يكون التطبيق مفتوحًا، وإلا خلال ~15 دقيقة تقريبًا.</string>
+    <string name="alert_save">ضبط</string>
+    <string name="cancel">إلغاء</string>
+    <string name="alert_invalid">أدخل سعرًا صالحًا مختلفًا عن السعر الحالي</string>
+    <string name="alert_saved">تم ضبط التنبيه</string>
+    <string name="alert_removed">تم حذف التنبيه</string>
+    <string name="alert_chip_above">≥ %1$s</string>
+    <string name="alert_chip_below">≤ %1$s</string>
+    <string name="alert_channel_name">تنبيهات الأسعار</string>
+    <string name="alert_title">وصلت %1$s إلى هدفك</string>
+    <string name="alert_text_above">ارتفع السعر فوق %1$s · الآن %2$s</string>
+    <string name="alert_text_below">انخفض السعر دون %1$s · الآن %2$s</string>
+    <string name="notifications_denied">لا يمكن للتنبيهات إعلامك دون إذن الإشعارات</string>
+    <string name="portfolio">المحفظة</string>
+    <string name="portfolio_total">إجمالي الرصيد</string>
+    <string name="portfolio_empty">محفظتك فارغة.\nافتح أي عملة وانقر على «إضافة إلى المحفظة».</string>
+    <string name="change_24h_value">24 س %1$s (%2$s)</string>
+    <string name="profit_value">الربح/الخسارة %1$s (%2$s)</string>
+    <string name="holding_title">حيازتك</string>
+    <string name="holding_add">إضافة إلى المحفظة</string>
+    <string name="holding_edit">تعديل الحيازة</string>
+    <string name="holding_amount">الكمية</string>
+    <string name="holding_avg_price">متوسط سعر الشراء (اختياري)</string>
+    <string name="holding_avg_price_helper">يُستخدم لحساب الربح والخسارة</string>
+    <string name="holding_amount_value">%1$s %2$s</string>
+    <string name="save">حفظ</string>
+    <string name="remove">حذف</string>
+    <string name="invalid_number">أدخل رقمًا صالحًا</string>
+    <string name="settings">الإعدادات</string>
+    <string name="settings_language">اللغة</string>
+    <string name="settings_currency">العملة</string>
+    <string name="settings_theme">المظهر</string>
+    <string name="settings_dynamic_colors">استخدام ألوان النظام</string>
+    <string name="language_system">لغة النظام</string>
+    <string name="widget_description">أسعار مباشرة لعملاتك المفضلة</string>
+    <string name="about_text"><![CDATA[Coinvane %1$s<br>بيانات السوق: <a href="https://www.binance.com">Binance</a> · أسعار الصرف: <a href="https://www.exchangerate-api.com">ExchangeRate-API</a> · الأيقونات: CoinCap، cryptocurrency-icons<br>الأسعار للعلم فقط وليست نصيحة استثمارية.]]></string>
+    <plurals name="status_live">
+        <item quantity="zero">● مباشر · %d زوج</item>
+        <item quantity="one">● مباشر · زوج واحد</item>
+        <item quantity="two">● مباشر · زوجان</item>
+        <item quantity="few">● مباشر · %d أزواج</item>
+        <item quantity="many">● مباشر · %d زوجًا</item>
+        <item quantity="other">● مباشر · %d زوج</item>
+    </plurals>
+    <string-array name="theme_options">
+        <item>افتراضي النظام</item>
+        <item>فاتح</item>
+        <item>داكن</item>
+    </string-array>
+    <string-array name="compact_suffixes">
+        <item>" ألف"</item>
+        <item>" مليون"</item>
+        <item>" مليار"</item>
+        <item>" تريليون"</item>
+    </string-array>
+</resources>

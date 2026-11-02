@@ -15,5 +15,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = 'CryptoCurrencyApplication'
+rootProject.name = 'Coinvane'
 include ':app'

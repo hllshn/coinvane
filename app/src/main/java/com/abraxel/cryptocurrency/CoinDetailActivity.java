@@ -11,20 +11,25 @@ import android.view.View;
 import androidx.activity.EdgeToEdge;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
+import com.abraxel.cryptocurrency.alerts.Alerts;
 import com.abraxel.cryptocurrency.alerts.PriceAlert;
-import com.abraxel.cryptocurrency.alerts.Store;
 import com.abraxel.cryptocurrency.chart.CandleChart;
 import com.abraxel.cryptocurrency.data.Binance;
 import com.abraxel.cryptocurrency.data.Candle;
 import com.abraxel.cryptocurrency.data.Coin;
 import com.abraxel.cryptocurrency.data.Format;
+import com.abraxel.cryptocurrency.data.Money;
 import com.abraxel.cryptocurrency.data.PriceSocket;
+import com.abraxel.cryptocurrency.data.Store;
 import com.abraxel.cryptocurrency.databinding.ActivityCoinDetailBinding;
 import com.abraxel.cryptocurrency.databinding.DialogAlertBinding;
+import com.abraxel.cryptocurrency.databinding.DialogHoldingBinding;
+import com.abraxel.cryptocurrency.portfolio.Holding;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.snackbar.Snackbar;
@@ -33,21 +38,25 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 
 import okhttp3.Call;
 
-/** Coin detayı: canlı fiyat, 24s istatistikleri, mum grafiği ve fiyat alarmları. */
+/** Coin detayı: canlı fiyat, 24s istatistikleri, grafik, portföy pozisyonu ve fiyat alarmları. */
 public class CoinDetailActivity extends AppCompatActivity implements PriceSocket.Listener {
     private static final String EXTRA_SYMBOL = "symbol";
+    private static final String STATE_INTERVAL = "interval";
+    private static final String STATE_LINE = "line";
 
     private ActivityCoinDetailBinding binding;
     private CandleChart chart;
+    private Money money;
     private String symbol;
     private String interval = "1h";
     private Coin coin;
-    private PriceSocket socket;
+    private final PriceSocket socket = new PriceSocket(this);
     private Call coinCall;
     private Call candleCall;
 
@@ -69,12 +78,15 @@ public class CoinDetailActivity extends AppCompatActivity implements PriceSocket
             finish();
             return;
         }
+        if (savedInstanceState != null) interval = savedInstanceState.getString(STATE_INTERVAL, interval);
+
         binding = ActivityCoinDetailBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         Ui.padForSystemBars(binding.getRoot());
+        money = Money.current(this);
 
-        binding.toolbar.setTitle(Coin.pairLabel(symbol));
-        binding.toolbar.setSubtitle(Coin.name(symbol));
+        binding.toolbar.setTitle(Coin.name(symbol));
+        binding.toolbar.setSubtitle(Coin.base(symbol));
         binding.toolbar.setNavigationOnClickListener(v -> finish());
         binding.toolbar.inflateMenu(R.menu.detail);
         binding.toolbar.setOnMenuItemClickListener(item -> {
@@ -83,26 +95,34 @@ public class CoinDetailActivity extends AppCompatActivity implements PriceSocket
             return true;
         });
         bindFavorite();
-        Ui.loadIcon(binding.icon, new Coin(symbol, 0, 0, 0, 0, 0).base);
+        Ui.loadIcon(binding.icon, Coin.base(symbol));
 
-        chart = new CandleChart(binding.chart);
+        chart = new CandleChart(binding.chart, money);
+        chart.setLineMode(savedInstanceState != null && savedInstanceState.getBoolean(STATE_LINE));
+        bindChartType();
+        binding.chartType.setOnClickListener(v -> {
+            chart.setLineMode(!chart.isLineMode());
+            bindChartType();
+        });
+        binding.intervals.check(buttonFor(interval));
         binding.intervals.addOnButtonCheckedListener((group, id, checked) -> {
             if (!checked) return;
             interval = intervalFor(id);
             loadCandles();
-            restartSocket();
+            updateStreams();
         });
         binding.setAlert.setOnClickListener(v -> showAlertDialog());
+        binding.editHolding.setOnClickListener(v -> showHoldingDialog());
 
-        coinCall = Binance.fetchCoin(symbol, new Binance.Result<>() {
+        coinCall = Binance.fetchCoins(Collections.singletonList(symbol), new Binance.Result<>() {
             @Override
-            public void onSuccess(Coin value) {
-                if (coin == null) bindCoin(value); // canlı veri önce geldiyse onu ezme
+            public void onSuccess(List<Coin> value) {
+                if (coin == null && !value.isEmpty()) bindCoin(value.get(0)); // canlı veri önce geldiyse ezme
             }
 
             @Override
             public void onError(Exception e) {
-                // Canlı akış header'ı yine dolduracak; ayrıca hata göstermeye gerek yok
+                // Canlı akış başlığı yine dolduracak
             }
         });
         loadCandles();
@@ -110,15 +130,23 @@ public class CoinDetailActivity extends AppCompatActivity implements PriceSocket
     }
 
     @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putString(STATE_INTERVAL, interval);
+        outState.putBoolean(STATE_LINE, chart.isLineMode());
+    }
+
+    @Override
     protected void onStart() {
         super.onStart();
-        restartSocket();
+        socket.open();
+        updateStreams();
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        stopSocket();
+        socket.close();
     }
 
     @Override
@@ -134,6 +162,22 @@ public class CoinDetailActivity extends AppCompatActivity implements PriceSocket
         if (buttonId == R.id.interval_1d) return "1d";
         if (buttonId == R.id.interval_1w) return "1w";
         return "1h";
+    }
+
+    private static int buttonFor(String interval) {
+        switch (interval) {
+            case "15m": return R.id.interval_15m;
+            case "4h": return R.id.interval_4h;
+            case "1d": return R.id.interval_1d;
+            case "1w": return R.id.interval_1w;
+            default: return R.id.interval_1h;
+        }
+    }
+
+    private void bindChartType() {
+        boolean line = chart.isLineMode();
+        binding.chartType.setIconResource(line ? R.drawable.ic_chart_candle : R.drawable.ic_chart_line);
+        binding.chartType.setContentDescription(getString(line ? R.string.chart_show_candles : R.string.chart_show_line));
     }
 
     private void loadCandles() {
@@ -155,25 +199,21 @@ public class CoinDetailActivity extends AppCompatActivity implements PriceSocket
         });
     }
 
-    private void restartSocket() {
-        stopSocket();
+    private void updateStreams() {
         String s = symbol.toLowerCase(Locale.ROOT);
-        socket = new PriceSocket(Arrays.asList(s + "@miniTicker", s + "@kline_" + interval), this);
-        socket.open();
-    }
-
-    private void stopSocket() {
-        if (socket != null) {
-            socket.close();
-            socket = null;
-        }
+        socket.setStreams(Arrays.asList(s + "@miniTicker", s + "@kline_" + interval));
     }
 
     @Override
     public void onMessage(String stream, JSONObject data) {
         try {
-            if (stream.endsWith("@miniTicker")) bindCoin(Binance.parseMiniTicker(data));
-            else if (stream.endsWith("@kline_" + interval)) chart.update(Binance.parseKlineEvent(data));
+            if (stream.endsWith("@miniTicker")) {
+                Coin c = Binance.parseMiniTicker(data);
+                bindCoin(c);
+                if (Alerts.check(this, c)) renderAlerts();
+            } else if (stream.endsWith("@kline_" + interval)) {
+                chart.update(Binance.parseKlineEvent(data));
+            }
         } catch (JSONException ignored) {
             // Beklenmeyen mesaj biçimi: atla
         }
@@ -181,22 +221,85 @@ public class CoinDetailActivity extends AppCompatActivity implements PriceSocket
 
     @Override
     public void onStatusChanged(boolean live) {
-        // Detay ekranında ayrı bir durum göstergesi yok; yeniden bağlanma otomatik
+        // Yeniden bağlanma otomatik; detay ekranında ayrı gösterge yok
     }
 
     private void bindCoin(Coin c) {
         coin = c;
-        binding.price.setText(Format.price(c.last));
+        binding.price.setText(money.price(c.last));
         Ui.bindChange(binding.change, c.changePercent());
-        binding.high.setText(Format.price(c.high));
-        binding.low.setText(Format.price(c.low));
-        binding.volume.setText(Format.compactPrice(c.quoteVolume));
+        binding.high.setText(money.price(c.high));
+        binding.low.setText(money.price(c.low));
+        binding.volume.setText(money.compact(c.quoteVolume));
+        renderHolding();
     }
 
     private void bindFavorite() {
         boolean favorite = Store.favorites(this).contains(symbol);
         binding.toolbar.getMenu().findItem(R.id.action_favorite)
-                .setIcon(favorite ? R.drawable.ic_star : R.drawable.ic_star_outline);
+                .setIcon(favorite ? R.drawable.ic_star : R.drawable.ic_star_outline)
+                .setTitle(favorite ? R.string.favorite_remove : R.string.favorite_add);
+    }
+
+    // --- Portföy ---
+
+    private void renderHolding() {
+        Holding h = Store.holdings(this).get(symbol);
+        binding.holdingCard.setVisibility(h == null ? View.GONE : View.VISIBLE);
+        binding.editHolding.setText(h == null ? R.string.holding_add : R.string.holding_edit);
+        if (h == null || coin == null) return;
+        binding.holdingAmount.setText(getString(R.string.holding_amount_value, Format.plain(h.amount), coin.base));
+        binding.holdingValue.setText(money.price(h.value(coin.last)));
+        if (h.hasCost()) {
+            binding.holdingProfit.setVisibility(View.VISIBLE);
+            binding.holdingProfit.setText(getString(R.string.profit_value,
+                    money.signed(money.convert(h.profit(coin.last))),
+                    Format.percent(h.profitPercent(coin.last), Ui.locale(this))));
+            Ui.tint(binding.holdingProfit, h.profit(coin.last) >= 0);
+        } else {
+            binding.holdingProfit.setVisibility(View.GONE);
+        }
+    }
+
+    private void showHoldingDialog() {
+        Holding existing = Store.holdings(this).get(symbol);
+        DialogHoldingBinding d = DialogHoldingBinding.inflate(getLayoutInflater());
+        d.amountLayout.setSuffixText(Coin.base(symbol));
+        d.costLayout.setSuffixText(money.code);
+        if (existing != null) {
+            d.amount.setText(Format.plain(existing.amount));
+            if (existing.hasCost()) d.cost.setText(Format.plain(money.convert(existing.avgCostUsd)));
+        } else if (coin != null) {
+            d.cost.setText(Format.plain(money.convert(coin.last)));
+        }
+        MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(this)
+                .setTitle(existing == null ? R.string.holding_add : R.string.holding_edit)
+                .setView(d.getRoot())
+                .setPositiveButton(R.string.save, null)
+                .setNegativeButton(R.string.cancel, null);
+        if (existing != null) {
+            builder.setNeutralButton(R.string.remove, (dlg, w) -> {
+                Store.setHolding(this, new Holding(symbol, 0, 0));
+                renderHolding();
+            });
+        }
+        AlertDialog dialog = builder.show();
+        dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(v -> {
+            double amount = Format.parse(String.valueOf(d.amount.getText()));
+            String costText = String.valueOf(d.cost.getText()).trim();
+            double cost = costText.isEmpty() ? 0 : Format.parse(costText);
+            if (Double.isNaN(amount) || amount <= 0) {
+                d.amountLayout.setError(getString(R.string.invalid_number));
+                return;
+            }
+            if (Double.isNaN(cost) || cost < 0) {
+                d.costLayout.setError(getString(R.string.invalid_number));
+                return;
+            }
+            Store.setHolding(this, new Holding(symbol, amount, cost / money.rate));
+            renderHolding();
+            dialog.dismiss();
+        });
     }
 
     // --- Fiyat alarmları ---
@@ -205,11 +308,14 @@ public class CoinDetailActivity extends AppCompatActivity implements PriceSocket
         binding.alerts.removeAllViews();
         List<PriceAlert> alerts = Store.alerts(this, symbol);
         binding.alertsTitle.setVisibility(alerts.isEmpty() ? View.GONE : View.VISIBLE);
+        Locale locale = Ui.locale(this);
         for (PriceAlert alert : alerts) {
+            Money alertMoney = new Money(alert.currency, 1, locale, getResources().getStringArray(R.array.compact_suffixes));
             Chip chip = new Chip(this);
             chip.setText(getString(alert.above ? R.string.alert_chip_above : R.string.alert_chip_below,
-                    Format.price(alert.target)));
+                    alertMoney.format(alert.target)));
             chip.setCloseIconVisible(true);
+            chip.setCloseIconContentDescription(getString(R.string.remove));
             chip.setOnCloseIconClickListener(v -> {
                 Store.removeAlert(this, alert);
                 renderAlerts();
@@ -221,7 +327,8 @@ public class CoinDetailActivity extends AppCompatActivity implements PriceSocket
 
     private void showAlertDialog() {
         DialogAlertBinding d = DialogAlertBinding.inflate(getLayoutInflater());
-        if (coin != null) d.input.setText(Format.plain(coin.last));
+        d.inputLayout.setSuffixText(money.code);
+        if (coin != null) d.input.setText(Format.plain(money.convert(coin.last)));
         AlertDialog dialog = new MaterialAlertDialogBuilder(this)
                 .setTitle(R.string.set_alert)
                 .setView(d.getRoot())
@@ -230,12 +337,14 @@ public class CoinDetailActivity extends AppCompatActivity implements PriceSocket
                 .show();
         dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(v -> {
             double target = Format.parse(String.valueOf(d.input.getText()));
-            if (coin == null || Double.isNaN(target) || target <= 0 || target == coin.last) {
+            double current = coin == null ? Double.NaN : money.convert(coin.last);
+            if (Double.isNaN(current) || Double.isNaN(target) || target <= 0 || target == current) {
                 d.inputLayout.setError(getString(R.string.alert_invalid));
                 return;
             }
-            Store.addAlert(this, PriceAlert.create(symbol, target, coin.last));
+            Store.addAlert(this, PriceAlert.create(symbol, target, money.code, current));
             renderAlerts();
+            updateStreams();
             dialog.dismiss();
             Snackbar.make(binding.getRoot(), R.string.alert_saved, Snackbar.LENGTH_SHORT).show();
             requestNotificationPermission();
