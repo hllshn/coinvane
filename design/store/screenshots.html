@@ -1,9 +1,9 @@
 <!doctype html>
 <!--
-  Coinvane Play Store ekran görüntüsü şablonu (1080×1920).
-  render.py, data.js'i (canlı fiyatlar, mumlar, kurlar, uygulamanın 11 dildeki metinleri) üretir ve
-  her dil × ekran için bu sayfayı headless Chrome ile ?loc=<dil>&s=<1-6> parametreleriyle fotoğraflar.
-  Uygulama ekranları res/layout ve res/values* ile aynı ölçü, renk ve metinleri kullanır.
+  Coinvane Play Store ekran görüntüsü şablonu (1080×1920; tablet: 1920×1080), v8 arayüzü.
+  render.py, data.js'i (canlı fiyatlar, piyasa hareketi, dönem verisi, mumlar, kurlar, uygulamanın 11 dildeki metinleri)
+  üretir ve her dil × ekran için bu sayfayı headless Chrome ile ?loc=<dil>&s=<1-6> parametreleriyle fotoğraflar.
+  Uygulama ekranları res/layout, res/values*/colors.xml ve strings.xml ile aynı ölçü, renk ve metinleri kullanır.
 -->
 <html>
 <head>
@@ -11,111 +11,147 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@700;800&family=Roboto:wght@400;500;700&family=Noto+Sans+Arabic:wght@400;600;800&display=swap">
 <style>
   :root {
-    --brand-a:#4F6BFF; --brand-b:#7B3FE4;
-    /* Uygulamanın koyu tema renkleri (values-night/colors.xml) */
-    --surface:#0E1117; --card:#171B24; --on:#F1F3F9; --on2:#8C93A6; --brand:#AAB8FF; --brand-c:#24306B;
-    --up:#2FD180; --down:#FF5C70; --up-c:rgba(47,209,128,.18); --down-c:rgba(255,92,112,.18);
+    --brand-a:#7A6FF0; --brand-b:#3A2E9E;
+    /* Uygulamanın koyu tema renkleri (values-night/colors.xml, v8) */
+    --surface:#0C1019; --card:#171C29; --card-hi:#1E2434; --on:#E9EBF2; --on2:#8C93A6; --brand:#9A91F5; --brand-s:#6E63DB;
+    --brand-c:#2A2656; --divider:#1C2231; --outline:#2B3245;
+    --up:#2FD180; --down:#FF5C70; --up-c:rgba(47,209,128,.18); --down-c:rgba(255,92,112,.18); --nt-c:rgba(140,147,166,.18);
     --ui: Roboto, "Noto Sans Arabic", "PingFang SC", "Hiragino Sans", "Apple SD Gothic Neo", system-ui, sans-serif;
     --head: "Bricolage Grotesque", Roboto, "Noto Sans Arabic", "PingFang SC", "Hiragino Sans", "Apple SD Gothic Neo", system-ui, sans-serif;
   }
   * { box-sizing:border-box }
   html, body { margin:0; width:1080px; height:1920px; overflow:hidden }
   body { background:linear-gradient(155deg, var(--brand-a), var(--brand-b)); font-family:var(--ui); color:var(--on); position:relative }
-  body::before { content:""; position:absolute; inset:0; background:radial-gradient(70% 45% at 85% 100%, rgba(47,209,128,.22), transparent 70%) }
+  body::before { content:""; position:absolute; inset:0; background:radial-gradient(70% 45% at 85% 100%, rgba(47,209,128,.20), transparent 70%) }
 
   .cap { position:absolute; left:84px; right:84px; top:118px; display:flex; flex-direction:column; gap:22px }
-  .cap h1 { margin:0; font-family:var(--head); font-weight:800; font-size:92px; line-height:1.02; letter-spacing:-.02em; text-wrap:balance }
-  .cap p { margin:0; font-size:40px; line-height:1.3; color:rgba(241,243,249,.86); text-wrap:balance }
+  .cap h1 { margin:0; font-family:var(--head); font-weight:800; font-size:88px; line-height:1.02; letter-spacing:-.02em; text-wrap:balance; word-break:keep-all; overflow-wrap:anywhere }
+  /* keep-all: Çince/Japonca başlıklar kelime ortasından değil noktalamadan bölünür */
+  .cap p { margin:0; font-size:38px; line-height:1.3; color:rgba(241,243,249,.88); text-wrap:balance }
 
   .phone { position:absolute; left:120px; top:560px; width:840px; height:1700px; border-radius:96px; background:#1B2030; padding:18px;
            box-shadow:0 60px 120px rgba(8,10,30,.45), inset 0 0 0 2px rgba(255,255,255,.08) }
   .screen { position:relative; width:100%; height:100%; border-radius:80px; overflow:hidden; background:var(--surface) }
-  /* Uygulama 412dp genişlikte çizilir, ekrana ölçeklenir */
-  .app { position:absolute; left:0; top:0; width:412px; height:880px; transform:scale(1.9505); transform-origin:0 0; font-size:14px }
+  /* Uygulama 412dp genişlikte çizilir, ekrana ölçeklenir; yükseklik görüntüde görünen kısım kadar (alt menü görünsün) */
+  .app { position:absolute; left:0; top:0; width:412px; height:688px; transform:scale(1.9505); transform-origin:0 0; font-size:14px; overflow:hidden }
 
+  svg.i { width:24px; height:24px; fill:none; stroke:currentColor; stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round; flex:none }
   .status { height:40px; display:flex; align-items:center; justify-content:space-between; padding:0 22px; font-size:13px; font-weight:500 }
   .status .ic { display:flex; gap:6px; align-items:center }
-  .tb { height:64px; display:flex; align-items:center; padding:0 6px 0 16px; gap:4px }
-  .tb .tt { flex:1; display:flex; flex-direction:column; min-width:0 }
-  .tb .t1 { font-size:22px; font-weight:400 } .tb .t2 { font-size:12px; color:var(--on2); font-weight:500 }
-  .ib { width:44px; height:44px; display:grid; place-items:center; flex:none }
-  .ib svg { width:24px; height:24px; fill:var(--on) }
-  .chips { display:flex; gap:8px; padding:4px 16px 8px; overflow:hidden }
-  .chip { height:32px; padding:0 14px; border-radius:8px; border:1px solid #3A4152; display:flex; align-items:center; gap:6px; font-size:14px; font-weight:500; white-space:nowrap; color:#C9CEDB }
-  .chip.on { background:var(--brand-c); border-color:transparent; color:var(--on) }
-  .chip.on::before { content:""; width:14px; height:9px; border-left:2px solid var(--on); border-bottom:2px solid var(--on); transform:rotate(-45deg) translateY(-2px); margin-inline-end:2px }
-
-  .row { display:flex; align-items:center; min-height:72px; padding:10px 4px 10px 16px }
-  .ico { width:40px; height:40px; border-radius:50%; flex:none; object-fit:contain }
-  .who { flex:1; margin-inline-start:14px; min-width:0 }
-  .sym { font-size:16px; font-weight:500 } .sub { font-size:12px; color:var(--on2); white-space:nowrap; overflow:hidden; text-overflow:ellipsis }
-  .val { display:flex; flex-direction:column; align-items:flex-end; gap:4px }
-  .px { font-size:16px; font-weight:500; font-variant-numeric:tabular-nums; white-space:nowrap }
-  .pill { padding:3px 8px; border-radius:8px; font-size:14px; font-weight:500; font-variant-numeric:tabular-nums; white-space:nowrap; unicode-bidi:plaintext }
-  .pill.up { color:var(--up); background:var(--up-c) } .pill.dn { color:var(--down); background:var(--down-c) }
-  .star { width:44px; height:44px; display:grid; place-items:center; flex:none; margin-inline-start:4px }
-  .star svg { width:24px; height:24px; fill:#C9CEDB } .star.on svg { fill:var(--brand) }
-
+  .hdr { height:56px; display:flex; align-items:center; padding-inline:16px 4px; gap:0 }
+  .hdr .t { flex:1; font-size:22px; font-weight:700; white-space:nowrap; overflow:hidden; text-overflow:ellipsis }
+  .hdr .logo { display:flex; align-items:center; gap:8px; flex:1; font-size:22px; font-weight:700 }
+  .ib { width:48px; height:48px; display:grid; place-items:center; flex:none; color:var(--on) }
+  .cap2 { font-size:12px; color:var(--on2) }
   .pad { padding:0 16px }
-  .hero { display:flex; align-items:center; gap:14px }
-  .big { font-size:30px; font-weight:400; font-variant-numeric:tabular-nums; white-space:nowrap }
-  .card { background:var(--card); border-radius:12px }
-  .stats { display:flex; padding:14px; margin-top:16px }
-  .stat { flex:1; min-width:0 } .stat .l { font-size:12px; font-weight:500; color:var(--on2) } .stat .v { font-size:14px; font-weight:500; margin-top:2px; white-space:nowrap; font-variant-numeric:tabular-nums }
-  .ints { display:flex; align-items:center; margin-top:16px; gap:4px }
-  .seg { flex:1; display:flex; border:1px solid #3A4152; border-radius:20px; overflow:hidden; height:40px }
-  .seg div { flex:1; display:grid; place-items:center; font-size:14px; font-weight:500; border-inline-start:1px solid #3A4152 }
-  .seg div:first-child { border-inline-start:none } .seg .on { background:var(--brand-c) }
-  .chartbox { margin-top:8px; height:300px; position:relative }
-  .btn { height:44px; border-radius:22px; display:flex; align-items:center; justify-content:center; gap:8px; font-size:14px; font-weight:500; margin-top:12px }
-  .btn svg { width:18px; height:18px; fill:currentColor }
-  .tonal { background:var(--brand-c); color:#E0E5FF } .outl { border:1px solid #3A4152; color:var(--brand) }
-  .hold { display:flex; align-items:center; padding:14px; margin-top:16px }
-  .hold .t { flex:1 } .hold .l { font-size:12px; color:var(--on2); font-weight:500 } .hold .v { font-size:16px; font-weight:500; margin:2px 0 } .hold .a { font-size:12px; color:var(--on2) }
-  .achips { display:flex; flex-wrap:wrap; gap:8px; margin-top:8px }
-  .achip { height:32px; padding:0 8px 0 12px; border-radius:8px; border:1px solid #3A4152; display:flex; align-items:center; gap:8px; font-size:14px; font-weight:500 }
-  .achip svg { width:18px; height:18px; fill:var(--on2) }
-  .ttl { font-size:14px; font-weight:500; margin-top:16px }
+  .card { background:var(--card); border-radius:14px }
+  .sec { font-size:16px; font-weight:700 }
 
-  .note { position:absolute; left:10px; right:10px; top:44px; background:#262B38; border-radius:22px; padding:14px 16px; box-shadow:0 12px 30px rgba(0,0,0,.5); z-index:5 }
+  .chips { display:flex; gap:8px; padding:0 16px; overflow:hidden }
+  .chip { height:36px; padding:0 12px; border-radius:12px; border:1px solid var(--outline); display:flex; align-items:center; gap:6px; font-size:14px; font-weight:500; white-space:nowrap; flex:none }
+  .chip svg.i { width:18px; height:18px }
+  .chip.on { background:var(--brand-s); border-color:var(--brand-s); color:#fff }
+  .per { display:flex; margin:8px 16px 0; padding:4px; border-radius:12px; background:var(--card) }
+  .per div { flex:1; text-align:center; height:32px; line-height:32px; border-radius:10px; font-size:14px; font-weight:500; color:var(--on2); white-space:nowrap }
+  .per .on { background:var(--brand-s); color:#fff }
+
+  .row { display:flex; align-items:center; min-height:70px; padding-block:8px; padding-inline:16px 4px; border-bottom:1px solid var(--divider) }
+  .ico { width:34px; height:34px; border-radius:50%; flex:none; object-fit:contain }
+  .ph { width:34px; height:34px; border-radius:50%; flex:none; background:var(--card-hi); color:var(--on2); display:grid; place-items:center; font-size:11px; font-weight:700 }
+  .who { flex:1; margin-inline-start:12px; min-width:0 }
+  .sym { font-size:15px; font-weight:700 } .sub { font-size:12px; color:var(--on2); margin-top:2px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis }
+  .sp { width:48px; height:24px; margin:0 8px; flex:none; direction:ltr }
+  .val { display:flex; flex-direction:column; align-items:flex-end; gap:4px; min-width:84px }
+  .px { font-size:15px; font-weight:500; font-variant-numeric:tabular-nums; white-space:nowrap }
+  .pill { padding:3px 8px; border-radius:8px; font-size:14px; font-weight:500; font-variant-numeric:tabular-nums; white-space:nowrap; unicode-bidi:plaintext }
+  .pill.up { color:var(--up); background:var(--up-c) } .pill.dn { color:var(--down); background:var(--down-c) } .pill.nt { color:var(--on2); background:var(--nt-c) }
+  .star { width:44px; height:48px; display:grid; place-items:center; flex:none; color:var(--on2) }
+  .star.on { color:var(--brand) } .star.on svg.i { fill:var(--brand) }
+
+  .nav { position:absolute; left:0; right:0; bottom:0; height:65px; display:flex; background:var(--surface); border-top:1px solid var(--divider); z-index:3 }
+  .nav div { flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:3px; font-size:12px; font-weight:500; color:var(--on2); white-space:nowrap }
+  .nav .on { color:var(--brand) }
+
+  .ov { display:flex; margin:12px 16px 0; padding:14px 0 }
+  .ov .c { flex:1; padding:0 16px; min-width:0 } .ov .c + .c { border-inline-start:1px solid var(--divider) }
+  .ov .s { display:flex; align-items:center; gap:6px; font-size:14px; font-weight:500; color:var(--on2) } .ov .s img { width:20px; height:20px }
+  .ov .p { font-size:18px; font-weight:700; margin:4px 0; white-space:nowrap; font-variant-numeric:tabular-nums }
+  .mvh { display:flex; align-items:center; padding:12px 16px 4px } .mvh > div { flex:1 }
+  .mv { display:flex; margin:4px 16px 0; padding:12px 0 }
+  .mv > div { flex:1; text-align:center } .mv > div + div { border-inline-start:1px solid var(--divider) }
+  .mv .n { font-size:22px; font-weight:700; font-variant-numeric:tabular-nums; display:flex; align-items:center; justify-content:center; gap:4px }
+  .mv .n svg.i { width:18px; height:18px }
+  .cols { display:flex; align-items:center; height:40px; padding-inline:16px 48px; color:var(--on2); font-size:12px; border-bottom:1px solid var(--divider); margin-top:4px }
+  .cols div:first-child { flex:1 } .cols div + div { margin-inline-start:16px; display:flex; align-items:center; gap:2px }
+  .cols svg.i { width:14px; height:14px }
+
+  .tb { height:64px; display:flex; align-items:center; padding-inline:4px; gap:4px }
+  .tb .tt { flex:1; min-width:0 } .tb .t1 { font-size:22px } .tb .t2 { font-size:12px; color:var(--on2) }
+  .hero { display:flex; align-items:center; gap:12px }
+  .big { font-size:28px; font-weight:700; font-variant-numeric:tabular-nums; white-space:nowrap }
+  .perf { display:flex; padding:4px; margin-top:6px }
+  .perf div { flex:1; text-align:center; padding:6px 0; border-radius:10px; min-width:0 }
+  .perf .l { font-size:11px; color:var(--on2) } .perf .v { font-size:11px; font-weight:500; margin-top:2px; font-variant-numeric:tabular-nums; white-space:nowrap }
+  .perf .on { background:var(--brand-c); outline:1px solid var(--brand-s) }
+  .stats { display:flex; padding:14px; margin-top:12px }
+  .stat { flex:1; min-width:0 } .stat .l { font-size:12px; color:var(--on2) } .stat .v { font-size:13px; font-weight:500; margin-top:2px; white-space:nowrap; font-variant-numeric:tabular-nums }
+  .ints { display:flex; align-items:center; margin-top:12px; gap:4px }
+  .seg { flex:1; display:flex; border:1px solid var(--outline); border-radius:20px; overflow:hidden; height:40px }
+  .seg div { flex:1; display:grid; place-items:center; font-size:14px; font-weight:500; border-inline-start:1px solid var(--outline) }
+  .seg div:first-child { border-inline-start:none } .seg .on { background:var(--brand-c) }
+  .chartbox { margin-top:6px; position:relative }
+  .achips { display:flex; flex-wrap:wrap; gap:8px; margin-top:6px }
+  .achip { height:32px; padding:0 8px 0 12px; border-radius:8px; border:1px solid var(--outline); display:flex; align-items:center; gap:8px; font-size:14px; font-weight:500 }
+  .achip svg.i { width:16px; height:16px; color:var(--on2) }
+  .btn { height:48px; border-radius:24px; display:flex; align-items:center; justify-content:center; gap:8px; font-size:14px; font-weight:500; margin-top:10px }
+  .btn svg.i { width:18px; height:18px }
+  .prim { background:var(--brand-s); color:#fff } .outl { border:1px solid var(--outline) }
+
+  .note { position:absolute; left:10px; right:10px; top:8px; background:#262B38; border-radius:22px; padding:14px 16px; box-shadow:0 12px 30px rgba(0,0,0,.5); z-index:5 }
   .note .h { display:flex; align-items:center; gap:8px; font-size:12px; color:var(--on2) }
-  .note .h svg { width:16px; height:16px }
   .note .nt { font-size:15px; font-weight:500; margin-top:8px } .note .nb { font-size:14px; color:#C9CEDB; margin-top:2px }
 
-  .sum { margin:4px 16px 0; padding:20px; border-radius:12px; background:var(--brand-c) }
-  .sum .l { font-size:14px; color:#E0E5FF; font-weight:500 } .sum .v { font-size:30px; margin-top:4px; font-variant-numeric:tabular-nums; color:#E0E5FF }
-  .sum .ps { display:flex; gap:8px; margin-top:8px; flex-wrap:wrap }
+  .sum { margin:4px 16px 0; padding:16px }
+  .sum .top { display:flex; font-size:12px; color:var(--on2) } .sum .top div:first-child { flex:1 }
+  .sum .v { font-size:28px; font-weight:700; margin-top:4px; font-variant-numeric:tabular-nums }
+  .sum hr { border:0; border-top:1px solid var(--divider); margin:12px 0 }
+  .kv { display:flex; align-items:center; font-size:14px; color:var(--on2); margin-top:8px } .kv b { margin-inline-start:auto; font-weight:500; font-variant-numeric:tabular-nums; unicode-bidi:plaintext }
+  .tabs { display:flex; align-items:center; gap:8px; padding:16px 8px 4px 16px } .tabs .add { margin-inline-start:auto; display:flex; align-items:center; gap:4px; color:var(--brand); font-size:14px; font-weight:500 }
+  .tabs .add svg.i { width:18px; height:18px }
 
-  .home { position:absolute; inset:0; background:radial-gradient(120% 70% at 20% 10%, #3B4BC4, transparent 60%), radial-gradient(90% 60% at 100% 100%, #5E2DB8, transparent 60%), #141833 }
+  .home { position:absolute; inset:0; background:radial-gradient(120% 70% at 20% 10%, #4A3FC4, transparent 60%), radial-gradient(90% 60% at 100% 100%, #2E2A7A, transparent 60%), #12142E }
   .clock { text-align:center; margin-top:36px; font-size:72px; font-weight:300; letter-spacing:-1px } .date { text-align:center; font-size:15px; color:#DDE2F5; margin-top:2px }
-  .widget { margin:28px 18px 0; background:#171B24; border-radius:22px; padding:16px }
+  .widget { margin:28px 18px 0; background:#171C29; border-radius:22px; padding:16px }
   .wh { display:flex; align-items:center; gap:6px; font-size:13px; font-weight:700 } .wh .tm { margin-inline-start:auto; font-weight:400; font-size:11px; color:var(--on2) }
   .wr { display:flex; align-items:center; margin-top:10px; font-size:14px } .wr .b { flex:1; font-weight:700 } .wr .p { font-variant-numeric:tabular-nums } .wr .c { width:70px; text-align:end; font-size:12px; font-variant-numeric:tabular-nums }
   .grid { display:grid; grid-template-columns:repeat(4, 1fr); gap:26px 0; margin:40px 26px 0; justify-items:center }
-  .appi { width:58px; height:58px; border-radius:50%; background:rgba(255,255,255,.14) }
-  .appi.cv { background:none }
+  .appi { width:58px; height:58px; border-radius:50%; background:rgba(255,255,255,.14) } .appi.cv { background:none }
   .dock { position:absolute; left:26px; right:26px; bottom:34px; height:84px; border-radius:42px; background:rgba(255,255,255,.12); display:flex; justify-content:space-around; align-items:center }
 
-  .set { padding:14px 24px } .set .k { font-size:16px } .set .v { font-size:14px; color:var(--on2); margin-top:2px }
+  .grp { margin:8px 16px 0 } .gl { font-size:12px; color:var(--on2); margin:12px 20px 0 }
+  .set { display:flex; align-items:center; gap:16px; min-height:56px; padding:8px 12px 8px 16px; border-bottom:1px solid var(--divider) } .set:last-child { border-bottom:none }
+  .set svg.i { color:var(--on2) } .set .k { flex:1; font-size:16px } .set .v { font-size:14px; color:var(--on2); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:170px }
+  .set .ch { width:20px; height:20px; color:var(--on2) }
   .scrim { position:absolute; inset:0; background:rgba(0,0,0,.55); z-index:4 }
-  .dlg { position:absolute; left:28px; right:28px; top:150px; background:#20242F; border-radius:28px; padding:22px 0 12px; z-index:5 }
+  .dlg { position:absolute; left:28px; right:28px; top:150px; background:var(--card-hi); border-radius:28px; padding:22px 0 12px; z-index:5 }
   .dlg h3 { margin:0 24px 12px; font-size:22px; font-weight:400 }
   .opt { display:flex; align-items:center; gap:16px; padding:10px 24px; font-size:15px }
-  .radio { width:20px; height:20px; border-radius:50%; border:2px solid #8C93A6; flex:none; position:relative }
+  .radio { width:20px; height:20px; border-radius:50%; border:2px solid var(--on2); flex:none; position:relative }
   .radio.on { border-color:var(--brand) } .radio.on::after { content:""; position:absolute; inset:3px; border-radius:50%; background:var(--brand) }
 
   /* Yatay tablet modu (?dev=tablet): 1920×1080 tuval; 10 inç için 4/3 ölçekle 2560×1440 alınır */
   body.tablet, html.tablet { width:1920px; height:1080px }
-  body.tablet .cap { left:96px; right:auto; width:520px; top:0; bottom:0; justify-content:center }
-  body.tablet .cap h1 { font-size:78px }
-  body.tablet .cap p { font-size:34px }
+  body.tablet .cap { left:80px; right:auto; width:580px; top:0; bottom:0; justify-content:center }
+  body.tablet .cap h1 { font-size:68px }
+  body.tablet .cap p { font-size:32px }
   body.tablet .phone { left:680px; top:150px; width:1160px; height:780px; border-radius:48px; padding:20px }
   body.tablet .screen { border-radius:30px }
-  body.tablet .app { width:900px; height:605px; transform:scale(1.2444) }
+  body.tablet .app { width:900px; height:595px; transform:scale(1.2444) }
   body.tablet .dlg { left:50%; right:auto; width:420px; margin-left:-210px; top:60px }
   body.tablet .widget { width:420px; margin:24px auto 0 }
   body.tablet .grid { width:600px; margin:28px auto 0; grid-template-columns:repeat(8, 1fr) }
   body.tablet .clock { margin-top:20px }
+  body.tablet .note { left:auto; right:16px; width:420px }
 </style>
 </head>
 <body>
@@ -137,7 +173,10 @@ if (L.rtl) document.documentElement.dir = 'rtl';
 function fmtCur(v, maxFrac) {
   const o = { style: 'currency', currency: CODE };
   if (maxFrac !== undefined) { o.minimumFractionDigits = 0; o.maximumFractionDigits = maxFrac; }
-  else if (Math.abs(v) < 1 && v !== 0) { o.minimumFractionDigits = 4; o.maximumFractionDigits = 8; }
+  else if (Math.abs(v) < 1 && v !== 0) { // v8: en az 4 anlamlı hane, sıfıra yuvarlanmaz
+    const lead = Math.ceil(-Math.log10(Math.abs(v)));
+    o.minimumFractionDigits = 4; o.maximumFractionDigits = Math.min(12, Math.max(4, lead + 3));
+  }
   return new Intl.NumberFormat(TAG, o).format(v);
 }
 const price = usd => fmtCur(usd * RATE);
@@ -149,48 +188,84 @@ function compact(usd) {
   const m = s.match(/.*\p{Nd}/u); // son rakamdan sonra son eki koy
   return m ? m[0] + S.compact_suffixes[u - 1] + s.slice(m[0].length) : s + S.compact_suffixes[u - 1];
 }
-const pct = p => (p >= 0 ? '+' : '-') + new Intl.NumberFormat(TAG, { minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(Math.abs(p)) + '%';
+const dir = p => Math.abs(p) < 0.005 ? 0 : p > 0 ? 1 : -1;
+const pct = p => dir(p) === 0 ? new Intl.NumberFormat(TAG, { minimumFractionDigits: 2 }).format(0) + '%'
+  : (p > 0 ? '+' : '-') + new Intl.NumberFormat(TAG, { minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(Math.abs(p)) + '%';
 const signed = v => (v < 0 ? '−' : '+') + fmtCur(Math.abs(v));
-const f = (s, ...a) => s.replace(/%(\d)\$s/g, (_, i) => a[i - 1]).replace(/%d/g, a[0]);
+const f = (s, ...a) => s.replace(/%(\d)\$[sd]/g, (_, i) => a[i - 1]).replace(/%d/g, a[0]);
 const num = (v, d) => new Intl.NumberFormat(TAG, { maximumFractionDigits: d }).format(v);
 
-const ICON = {
-  search: '<path d="M15.5 14h-.79l-.28-.27A6.47 6.47 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>',
-  portfolio: '<path d="M20 6h-4V4c0-1.11-.89-2-2-2h-4c-1.11 0-2 .89-2 2v2H4c-1.11 0-1.99.89-1.99 2L2 19c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2zm-6 0h-4V4h4v2z"/>',
-  settings: '<path d="M19.14 12.94a7.07 7.07 0 0 0 0-1.88l2.03-1.58a.5.5 0 0 0 .12-.61l-1.92-3.32a.5.5 0 0 0-.59-.22l-2.39.96a7 7 0 0 0-1.62-.94l-.36-2.54a.48.48 0 0 0-.48-.41h-3.84a.47.47 0 0 0-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96a.5.5 0 0 0-.59.22L2.74 8.87a.48.48 0 0 0 .12.61l2.03 1.58a7.4 7.4 0 0 0 0 1.88l-2.03 1.58a.5.5 0 0 0-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54a7 7 0 0 0 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32a.5.5 0 0 0-.12-.61l-2.01-1.58zM12 15.6A3.6 3.6 0 1 1 12 8.4a3.6 3.6 0 0 1 0 7.2z"/>',
-  back: '<path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>',
-  star: '<path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>',
-  starO: '<path d="M22 9.24l-7.19-.62L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21 12 17.27 18.18 21l-1.63-7.03L22 9.24zM12 15.4l-3.76 2.27 1-4.28-3.32-2.88 4.38-.38L12 6.1l1.71 4.04 4.38.38-3.32 2.88 1 4.28L12 15.4z"/>',
-  bell: '<path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.89 2 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2zm-2 1H8v-6c0-2.48 1.51-4.5 4-4.5s4 2.02 4 4.5v6zm-3-9h-2v2H9v2h2v2h2v-2h2v-2h-2z"/>',
-  line: '<path d="M3.5 18.49l6-6.01 4 4L22 6.92l-1.41-1.41-7.09 7.97-4-4L2 16.99z"/>',
-  close: '<path d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2zm5 13.59L15.59 17 12 13.41 8.41 17 7 15.59 10.59 12 7 8.41 8.41 7 12 10.59 15.59 7 17 8.41 13.41 12 17 15.59z"/>',
-  bat: '<path d="M16 7H8a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V8a1 1 0 0 0-1-1zm3 3h1v4h-1z"/>',
-  wifi: '<path d="M12 21l3.6-4.5A6 6 0 0 0 12 15a6 6 0 0 0-3.6 1.5L12 21zM2 8.5l2 2.5a12.5 12.5 0 0 1 16 0l2-2.5A15.7 15.7 0 0 0 2 8.5zm4 5l2 2.5a6.3 6.3 0 0 1 8 0l2-2.5a9.5 9.5 0 0 0-12 0z"/>',
+// Uygulamanın çizgi ikon seti (res/drawable/ic_*.xml ile aynı yollar, 1.8 kalınlık)
+const P = {
+  home: 'M3.5 10.5L12 3.5L20.5 10.5M5.5 9V20H10V14.5H14V20H18.5V9',
+  markets: 'M6 19V13M12 19V5M18 19V9M3.5 21H20.5',
+  explore: 'M3 12A9 9 0 1 1 21 12A9 9 0 1 1 3 12ZM15.5 8.5L13.6 13.6L8.5 15.5L10.4 10.4Z',
+  portfolio: 'M11 3.6A8.6 8.6 0 1 0 20.4 13H11ZM14 3.2A7.6 7.6 0 0 1 20.8 10H14Z',
+  profile: 'M8 8A4 4 0 1 1 16 8A4 4 0 1 1 8 8ZM4.5 20.5C4.5 16.6 7.9 14.5 12 14.5C16.1 14.5 19.5 16.6 19.5 20.5',
+  search: 'M4 11A7 7 0 1 1 18 11A7 7 0 1 1 4 11ZM16.2 16.2L20.5 20.5',
+  bell: 'M6 16.5V11A6 6 0 0 1 18 11V16.5L19.5 18.5H4.5ZM10 21H14',
+  tune: 'M4 7H13M19 7H20M4 17H5M11 17H20M13.5 7A2.5 2.5 0 1 1 18.5 7A2.5 2.5 0 1 1 13.5 7ZM5.5 17A2.5 2.5 0 1 1 10.5 17A2.5 2.5 0 1 1 5.5 17Z',
+  star: 'M12 3.2L14.6 8.6L20.5 9.3L16.1 13.4L17.3 19.3L12 16.4L6.7 19.3L7.9 13.4L3.5 9.3L9.4 8.6Z',
+  chev: 'M9.5 6L15.5 12L9.5 18',
+  up: 'M3 17L9 11L13 15L21 7M15 7H21V13', down: 'M3 7L9 13L13 9L21 17M15 17H21V11', vol: 'M3.5 20.5H20.5M7 17V12M12 17V7M17 17V10',
+  aup: 'M12 18V6M6.5 11.5L12 6L17.5 11.5', adn: 'M12 6V18M6.5 12.5L12 18L17.5 12.5', minus: 'M6 12H18', sort: 'M8 5V19M4.5 8.5L8 5L11.5 8.5M16 19V5M12.5 15.5L16 19L19.5 15.5',
+  back: 'M19 12H5M11 6L5 12L11 18', close: 'M6 6L18 18M18 6L6 18', plus: 'M12 5V19M5 12H19', more: 'M12 5.5V5.6M12 12V12.1M12 18.5V18.6',
+  line: 'M3.5 17L9 11L13 14.5L20.5 7', lang: 'M3 12A9 9 0 1 1 21 12A9 9 0 1 1 3 12ZM3 12H21M12 3C8.8 6.2 8.8 17.8 12 21C15.2 17.8 15.2 6.2 12 3',
+  cur: 'M3 6.5H21V17.5H3ZM9.4 12A2.6 2.6 0 1 1 14.6 12A2.6 2.6 0 1 1 9.4 12Z', theme: 'M3 12A9 9 0 1 1 21 12A9 9 0 1 1 3 12ZM12 3V21',
+  palette: 'M12 3.5C12 3.5 6 10.2 6 14.5A6 6 0 0 0 18 14.5C18 10.2 12 3.5 12 3.5Z', nset: 'M6 16.5V11A6 6 0 0 1 18 11V16.5L19.5 18.5H4.5ZM10 21H14M17 3.5L20.5 6',
+  wifi: 'M5 10.5A10 10 0 0 1 19 10.5M8 13.8A6 6 0 0 1 16 13.8M12 17.5V17.6', bat: 'M6 8H17V16H6ZM19 11V13',
 };
-const svg = (n, cls) => '<svg viewBox="0 0 24 24"' + (cls ? ' class="' + cls + '"' : '') + '>' + ICON[n] + '</svg>';
-const LOGO = '<svg viewBox="27 27 54 54" width="SZ" height="SZ"><path d="M73.03 45.13A21 21 0 1 1 62.87 34.97" fill="none" stroke="#AAB8FF" stroke-width="5" stroke-linecap="round"/><path d="M49.8 58.2L66.7 41.3" stroke="#AAB8FF" stroke-width="4.5" stroke-linecap="round"/><path d="M51.2 56.8L46.9 69.6L45.5 62.5L38.4 61.1Z" fill="#AAB8FF"/><path d="M76.6 31.4L71.7 47.6L60.4 36.3Z" fill="#2FD180"/></svg>';
+const ic = (n, cls, mirror) => '<svg class="i' + (cls ? ' ' + cls : '') + '" viewBox="0 0 24 24"' + (mirror && L.rtl ? ' style="transform:scaleX(-1)"' : '') + '><path d="' + P[n] + '"/></svg>';
+const LOGO = sz => '<svg viewBox="27 27 54 54" width="' + sz + '" height="' + sz + '"><path d="M73.03 45.13A21 21 0 1 1 62.87 34.97" fill="none" stroke="#6E63DB" stroke-width="5.5" stroke-linecap="round"/><path d="M49.8 58.2L66.7 41.3" stroke="#6E63DB" stroke-width="4.5" stroke-linecap="round"/><path d="M51.2 56.8L46.9 69.6L45.5 62.5L38.4 61.1Z" fill="#6E63DB"/><path d="M76.6 31.4L71.7 47.6L60.4 36.3Z" fill="#2FD180"/></svg>';
 const ICONAPP = '<svg viewBox="18 18 72 72" width="58" height="58"><defs><linearGradient id="ag" x1="0" y1="0" x2="108" y2="108" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#4F6BFF"/><stop offset="1" stop-color="#7B3FE4"/></linearGradient><clipPath id="ac"><circle cx="54" cy="54" r="36"/></clipPath></defs><g clip-path="url(#ac)"><rect width="108" height="108" fill="url(#ag)"/></g><path d="M73.03 45.13A21 21 0 1 1 62.87 34.97" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round"/><path d="M49.8 58.2L66.7 41.3" stroke="#fff" stroke-width="4.5" stroke-linecap="round"/><path d="M51.2 56.8L46.9 69.6L45.5 62.5L38.4 61.1Z" fill="#fff"/><path d="M76.6 31.4L71.7 47.6L60.4 36.3Z" fill="#2FD180"/></svg>';
 
 const coin = s => DATA.coins.find(c => c.base === s);
 const chg = c => (c.last - c.open) / c.open * 100;
-const icon = b => '<img class="ico" src="' + DATA.icons[b] + '" alt="">';
-const status = () => '<div class="status"><span>9:41</span><span class="ic">' + svg('wifi').replace('<svg', '<svg width="16" height="16" fill="#F1F3F9"') + svg('bat').replace('<svg', '<svg width="18" height="18" fill="#F1F3F9"') + '</span></div>';
-const pill = p => '<span class="pill ' + (p >= 0 ? 'up' : 'dn') + '">' + pct(p) + '</span>';
-const FAV = ['BTC', 'ETH', 'SOL', 'XRP', 'BNB', 'DOGE', 'LINK', 'ADA', 'SUI'];
-
-function listRow(c, fav) {
-  const vol = f(S.volume_short, compact(c.qv));
-  return '<div class="row">' + icon(c.base) + '<div class="who"><div class="sym">' + c.base + '</div><div class="sub">' + (c.name !== c.base ? c.name + ' · ' : '') + vol + '</div></div>' +
-    '<div class="val"><div class="px">' + price(c.last) + '</div>' + pill(chg(c)) + '</div><div class="star' + (fav ? ' on' : '') + '">' + svg(fav ? 'star' : 'starO') + '</div></div>';
+// Logo yoksa uygulamadaki gibi baş harfli nötr yer tutucu
+const icon = (b, sz) => DATA.icons[b] ? '<img class="ico" src="' + DATA.icons[b] + '" alt=""' + (sz ? ' style="width:' + sz + 'px;height:' + sz + 'px"' : '') + '>' : '<div class="ph">' + b.slice(0, 3) + '</div>';
+const status = () => '<div class="status"><span>9:41</span><span class="ic">' + ic('wifi').replace('class="i"', 'class="i" style="width:16px;height:16px"') + ic('bat').replace('class="i"', 'class="i" style="width:18px;height:18px"') + '</span></div>';
+const pill = p => '<span class="pill ' + (dir(p) > 0 ? 'up' : dir(p) < 0 ? 'dn' : 'nt') + '">' + pct(p) + '</span>';
+const nav = on => '<div class="nav">' + [['home', S.nav_home], ['markets', S.nav_markets], ['explore', S.nav_explore], ['portfolio', S.portfolio], ['profile', S.nav_profile]]
+  .map((t, i) => '<div' + (i === on ? ' class="on"' : '') + '>' + ic(t[0]) + '<span>' + t[1] + '</span></div>').join('') + '</div>';
+const periods = on => '<div class="per">' + [S.period_5m, S.period_15m, S.period_1h, S.period_4h, S.period_24h, S.period_7d]
+  .map((p, i) => '<div' + (i === on ? ' class="on"' : '') + '>' + p + '</div>').join('') + '</div>';
+function spark(pts, p) {
+  if (!pts || pts.length < 2) return '<svg class="sp"></svg>';
+  let lo = Math.min(...pts), hi = Math.max(...pts);
+  const mid = (lo + hi) / 2, minR = Math.abs(mid) * 0.01; // uygulamadaki gibi en az %1'lik ölçek
+  if (hi - lo < minR) { lo = mid - minR / 2; hi = mid + minR / 2; }
+  const d = pts.map((v, i) => (1.5 + i * 45 / (pts.length - 1)).toFixed(1) + ',' + (1.5 + (hi - v) / (hi - lo) * 21).toFixed(1)).join(' ');
+  return '<svg class="sp" viewBox="0 0 48 24"><polyline points="' + d + '" fill="none" stroke="' + (dir(p) > 0 ? '#2FD180' : dir(p) < 0 ? '#FF5C70' : '#8C93A6') + '" stroke-width="1.5" stroke-linejoin="round"/></svg>';
+}
+function coinRow(c, p, fav) {
+  return '<div class="row">' + icon(c.base) + '<div class="who"><div class="sym">' + c.base + '</div><div class="sub">' + f(S.volume_short, compact(c.qv)) + '</div></div>' +
+    spark(c.spark, p) + '<div class="val"><div class="px">' + price(c.last) + '</div>' + pill(p) + '</div>' +
+    '<div class="star' + (fav ? ' on' : '') + '">' + ic('star') + '</div></div>';
 }
 
-function screenList() {
-  const live = f(S.status_live, DATA.pairs);
+// 1 · Ana Sayfa: genel görünüm, piyasa hareketi, yükselenler ön izlemesi
+function screenHome() {
+  const ov = b => { const c = coin(b); return '<div class="c"><div class="s">' + icon(b, 20) + b + '</div><div class="p">' + price(c.last) + '</div>' + pill(chg(c)) + '</div>'; };
+  const [up, dn, fl] = DATA.movement, total = up + dn + fl;
+  const cell = (n, k, col, l) => '<div><div class="n" style="color:' + col + '">' + ic(k) + n + '</div><div class="cap2">' + l + '</div></div>';
   let rows = '';
-  FAV.map(coin).sort((a, b) => b.qv - a.qv).forEach(c => rows += listRow(c, true));
-  return status() + '<div class="tb"><div class="tt"><div class="t1">Coinvane</div><div class="t2">' + live + '</div></div>' +
-    '<div class="ib">' + svg('search') + '</div><div class="ib">' + svg('portfolio') + '</div><div class="ib">' + svg('settings') + '</div></div>' +
-    '<div class="chips"><div class="chip">' + S.tab_all + '</div><div class="chip on">' + S.tab_favorites + '</div><div class="chip">' + S.tab_gainers + '</div><div class="chip">' + S.tab_losers + '</div></div>' + rows;
+  DATA.gainers24.forEach(c => rows += coinRow(c, chg(c), false));
+  return status() + '<div class="hdr"><div class="logo">' + LOGO(28) + S.app_name + '</div><div class="ib">' + ic('search') + '</div><div class="ib">' + ic('bell') + '</div></div>' +
+    '<div class="pad cap2">● ' + f(S.status_live, DATA.pairs).replace(/^●\s*/, '') + '</div>' +
+    '<div class="card ov" style="flex-direction:column;padding:14px 0"><div class="cap2" style="padding:0 16px 8px">' + S.market_overview + '</div><div style="display:flex">' + ov('BTC') + ov('ETH') + '</div></div>' +
+    '<div class="mvh"><div><div class="sec">' + S.market_movement + '</div><div class="cap2">' + f(S.movement_basis, S.period_24h, total) + '</div></div>' + ic('chev', '', true) + '</div>' +
+    '<div class="card mv">' + cell(up, 'aup', '#2FD180', S.movement_up) + cell(dn, 'adn', '#FF5C70', S.movement_down) + cell(fl, 'minus', '#8C93A6', S.movement_flat) + '</div>' +
+    '<div class="chips" style="margin-top:16px"><div class="chip on">' + ic('up') + S.tab_gainers + '</div><div class="chip">' + ic('down') + S.tab_losers + '</div><div class="chip">' + ic('vol') + S.tab_all + '</div></div>' +
+    periods(4) + '<div style="margin-top:4px">' + rows + '</div>' + nav(0);
+}
+
+// 2 · Piyasalar: Yükselenler, 1 saatlik dönem
+function screenMarkets() {
+  let rows = '';
+  DATA.hour.forEach((c, i) => rows += coinRow(c, c.ch1h, i === 2));
+  return status() + '<div class="hdr"><div class="t">' + S.nav_markets + '</div><div class="ib">' + ic('search') + '</div><div class="ib">' + ic('tune') + '</div></div>' +
+    '<div class="chips"><div class="chip">' + ic('vol') + S.tab_all + '</div><div class="chip">' + ic('star') + S.tab_favorites + '</div><div class="chip on">' + ic('up') + S.tab_gainers + '</div><div class="chip">' + ic('down') + S.tab_losers + '</div></div>' +
+    periods(2) + '<div class="cols"><div>' + S.col_coin + '</div><div>' + S.col_price + ic('sort') + '</div><div>' + f(S.col_change, S.period_1h) + ic('sort') + '</div></div>' + rows + nav(1);
 }
 
 function chartSvg(w, h) {
@@ -202,7 +277,7 @@ function chartSvg(w, h) {
   let g = '', ax = '';
   for (let i = 0; i < 5; i++) {
     const v = lo + (hi - lo) * (0.35 + i * 0.16), yy = y(v);
-    g += '<line x1="0" x2="' + plotW + '" y1="' + yy + '" y2="' + yy + '" stroke="rgba(255,255,255,.12)" stroke-width="0.6"/>';
+    g += '<line x1="0" x2="' + plotW + '" y1="' + yy + '" y2="' + yy + '" stroke="rgba(255,255,255,.10)" stroke-width="0.6"/>';
     ax += '<text x="' + (plotW + 6) + '" y="' + (yy + 3.5) + '" font-size="9.5" fill="#8C93A6">' + num(v * RATE, v * RATE >= 1000 ? 0 : 2) + '</text>';
   }
   let c = '';
@@ -219,55 +294,48 @@ function chartSvg(w, h) {
   [6, 20, 34].forEach(i => { xl += '<text x="' + x(i) + '" y="' + (h - 6) + '" font-size="9.5" fill="#8C93A6" text-anchor="middle">' + tf.format(new Date(K[i].t)) + '</text>'; });
   return '<svg width="' + w + '" height="' + h + '" style="direction:ltr">' + g + c + ax + xl + '</svg>';
 }
+function roundTo() { const v = coin('BTC').last * RATE; return Math.pow(10, Math.max(0, Math.floor(Math.log10(v)) - 2)); }
 
-function detailTop(c, fav) {
-  return status() + '<div class="tb"><div class="ib">' + svg('back') + '</div><div class="tt"><div class="t1">' + c.name + '</div><div class="t2">' + c.base + '</div></div><div class="ib">' + svg(fav ? 'star' : 'starO').replace('<svg', '<svg style="fill:#AAB8FF"') + '</div></div>' +
-    '<div class="pad"><div class="hero">' + icon(c.base).replace('class="ico"', 'class="ico" style="width:44px;height:44px"') + '<div><div class="big">' + price(c.last) + '</div>' + pill(chg(c)) + '</div></div>' +
+// 3 · Coin detayı: fiyat + dönem rozeti, performans şeridi, istatistikler, grafik, alarmlar (+ gelen bildirim)
+function screenDetail() {
+  const c = coin('BTC'), pf = DATA.perf;
+  const keys = [['M5', S.period_5m], ['M15', S.period_15m], ['H1', S.period_1h], ['H4', S.period_4h], ['D1', S.period_24h], ['D7', S.period_7d], ['D30', S.period_30d]];
+  const ch = k => (c.last - pf[k]) / pf[k] * 100;
+  const perf = keys.map(([k, l]) => '<div' + (k === 'D1' ? ' class="on"' : '') + '><div class="l">' + l + '</div><div class="v" style="color:' + (dir(ch(k)) > 0 ? '#2FD180' : dir(ch(k)) < 0 ? '#FF5C70' : '#8C93A6') + '">' + pct(ch(k)) + '</div></div>').join('');
+  const r = roundTo(), tAbove = Math.ceil(c.last * RATE * 1.0012 / r) * r, tBelow = Math.floor(c.last * RATE * 0.95 / r) * r, now = tAbove * 1.0004;
+  const note = '<div class="note"><div class="h">' + LOGO(16) + '<span>Coinvane · ' + S.alert_channel_name + '</span></div>' +
+    '<div class="nt">' + f(S.alert_title, 'BTC') + '</div><div class="nb">' + f(S.alert_text_above, fmtCur(tAbove), fmtCur(now)) + '</div></div>';
+  const achip = (t, s) => '<div class="achip">' + f(s, fmtCur(t)) + ic('close') + '</div>';
+  return note + status() + '<div class="tb"><div class="ib">' + ic('back', '', true) + '</div><div class="tt"><div class="t1">' + c.name + '</div><div class="t2">BTC</div></div><div class="ib star on">' + ic('star') + '</div></div>' +
+    '<div class="pad"><div class="hero">' + icon('BTC', 40) + '<div><div class="big">' + price(c.last) + '</div><div style="display:flex;align-items:center;gap:8px;margin-top:4px">' + pill(chg(c)) + '<span class="cap2">' + f(S.change_period, S.period_24h) + '</span></div></div></div>' +
+    '<div class="cap2" style="margin-top:14px">' + S.performance + '</div><div class="card perf">' + perf + '</div>' +
     '<div class="card stats"><div class="stat"><div class="l">' + S.high_24h + '</div><div class="v">' + price(c.high) + '</div></div>' +
     '<div class="stat"><div class="l">' + S.low_24h + '</div><div class="v">' + price(c.low) + '</div></div>' +
-    '<div class="stat"><div class="l">' + S.volume_24h + '</div><div class="v">' + compact(c.qv) + '</div></div></div>';
+    '<div class="stat"><div class="l">' + S.volume_24h + '</div><div class="v">' + compact(c.qv) + '</div></div></div>' +
+    '<div class="ints"><div class="seg"><div>' + S.interval_15m + '</div><div class="on">' + S.interval_1h + '</div><div>' + S.interval_4h + '</div><div>' + S.interval_1d + '</div><div>' + S.interval_1w + '</div></div><div class="ib">' + ic('line') + '</div></div>' +
+    '<div class="chartbox">' + chartSvg(CW, TABLET ? 150 : 210) + '</div>' +
+    '<div class="cap2" style="margin-top:8px">' + S.alerts_title + '</div><div class="achips">' + achip(tBelow, S.alert_chip_below) + achip(Math.round(c.last * RATE * 1.06 / r) * r, S.alert_chip_above) + '</div>' +
+    '<div class="btn prim">' + ic('bell') + S.set_alert + '</div></div>';
 }
 
-function screenChart() {
-  const c = coin('BTC'), h = DATA.holding;
-  return detailTop(c, true) +
-    '<div class="ints"><div class="seg"><div>' + S.interval_15m + '</div><div class="on">' + S.interval_1h + '</div><div>' + S.interval_4h + '</div><div>' + S.interval_1d + '</div><div>' + S.interval_1w + '</div></div><div class="ib">' + svg('line').replace('<svg', '<svg style="fill:#AAB8FF"') + '</div></div>' +
-    '<div class="chartbox">' + chartSvg(CW, TABLET ? 250 : 300) + '</div>' +
-    '<div class="card hold"><div class="t"><div class="l">' + S.holding_title + '</div><div class="v">' + price(h.amount * c.last) + '</div><div class="a">' + f(S.holding_amount_value, num(h.amount, 8), 'BTC') + '</div></div>' +
-    pill(((c.last - h.cost) / h.cost) * 100).replace(/>[^<]*</, '>' + f(S.profit_value, signed(h.amount * (c.last - h.cost) * RATE), pct((c.last - h.cost) / h.cost * 100)) + '<') + '</div></div>';
-}
-
-function screenAlerts() {
-  const c = coin('BTC');
-  const tAbove = Math.ceil(c.last * RATE * 1.0012 / roundTo()) * roundTo(), tBelow = Math.floor(c.last * RATE * 0.95 / roundTo()) * roundTo();
-  const now = tAbove * 1.0004;
-  const note = '<div class="note"><div class="h">' + LOGO.replace(/SZ/g, '16') + '<span>Coinvane · ' + S.alert_channel_name + '</span></div>' +
-    '<div class="nt">' + f(S.alert_title, 'BTC') + '</div><div class="nb">' + f(S.alert_text_above, fmtCur(tAbove), fmtCur(now)) + '</div></div>';
-  const chip = (t, s) => '<div class="achip">' + f(s, fmtCur(t)) + svg('close') + '</div>';
-  return note + detailTop(c, true) +
-    '<div class="ints"><div class="seg"><div>' + S.interval_15m + '</div><div>' + S.interval_1h + '</div><div class="on">' + S.interval_4h + '</div><div>' + S.interval_1d + '</div><div>' + S.interval_1w + '</div></div><div class="ib">' + svg('line').replace('<svg', '<svg style="fill:#AAB8FF"') + '</div></div>' +
-    '<div class="chartbox" style="height:220px">' + chartSvg(CW, TABLET ? 170 : 220) + '</div>' +
-    '<div class="ttl">' + S.alerts_title + '</div><div class="achips">' + chip(tBelow, S.alert_chip_below) + chip(Math.round(c.last * RATE * 1.06 / roundTo()) * roundTo(), S.alert_chip_above) + '</div>' +
-    '<div class="btn tonal">' + svg('bell') + S.set_alert + '</div><div class="btn outl">' + svg('portfolio') + S.holding_edit + '</div></div>';
-}
-function roundTo() { const v = DATA.coins[0].last * RATE; return Math.pow(10, Math.max(0, Math.floor(Math.log10(v)) - 2)); }
-
+// 4 · Portföy: toplam bakiye, 24s değişim ve toplam K/Z ayrı satırlarda
 function screenPortfolio() {
   let val = 0, cost = 0, ch = 0, rows = '';
   const hs = DATA.portfolio.map(h => { const c = coin(h.base); return { h, c, v: h.amount * c.last }; }).sort((a, b) => b.v - a.v);
   hs.forEach(({ h, c, v }) => {
     val += v; cost += h.amount * h.cost; ch += h.amount * (c.last - c.open);
-    const p = (c.last - h.cost) / h.cost * 100;
-    rows += '<div class="row" style="padding-inline-end:16px">' + icon(c.base) + '<div class="who"><div class="sym">' + c.base + '</div><div class="sub">' + f(S.holding_amount_value, num(h.amount, 8), c.base) + '</div></div>' +
-      '<div class="val"><div class="px">' + price(v) + '</div>' + pill(p) + '</div></div>';
+    rows += '<div class="row">' + icon(c.base) + '<div class="who"><div class="sym">' + c.base + '</div><div class="sub">' + f(S.holding_amount_value, num(h.amount, 8), c.base) + '</div></div>' +
+      '<div class="val"><div class="px">' + price(v) + '</div>' + pill((c.last - h.cost) / h.cost * 100) + '</div><div class="star">' + ic('more') + '</div></div>';
   });
   const prof = val - cost, prev = val - ch;
-  const p24 = '<span class="pill ' + (ch >= 0 ? 'up' : 'dn') + '">' + f(S.change_24h_value, signed(ch * RATE), pct(ch / prev * 100)) + '</span>';
-  const ppl = '<span class="pill ' + (prof >= 0 ? 'up' : 'dn') + '">' + f(S.profit_value, signed(prof * RATE), pct(prof / cost * 100)) + '</span>';
-  return status() + '<div class="tb"><div class="ib">' + svg('back') + '</div><div class="tt"><div class="t1">' + S.portfolio + '</div></div></div>' +
-    '<div class="sum"><div class="l">' + S.portfolio_total + '</div><div class="v">' + price(val) + '</div><div class="ps">' + p24 + ppl + '</div></div>' + '<div style="height:8px"></div>' + rows;
+  const kv = (l, v, p) => '<div class="kv">' + l + '<b style="color:' + (dir(p) > 0 ? '#2FD180' : dir(p) < 0 ? '#FF5C70' : '#8C93A6') + '">' + f(S.amount_percent, signed(v * RATE), pct(p)) + '</b></div>';
+  return status() + '<div class="hdr"><div class="t">' + S.portfolio + '</div></div>' +
+    '<div class="card sum"><div class="top"><div>' + S.portfolio_total + '</div><div>' + CODE + '</div></div><div class="v">' + price(val) + '</div><hr>' +
+    kv(S.change_24h_label, ch, ch / prev * 100) + kv(S.total_pl_label, prof, prof / cost * 100) + '</div>' +
+    '<div class="tabs"><div class="chip on">' + S.assets + '</div><div class="chip">' + S.allocation + '</div><div class="add">' + ic('plus') + S.add_asset + '</div></div>' + rows + nav(3);
 }
 
+// 5 · Ana ekran widget'ı
 function screenWidget() {
   const tf = new Intl.DateTimeFormat(TAG, { hour: '2-digit', minute: '2-digit' });
   const df = new Intl.DateTimeFormat(TAG, { weekday: 'long', day: 'numeric', month: 'long' });
@@ -275,16 +343,17 @@ function screenWidget() {
   let w = '';
   ['BTC', 'ETH', 'SOL', 'XRP'].map(coin).forEach(c => {
     const p = chg(c);
-    w += '<div class="wr"><span class="b">' + c.base + '</span><span class="p">' + price(c.last) + '</span><span class="c" style="color:' + (p >= 0 ? '#2FD180' : '#FF5C70') + '">' + pct(p) + '</span></div>';
+    w += '<div class="wr"><span class="b">' + c.base + '</span><span class="p">' + price(c.last) + '</span><span class="c" style="color:' + (dir(p) > 0 ? '#2FD180' : dir(p) < 0 ? '#FF5C70' : '#8C93A6') + '">' + pct(p) + '</span></div>';
   });
   let apps = '';
   for (let i = 0; i < 8; i++) apps += i === 5 ? '<div class="appi cv">' + ICONAPP + '</div>' : '<div class="appi"></div>';
   return '<div class="home">' + status() + '<div class="clock">' + tf.format(d) + '</div><div class="date">' + df.format(d) + '</div>' +
-    '<div class="widget"><div class="wh">' + LOGO.replace(/SZ/g, '18') + '<span>Coinvane</span><span class="tm">' + tf.format(d) + '</span></div>' + w + '</div>' +
+    '<div class="widget"><div class="wh">' + LOGO(18).replace(/#6E63DB/g, '#9A91F5') + '<span>Coinvane</span><span class="tm">' + tf.format(d) + '</span></div>' + w + '</div>' +
     '<div class="grid">' + apps + '</div><div class="dock"><div class="appi"></div><div class="appi"></div><div class="appi"></div><div class="appi"></div></div></div>';
 }
 
-function screenSettings() {
+// 6 · Profil: tercihler (para birimi seçimi açık)
+function screenProfile() {
   const dn = new Intl.DisplayNames([TAG], { type: 'currency' });
   const sym = code => (new Intl.NumberFormat(TAG, { style: 'currency', currency: code }).formatToParts(0).find(p => p.type === 'currency') || {}).value;
   const label = code => code + ' · ' + dn.of(code) + ' (' + sym(code) + ')';
@@ -292,14 +361,15 @@ function screenSettings() {
   list.sort((a, b) => DATA.currencies.indexOf(a) - DATA.currencies.indexOf(b));
   let opts = '';
   list.forEach(c => opts += '<div class="opt"><div class="radio' + (c === CODE ? ' on' : '') + '"></div>' + label(c) + '</div>');
-  return status() + '<div class="tb"><div class="ib">' + svg('back') + '</div><div class="tt"><div class="t1">' + S.settings + '</div></div></div>' +
-    '<div class="set"><div class="k">' + S.settings_language + '</div><div class="v">' + L.languageName + '</div></div>' +
-    '<div class="set"><div class="k">' + S.settings_currency + '</div><div class="v">' + label(CODE) + '</div></div>' +
-    '<div class="set"><div class="k">' + S.settings_theme + '</div><div class="v">' + S.theme_options[0] + '</div></div>' +
-    '<div class="scrim"></div><div class="dlg"><h3>' + S.settings_currency + '</h3>' + opts + '</div>';
+  const row = (i, k, v) => '<div class="set">' + ic(i) + '<div class="k">' + k + '</div>' + (v ? '<div class="v">' + v + '</div>' : '') + ic('chev', 'ch', true) + '</div>';
+  return status() + '<div class="hdr"><div class="t">' + S.nav_profile + '</div></div>' +
+    '<div class="gl">' + S.section_preferences + '</div><div class="card grp">' + row('lang', S.settings_language, L.languageName) + row('cur', S.settings_currency, label(CODE)) +
+    row('theme', S.settings_theme, S.theme_options[2]) + '</div>' +
+    '<div class="gl">' + S.section_notifications + '</div><div class="card grp">' + row('bell', S.price_alerts, f(S.alerts_active, 2)) + row('nset', S.notification_settings, '') + '</div>' +
+    '<div class="scrim"></div><div class="dlg"><h3>' + S.settings_currency + '</h3>' + opts + '</div>' + nav(4);
 }
 
-const SCREENS = [screenList, screenChart, screenAlerts, screenPortfolio, screenWidget, screenSettings];
+const SCREENS = [screenHome, screenMarkets, screenDetail, screenPortfolio, screenWidget, screenProfile];
 document.getElementById('app').innerHTML = SCREENS[SHOT - 1]();
 document.getElementById('h').textContent = L.captions[SHOT - 1][0];
 document.getElementById('p').textContent = L.captions[SHOT - 1][1];

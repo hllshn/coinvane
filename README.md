@@ -24,14 +24,14 @@
 ## Screenshots
 
 <p align="center">
-  <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/1.jpg" width="250" alt="Live prices"/>
-  <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/2.jpg" width="250" alt="Screenshot 2"/>
-  <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/3.jpg" width="250" alt="Screenshot 3"/>
+  <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/1.jpg" width="250" alt="Home"/>
+  <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/2.jpg" width="250" alt="Markets"/>
+  <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/3.jpg" width="250" alt="Coin detail and alerts"/>
 </p>
 <p align="center">
   <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/4.jpg" width="250" alt="Portfolio"/>
-  <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/5.jpg" width="250" alt="Screenshot 5"/>
-  <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/6.jpg" width="250" alt="Screenshot 6"/>
+  <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/5.jpg" width="250" alt="Home screen widget"/>
+  <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/6.jpg" width="250" alt="Profile and currency"/>
 </p>
 
 <details>
