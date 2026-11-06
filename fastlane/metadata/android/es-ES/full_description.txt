@@ -1,6 +1,6 @@
 Coinvane muestra hacia dónde va el mercado cripto: en vivo, en tu moneda y tu idioma.
 
-• Precios en vivo de más de 700 monedas, actualizados cada segundo
+• Precios en vivo de más de 500 monedas, actualizados cada segundo
 • Gráficos reales de velas y líneas con volumen: 15m, 1H, 4H, 1D, 1S
 • Alertas de precio: al instante con la app abierta y en segundo plano cuando está cerrada
 • Cartera: posiciones, saldo total, cambio en 24 h y ganancias/pérdidas

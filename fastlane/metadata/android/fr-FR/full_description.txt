@@ -1,6 +1,6 @@
 Coinvane montre la direction du marché crypto — en direct, dans votre devise et votre langue.
 
-• Cours en direct de plus de 700 cryptos, actualisés chaque seconde
+• Cours en direct de plus de 500 cryptos, actualisés chaque seconde
 • Vrais graphiques en chandeliers et en ligne avec volume : 15 min, 1 h, 4 h, 1 J, 1 S
 • Alertes de prix : immédiates quand l’app est ouverte, en arrière-plan sinon
 • Portefeuille : positions, solde total, variation sur 24 h, plus/moins-values

@@ -1,6 +1,6 @@
 Coinvane shows where the crypto market is heading — live, in your own currency and language.
 
-• Live prices for 700+ coins, updated every second
+• Live prices for 500+ coins, updated every second
 • Real candlestick and line charts with volume: 15m, 1H, 4H, 1D, 1W
 • Price alerts that fire instantly while the app is open and in the background when it is closed
 • Portfolio: track holdings, total balance, 24h change and profit/loss

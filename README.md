@@ -6,7 +6,7 @@
 
 <p align="center">
   <b>Read the market's direction.</b><br/>
-  Live prices for 700+ coins in your own currency and language, real charts, price alerts, portfolio and a home screen widget.
+  Live prices for 500+ coins in your own currency and language, real charts, price alerts, portfolio and a home screen widget.
 </p>
 
 <p align="center">

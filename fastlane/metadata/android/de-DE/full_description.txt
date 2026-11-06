@@ -1,6 +1,6 @@
 Coinvane zeigt, wohin sich der Kryptomarkt bewegt – live, in deiner Währung und Sprache.
 
-• Live-Kurse für über 700 Coins, sekündlich aktualisiert
+• Live-Kurse für über 500 Coins, sekündlich aktualisiert
 • Echte Kerzen- und Liniencharts mit Volumen: 15m, 1H, 4H, 1T, 1W
 • Kursalarme – sofort bei geöffneter App, im Hintergrund wenn sie geschlossen ist
 • Portfolio: Bestände, Gesamtsaldo, 24h-Änderung sowie Gewinn und Verlust
