@@ -8,8 +8,18 @@ public final class Format {
     private Format() {
     }
 
+    /** "+1,38%", "-0,50%"; ekranda 0,00 görünecek kadar küçük değişim işaretsiz "0,00%" olur. */
     public static String percent(double value, Locale locale) {
+        if (Math.abs(value) < CoinFilter.FLAT) return String.format(locale, "%.2f%%", 0.0);
         return String.format(locale, "%+.2f%%", value);
+    }
+
+    /** Ekranda miktar: dilin ayırıcılarıyla, gereksiz sıfırsız ("0,125", "1.500"). */
+    public static String amount(double value, Locale locale) {
+        java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(locale);
+        f.setMinimumFractionDigits(0);
+        f.setMaximumFractionDigits(Math.abs(value) >= 1 ? 4 : 8);
+        return f.format(value);
     }
 
     /** Kullanıcının düzenleyebileceği sade sayı: gruplama yok, ondalık ayırıcı nokta. */

@@ -1,0 +1,1 @@
+Nuevo diseño: Inicio, Mercados, Explorar, Cartera y Perfil. Ganadores/Perdedores por periodos de 5 min a 7 días, con resumen del mercado, minigráficos, filtros y orden. Rendimiento de 5 min a 30 días en cada moneda. Distribución de la cartera y alta de activos más fácil. Eliminados los precios congelados de monedas retiradas.

@@ -8,7 +8,7 @@
     <string name="status_connecting">○ Conectando…</string>
     <string name="volume_short">Vol. %1$s</string>
     <string name="empty_results">Nenhum resultado</string>
-    <string name="empty_favorites">Nenhuma favorita ainda.\nToque na estrela de uma moeda para adicioná-la.</string>
+    <string name="empty_favorites">Você ainda não adicionou moedas favoritas</string>
     <string name="error_load">Não foi possível carregar os preços. Verifique sua conexão.</string>
     <string name="retry">Tentar novamente</string>
     <string name="favorite">Favorita</string>
@@ -47,8 +47,7 @@
     <string name="notifications_denied">Sem permissão de notificação, os alertas não podem avisar você</string>
     <string name="portfolio">Carteira</string>
     <string name="portfolio_total">Saldo total</string>
-    <string name="portfolio_empty">Sua carteira está vazia.\nAbra uma moeda e toque em “Adicionar à carteira”.</string>
-    <string name="change_24h_value">24h %1$s (%2$s)</string>
+    <string name="portfolio_empty">Ainda não há ativos na sua carteira</string>
     <string name="profit_value">L/P %1$s (%2$s)</string>
     <string name="holding_title">Sua posição</string>
     <string name="holding_add">Adicionar à carteira</string>
@@ -60,14 +59,13 @@
     <string name="save">Salvar</string>
     <string name="remove">Remover</string>
     <string name="invalid_number">Informe um número válido</string>
-    <string name="settings">Configurações</string>
     <string name="settings_language">Idioma</string>
     <string name="settings_currency">Moeda</string>
     <string name="settings_theme">Tema</string>
     <string name="settings_dynamic_colors">Usar cores do sistema</string>
     <string name="language_system">Padrão do sistema</string>
     <string name="widget_description">Preços ao vivo das suas moedas favoritas</string>
-    <string name="about_text"><![CDATA[Coinvane %1$s<br>Dados de mercado: <a href="https://www.binance.com">Binance</a> · Câmbio: <a href="https://www.exchangerate-api.com">ExchangeRate-API</a> · Ícones: CoinCap, cryptocurrency-icons<br>Os preços são apenas informativos e não constituem recomendação de investimento.]]></string>
+    <string name="about_text"><![CDATA[Coinvane %1$s<br>Dados de mercado: <a href="https://www.binance.com">Binance</a> · Câmbio: <a href="https://www.exchangerate-api.com">ExchangeRate-API</a> · Ícones: Binance, CoinCap, cryptocurrency-icons<br>Os preços são apenas informativos e não constituem recomendação de investimento.]]></string>
     <plurals name="status_live">
         <item quantity="one">● Ao vivo · %d par</item>
         <item quantity="many">● Ao vivo · %d pares</item>
@@ -84,4 +82,107 @@
         <item>" bi"</item>
         <item>" tri"</item>
     </string-array>
+    <!-- v8: navigasyon -->
+    <string name="nav_home">Início</string>
+    <string name="nav_markets">Mercados</string>
+    <string name="nav_explore">Explorar</string>
+    <string name="nav_profile">Perfil</string>
+    <!-- v8: dönemler (kısa) -->
+    <string name="period_5m">5m</string>
+    <string name="period_15m">15m</string>
+    <string name="period_1h">1h</string>
+    <string name="period_4h">4h</string>
+    <string name="period_24h">24h</string>
+    <string name="period_7d">7d</string>
+    <string name="period_30d">30d</string>
+    <string name="period_last">Período: %1$s</string>
+    <string name="change_period">Variação %1$s</string>
+    <string name="performance">Desempenho</string>
+    <string name="chart_interval_note">Intervalo das velas, não o período de variação do preço</string>
+    <!-- v8: Ana Sayfa -->
+    <string name="market_overview">Visão geral do mercado</string>
+    <string name="market_movement">Movimento do mercado</string>
+    <plurals name="movement_basis">
+        <item quantity="one">Pela variação %1$s · %2$d par</item>
+        <item quantity="other">Pela variação %1$s · %2$d pares</item>
+        <item quantity="many">Pela variação %1$s · %2$d pares</item>
+    </plurals>
+    <string name="movement_basis_short">Pela variação %1$s</string>
+    <string name="movement_up">Em alta</string>
+    <string name="movement_down">Em queda</string>
+    <string name="movement_flat">Sem variação</string>
+    <string name="volume_basis">Ordenado por volume 24h</string>
+    <string name="see_all_in_markets">Ver tudo em Mercados</string>
+    <string name="see_all">Ver tudo</string>
+    <string name="loading">Carregando…</string>
+    <string name="loading_period">Carregando variações de %1$s…</string>
+    <string name="status_offline">Sem conexão</string>
+    <!-- v8: Piyasalar -->
+    <string name="error_offline">Sem conexão. Não foi possível carregar os preços.</string>
+    <string name="empty_period">Dados insuficientes para este período</string>
+    <string name="empty_gainers">Nenhuma moeda em alta neste período</string>
+    <string name="empty_losers">Nenhuma moeda em queda neste período</string>
+    <string name="empty_filtered">Nenhuma moeda corresponde aos filtros</string>
+    <string name="browse_markets">Explorar mercados</string>
+    <string name="col_coin">Moeda</string>
+    <string name="col_price">Preço</string>
+    <string name="col_change">Var. (%1$s)</string>
+    <string name="sort_by">Ordem: %1$s</string>
+    <string name="close_search">Fechar pesquisa</string>
+    <string name="filters">Filtros</string>
+    <string name="filter_min_volume">Volume 24h mínimo (%1$s)</string>
+    <string name="filter_any">Qualquer</string>
+    <string name="filter_sort">Ordenar por</string>
+    <string name="sort_default">Padrão</string>
+    <string name="sort_price_desc">Preço: maior para menor</string>
+    <string name="sort_price_asc">Preço: menor para maior</string>
+    <string name="sort_change_desc">Variação: maior para menor</string>
+    <string name="sort_change_asc">Variação: menor para maior</string>
+    <string name="filter_sort_note">A variação usa o período selecionado (%1$s)</string>
+    <string name="reset">Redefinir</string>
+    <string name="done">Concluído</string>
+    <string name="active_min_volume">Vol. 24h mín.: %1$s</string>
+    <!-- v8: Keşfet -->
+    <string name="explore_featured">Listas em destaque</string>
+    <string name="featured_fast_gainers">Altas de curto prazo</string>
+    <string name="featured_top_losers">Maiores quedas</string>
+    <string name="featured_volume_leaders">Líderes de volume</string>
+    <string name="explore_movers">Em movimento</string>
+    <string name="explore_movers_caption">Maiores altas da última hora</string>
+    <string name="explore_volume_surge">Pico de volume</string>
+    <string name="explore_volume_surge_caption">Volume da última hora comparado à média por hora das últimas 24h</string>
+    <string name="volume_ratio">Vol. 1h %1$s× média</string>
+    <!-- v8: Portföy -->
+    <string name="change_24h_label">Variação 24h</string>
+    <string name="total_pl_label">L/P total</string>
+    <string name="amount_percent">%1$s (%2$s)</string>
+    <string name="pl_no_cost">Adicione preços de compra para ver lucro/prejuízo</string>
+    <string name="pl_partial_cost">Apenas ativos com preço de compra são incluídos</string>
+    <string name="add_asset">Adicionar ativo</string>
+    <string name="assets">Ativos</string>
+    <string name="allocation">Alocação</string>
+    <string name="other">Outros</string>
+    <string name="pick_coin">Escolha uma moeda</string>
+    <string name="holding_add_coin">Adicionar %1$s</string>
+    <string name="holding_edit_coin">Editar %1$s</string>
+    <string name="holding_removed">Removido da carteira</string>
+    <string name="undo">Desfazer</string>
+    <string name="more_options">Mais opções</string>
+    <!-- v8: Profil ve alarmlar -->
+    <string name="price_alerts">Alertas de preço</string>
+    <string name="alerts_none">Nenhum</string>
+    <plurals name="alerts_active">
+        <item quantity="one">%d ativo</item>
+        <item quantity="other">%d ativos</item>
+        <item quantity="many">%d ativos</item>
+    </plurals>
+    <string name="alerts_empty">Você não tem alertas de preço ativos.\nAbra uma moeda para criar um.</string>
+    <string name="alert_now">Agora %1$s</string>
+    <string name="notification_settings">Configurações de notificação</string>
+    <string name="section_preferences">Preferências</string>
+    <string name="section_notifications">Notificações e alertas</string>
+    <string name="section_about">Sobre</string>
+    <string name="version">Versão</string>
+    <string name="licenses">Licenças de código aberto</string>
+    <string name="rate_app">Avaliar o Coinvane</string>
 </resources>

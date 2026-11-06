@@ -37,6 +37,18 @@ public class BinanceParserTest {
     }
 
     @Test
+    public void coins_skipDelistedPairsWithFrozenTicker() throws Exception {
+        long now = 1_794_000_000_000L;
+        String fresh = "{\"symbol\":\"BTCUSDT\",\"openPrice\":\"1\",\"highPrice\":\"1\",\"lowPrice\":\"1\",\"lastPrice\":\"1\","
+                + "\"quoteVolume\":\"10\",\"count\":5,\"closeTime\":" + (now - 60_000) + "}";
+        String delisted = "{\"symbol\":\"KDAUSDT\",\"openPrice\":\"0.0051\",\"highPrice\":\"1\",\"lowPrice\":\"1\","
+                + "\"lastPrice\":\"0.006\",\"quoteVolume\":\"10\",\"count\":4001,\"closeTime\":" + (now - 3L * 86_400_000) + "}";
+        List<Coin> coins = Binance.parseCoins("[" + fresh + "," + delisted + "]", now);
+        assertEquals(1, coins.size());
+        assertEquals("BTCUSDT", coins.get(0).symbol);
+    }
+
+    @Test
     public void listable_excludesFiatButKeepsLookalikeCryptoCodes() {
         assertTrue(Coin.isListable("BTCUSDT"));
         assertTrue(Coin.isListable("MTLUSDT")); // ISO kodu gibi görünen kripto

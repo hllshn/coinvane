@@ -1,1 +1,14 @@
-<vector xmlns:android="http://schemas.android.com/apk/res/android" android:width="24dp" android:height="24dp" android:viewportWidth="24" android:viewportHeight="24" android:tint="?attr/colorControlNormal" android:autoMirrored="false"><path android:fillColor="@android:color/white" android:pathData="M7,3h2v3h2v10H9v5H7v-5H5V6h2V3zM15,6h2v3h2v8h-2v4h-2v-4h-2V9h2V6z"/></vector>
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Coinvane ikon seti: 24dp, 1.8 çizgi, yuvarlak uçlar. Renk android:tint ile verilir. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp" android:height="24dp" android:viewportWidth="24" android:viewportHeight="24"
+    android:autoMirrored="false" android:tint="?attr/colorControlNormal">
+    <path android:pathData="M7,3.5 V20.5" android:strokeColor="#FFFFFFFF" android:strokeWidth="1.8"
+        android:strokeLineCap="round" android:strokeLineJoin="round" />
+    <path android:pathData="M5,8 H9 V15 H5 Z" android:strokeColor="#FFFFFFFF" android:strokeWidth="1.8"
+        android:strokeLineCap="round" android:strokeLineJoin="round" />
+    <path android:pathData="M17,3.5 V20.5" android:strokeColor="#FFFFFFFF" android:strokeWidth="1.8"
+        android:strokeLineCap="round" android:strokeLineJoin="round" />
+    <path android:pathData="M15,9.5 H19 V14 H15 Z" android:strokeColor="#FFFFFFFF" android:strokeWidth="1.8"
+        android:strokeLineCap="round" android:strokeLineJoin="round" />
+</vector>

@@ -8,7 +8,7 @@
     <string name="status_connecting">○ 연결 중…</string>
     <string name="volume_short">거래량 %1$s</string>
     <string name="empty_results">결과 없음</string>
-    <string name="empty_favorites">아직 즐겨찾기가 없습니다.\n코인의 별을 탭하여 추가하세요.</string>
+    <string name="empty_favorites">아직 즐겨찾기한 코인이 없습니다</string>
     <string name="error_load">가격을 불러오지 못했습니다. 인터넷 연결을 확인하세요.</string>
     <string name="retry">다시 시도</string>
     <string name="favorite">즐겨찾기</string>
@@ -47,8 +47,7 @@
     <string name="notifications_denied">알림 권한이 없으면 가격 알림을 받을 수 없습니다</string>
     <string name="portfolio">포트폴리오</string>
     <string name="portfolio_total">총 잔액</string>
-    <string name="portfolio_empty">포트폴리오가 비어 있습니다.\n코인을 열고 \'포트폴리오에 추가\'를 탭하세요.</string>
-    <string name="change_24h_value">24시간 %1$s (%2$s)</string>
+    <string name="portfolio_empty">포트폴리오에 아직 자산이 없습니다</string>
     <string name="profit_value">손익 %1$s (%2$s)</string>
     <string name="holding_title">보유 현황</string>
     <string name="holding_add">포트폴리오에 추가</string>
@@ -60,14 +59,13 @@
     <string name="save">저장</string>
     <string name="remove">삭제</string>
     <string name="invalid_number">유효한 숫자를 입력하세요</string>
-    <string name="settings">설정</string>
     <string name="settings_language">언어</string>
     <string name="settings_currency">통화</string>
     <string name="settings_theme">테마</string>
     <string name="settings_dynamic_colors">시스템 색상 사용</string>
     <string name="language_system">시스템 기본값</string>
     <string name="widget_description">즐겨찾는 코인의 실시간 가격</string>
-    <string name="about_text"><![CDATA[Coinvane %1$s<br>시장 데이터: <a href="https://www.binance.com">Binance</a> · 환율: <a href="https://www.exchangerate-api.com">ExchangeRate-API</a> · 아이콘: CoinCap, cryptocurrency-icons<br>가격은 참고용이며 투자 조언이 아닙니다.]]></string>
+    <string name="about_text"><![CDATA[Coinvane %1$s<br>시장 데이터: <a href="https://www.binance.com">Binance</a> · 환율: <a href="https://www.exchangerate-api.com">ExchangeRate-API</a> · 아이콘: Binance, CoinCap, cryptocurrency-icons<br>가격은 참고용이며 투자 조언이 아닙니다.]]></string>
     <plurals name="status_live">
         <item quantity="other">● 실시간 · %d개 페어</item>
     </plurals>
@@ -82,4 +80,103 @@
         <item>"B"</item>
         <item>"T"</item>
     </string-array>
+    <!-- v8: navigasyon -->
+    <string name="nav_home">홈</string>
+    <string name="nav_markets">마켓</string>
+    <string name="nav_explore">탐색</string>
+    <string name="nav_profile">프로필</string>
+    <!-- v8: dönemler (kısa) -->
+    <string name="period_5m">5분</string>
+    <string name="period_15m">15분</string>
+    <string name="period_1h">1시간</string>
+    <string name="period_4h">4시간</string>
+    <string name="period_24h">24시간</string>
+    <string name="period_7d">7일</string>
+    <string name="period_30d">30일</string>
+    <string name="period_last">최근 %1$s</string>
+    <string name="change_period">%1$s 변동</string>
+    <string name="performance">성과</string>
+    <string name="chart_interval_note">캔들 간격이며, 가격 변동 기간이 아닙니다</string>
+    <!-- v8: Ana Sayfa -->
+    <string name="market_overview">시장 개요</string>
+    <string name="market_movement">시장 움직임</string>
+    <plurals name="movement_basis">
+        <item quantity="other">%1$s 변동 기준 · %2$d개 페어</item>
+    </plurals>
+    <string name="movement_basis_short">%1$s 변동 기준</string>
+    <string name="movement_up">상승</string>
+    <string name="movement_down">하락</string>
+    <string name="movement_flat">보합</string>
+    <string name="volume_basis">24시간 거래량순</string>
+    <string name="see_all_in_markets">마켓에서 모두 보기</string>
+    <string name="see_all">모두 보기</string>
+    <string name="loading">불러오는 중…</string>
+    <string name="loading_period">%1$s 변동 불러오는 중…</string>
+    <string name="status_offline">오프라인</string>
+    <!-- v8: Piyasalar -->
+    <string name="error_offline">연결되지 않았습니다. 가격을 불러오지 못했습니다.</string>
+    <string name="empty_period">이 기간의 데이터가 부족합니다</string>
+    <string name="empty_gainers">이 기간에 상승한 코인이 없습니다</string>
+    <string name="empty_losers">이 기간에 하락한 코인이 없습니다</string>
+    <string name="empty_filtered">필터와 일치하는 코인이 없습니다</string>
+    <string name="browse_markets">마켓 둘러보기</string>
+    <string name="col_coin">코인</string>
+    <string name="col_price">가격</string>
+    <string name="col_change">변동 (%1$s)</string>
+    <string name="sort_by">정렬: %1$s</string>
+    <string name="close_search">검색 닫기</string>
+    <string name="filters">필터</string>
+    <string name="filter_min_volume">최소 24시간 거래량 (%1$s)</string>
+    <string name="filter_any">전체</string>
+    <string name="filter_sort">정렬 기준</string>
+    <string name="sort_default">기본</string>
+    <string name="sort_price_desc">가격: 높은 순</string>
+    <string name="sort_price_asc">가격: 낮은 순</string>
+    <string name="sort_change_desc">변동: 높은 순</string>
+    <string name="sort_change_asc">변동: 낮은 순</string>
+    <string name="filter_sort_note">변동은 선택한 기간(%1$s) 기준입니다</string>
+    <string name="reset">초기화</string>
+    <string name="done">완료</string>
+    <string name="active_min_volume">최소 24시간 거래량: %1$s</string>
+    <!-- v8: Keşfet -->
+    <string name="explore_featured">추천 목록</string>
+    <string name="featured_fast_gainers">단기 상승</string>
+    <string name="featured_top_losers">하락률 상위</string>
+    <string name="featured_volume_leaders">거래량 상위</string>
+    <string name="explore_movers">급등 코인</string>
+    <string name="explore_movers_caption">최근 1시간 상승률 상위</string>
+    <string name="explore_volume_surge">거래량 급증</string>
+    <string name="explore_volume_surge_caption">최근 1시간 거래량을 24시간 시간당 평균과 비교</string>
+    <string name="volume_ratio">1시간 %1$s배</string>
+    <!-- v8: Portföy -->
+    <string name="change_24h_label">24시간 변동</string>
+    <string name="total_pl_label">총 손익</string>
+    <string name="amount_percent">%1$s (%2$s)</string>
+    <string name="pl_no_cost">손익을 보려면 매수가를 추가하세요</string>
+    <string name="pl_partial_cost">매수가가 입력된 자산만 포함됩니다</string>
+    <string name="add_asset">자산 추가</string>
+    <string name="assets">자산</string>
+    <string name="allocation">비중</string>
+    <string name="other">기타</string>
+    <string name="pick_coin">코인 선택</string>
+    <string name="holding_add_coin">%1$s 추가</string>
+    <string name="holding_edit_coin">%1$s 편집</string>
+    <string name="holding_removed">포트폴리오에서 삭제됨</string>
+    <string name="undo">실행취소</string>
+    <string name="more_options">옵션 더보기</string>
+    <!-- v8: Profil ve alarmlar -->
+    <string name="price_alerts">가격 알림</string>
+    <string name="alerts_none">없음</string>
+    <plurals name="alerts_active">
+        <item quantity="other">%d개 활성</item>
+    </plurals>
+    <string name="alerts_empty">활성화된 가격 알림이 없습니다.\n코인을 열어 알림을 설정하세요.</string>
+    <string name="alert_now">현재 %1$s</string>
+    <string name="notification_settings">알림 설정</string>
+    <string name="section_preferences">환경설정</string>
+    <string name="section_notifications">알림 및 가격 알림</string>
+    <string name="section_about">정보</string>
+    <string name="version">버전</string>
+    <string name="licenses">오픈소스 라이선스</string>
+    <string name="rate_app">Coinvane 평가하기</string>
 </resources>

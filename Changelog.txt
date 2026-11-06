@@ -1,3 +1,17 @@
+V. 8.0.0 — Yeni arayüz ve gezinme
+Alt menü: Ana Sayfa, Piyasalar, Keşfet, Portföy, Profil
+Ana Sayfa: BTC/ETH özeti, yükselen/düşen/değişmeyen sayıları, en hareketli 5 coin
+Piyasalar: Hacim, Favoriler, Yükselenler, Düşenler; 5dk–7g dönemleri, fiyat/değişim sıralaması, minimum hacim filtresi
+Mini grafikler gerçek mum verisinden; liste kaydırılırken satırlar zıplamaz
+Keşfet: öne çıkan listeler, son 1 saatin hareketlileri, hacmi hareketlenenler
+Coin detayı: 5dk–30g performans şeridi, rozet hangi dönemi gösterdiğini yazar
+Portföy: toplam bakiye, 24s değişim ve toplam K/Z ayrı; dağılım; coin seçerek varlık ekleme
+Profil: dil, para birimi, tema, fiyat alarmları listesi, lisanslar
+Delist edilmiş coinlerin donmuş fiyatları artık listelenmiyor
+Virgülle girilen miktar/fiyatlar (0,05) doğru kaydediliyor
+Çok küçük fiyatlar en az 4 anlamlı haneyle gösteriliyor
+Varsayılan tema koyu
+
 V. 7.0.0 — Kripto Para artık Coinvane
 Yeni ad ve logo: Coinvane
 700+ coin canlı (eski: 15 coin); yalnızca ekrandaki coinler canlı dinlenir (az veri)

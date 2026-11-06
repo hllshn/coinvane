@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Ortak metin satırı: ikon, başlık + alt metin, sağda değer ve ok (Keşfet, Profil) -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/row"
+    style="@style/Coinvane.Row">
+
+    <ImageView
+        android:id="@+id/icon"
+        style="@style/Coinvane.RowIcon"
+        android:contentDescription="@null"
+        tools:src="@drawable/ic_language" />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/title"
+            style="@style/Coinvane.RowTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="Dil" />
+
+        <TextView
+            android:id="@+id/subtitle"
+            style="@style/Coinvane.Caption"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            tools:text="1s" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/value"
+        style="@style/Coinvane.RowValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:maxWidth="160dp"
+        tools:text="Türkçe" />
+
+    <ImageView
+        android:id="@+id/chevron"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="4dp"
+        android:importantForAccessibility="no"
+        android:src="@drawable/ic_chevron_right"
+        app:tint="@color/text_secondary" />
+</LinearLayout>

@@ -6,14 +6,18 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <!-- Başlık: geri, coin adı ve ticker, sağda favori -->
     <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
+        app:navigationContentDescription="@string/back"
         app:navigationIcon="?attr/homeAsUpIndicator"
         app:subtitleTextAppearance="?attr/textAppearanceLabelMedium"
-        tools:subtitle="Bitcoin"
-        tools:title="BTC/TRY" />
+        app:subtitleTextColor="@color/text_secondary"
+        app:titleTextAppearance="?attr/textAppearanceTitleLarge"
+        tools:subtitle="BTC"
+        tools:title="Bitcoin" />
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -28,6 +32,7 @@
             android:paddingHorizontal="16dp"
             android:paddingBottom="16dp">
 
+            <!-- Fiyat bloğu -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -36,67 +41,100 @@
 
                 <ImageView
                     android:id="@+id/icon"
-                    android:layout_width="44dp"
-                    android:layout_height="44dp"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
                     android:contentDescription="@string/coin_logo"
                     android:src="@drawable/ic_coin_placeholder" />
 
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="14dp"
+                    android:layout_marginStart="12dp"
                     android:layout_weight="1"
                     android:orientation="vertical">
 
                     <TextView
                         android:id="@+id/price"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:autoSizeMaxTextSize="28sp"
+                        android:autoSizeMinTextSize="16sp"
+                        android:autoSizeTextType="uniform"
                         android:fontFeatureSettings="tnum"
                         android:maxLines="1"
                         android:textAppearance="?attr/textAppearanceHeadlineMedium"
-                        tools:text="3.842.059,00 ₺" />
+                        android:textColor="@color/text_primary"
+                        android:textStyle="bold"
+                        tools:text="₺3.889.989,68" />
 
-                    <TextView
-                        android:id="@+id/change"
-                        style="@style/Kripto.Pill"
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
-                        tools:text="+1,38%" />
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/change"
+                            style="@style/Kripto.Pill"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            tools:text="+0,18%" />
+
+                        <TextView
+                            android:id="@+id/change_period"
+                            style="@style/Coinvane.Caption"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            tools:text="24s değişim" />
+                    </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
 
-            <com.google.android.material.card.MaterialCardView
-                style="@style/Widget.Material3.CardView.Filled"
-                android:layout_width="match_parent"
+            <!-- Dönemsel performans: rozetin hangi dönemi gösterdiğini seçer (grafik aralığından bağımsız) -->
+            <TextView
+                style="@style/Coinvane.Caption"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                app:cardBackgroundColor="@color/surface_card">
+                android:text="@string/performance" />
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:padding="14dp">
+            <LinearLayout
+                android:id="@+id/performance"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:background="@drawable/bg_card"
+                android:orientation="horizontal"
+                android:padding="4dp" />
 
-                    <LinearLayout style="@style/Kripto.Stat">
-                        <TextView style="@style/Kripto.StatLabel" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/high_24h" />
-                        <TextView android:id="@+id/high" style="@style/Kripto.StatValue" android:layout_width="wrap_content" android:layout_height="wrap_content" tools:text="3.930.480 ₺" />
-                    </LinearLayout>
+            <!-- İstatistik şeridi -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/bg_card"
+                android:orientation="horizontal"
+                android:padding="14dp">
 
-                    <LinearLayout style="@style/Kripto.Stat">
-                        <TextView style="@style/Kripto.StatLabel" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/low_24h" />
-                        <TextView android:id="@+id/low" style="@style/Kripto.StatValue" android:layout_width="wrap_content" android:layout_height="wrap_content" tools:text="3.840.440 ₺" />
-                    </LinearLayout>
-
-                    <LinearLayout style="@style/Kripto.Stat">
-                        <TextView style="@style/Kripto.StatLabel" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/volume_24h" />
-                        <TextView android:id="@+id/volume" style="@style/Kripto.StatValue" android:layout_width="wrap_content" android:layout_height="wrap_content" tools:text="337,35 Mn ₺" />
-                    </LinearLayout>
+                <LinearLayout style="@style/Kripto.Stat">
+                    <TextView style="@style/Kripto.StatLabel" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/high_24h" />
+                    <TextView android:id="@+id/high" style="@style/Kripto.StatValue" android:layout_width="match_parent" android:layout_height="wrap_content" tools:text="₺3.912.604" />
                 </LinearLayout>
-            </com.google.android.material.card.MaterialCardView>
 
+                <LinearLayout style="@style/Kripto.Stat" android:layout_marginStart="8dp">
+                    <TextView style="@style/Kripto.StatLabel" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/low_24h" />
+                    <TextView android:id="@+id/low" style="@style/Kripto.StatValue" android:layout_width="match_parent" android:layout_height="wrap_content" tools:text="₺3.844.207" />
+                </LinearLayout>
+
+                <LinearLayout style="@style/Kripto.Stat" android:layout_marginStart="8dp">
+                    <TextView style="@style/Kripto.StatLabel" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/volume_24h" />
+                    <TextView android:id="@+id/volume" style="@style/Kripto.StatValue" android:layout_width="match_parent" android:layout_height="wrap_content" tools:text="₺2,31 Tn" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- Grafik mum aralığı (yüzde değişim filtresi değildir) -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -125,58 +163,62 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="4dp"
-                    app:icon="@drawable/ic_chart_line" />
+                    app:icon="@drawable/ic_chart_line"
+                    app:iconTint="@color/text_primary" />
             </LinearLayout>
+
+            <TextView
+                style="@style/Coinvane.Caption"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="@string/chart_interval_note" />
 
             <com.github.mikephil.charting.charts.CombinedChart
                 android:id="@+id/chart"
                 android:layout_width="match_parent"
-                android:layout_height="340dp"
+                android:layout_height="320dp"
                 android:layout_marginTop="8dp" />
 
-            <com.google.android.material.card.MaterialCardView
+            <!-- Pozisyon -->
+            <LinearLayout
                 android:id="@+id/holding_card"
-                style="@style/Widget.Material3.CardView.Filled"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:visibility="gone"
-                app:cardBackgroundColor="@color/surface_card">
+                android:background="@drawable/bg_card"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="14dp"
+                android:visibility="gone">
 
                 <LinearLayout
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal"
-                    android:padding="14dp">
+                    android:layout_weight="1"
+                    android:orientation="vertical">
 
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
-
-                        <TextView style="@style/Kripto.StatLabel" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/holding_title" />
-                        <TextView android:id="@+id/holding_value" style="@style/Kripto.StatValue" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textAppearance="?attr/textAppearanceTitleMedium" tools:text="$3,210.00" />
-                        <TextView android:id="@+id/holding_amount" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textAppearance="?attr/textAppearanceBodySmall" android:textColor="?attr/colorOnSurfaceVariant" tools:text="0.05 BTC" />
-                    </LinearLayout>
-
-                    <TextView
-                        android:id="@+id/holding_profit"
-                        style="@style/Kripto.Pill"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        tools:text="+$120.00 (+3.88%)" />
+                    <TextView style="@style/Kripto.StatLabel" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/holding_title" />
+                    <TextView android:id="@+id/holding_value" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="2dp" android:fontFeatureSettings="tnum" android:textAppearance="?attr/textAppearanceTitleMedium" android:textColor="@color/text_primary" tools:text="₺486.248,71" />
+                    <TextView android:id="@+id/holding_amount" style="@style/Coinvane.Caption" android:layout_width="wrap_content" android:layout_height="wrap_content" android:fontFeatureSettings="tnum" tools:text="0,125 BTC" />
                 </LinearLayout>
-            </com.google.android.material.card.MaterialCardView>
 
+                <TextView
+                    android:id="@+id/holding_profit"
+                    style="@style/Kripto.Pill"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="K/Z +₺39.123,00 (+8,76%)" />
+            </LinearLayout>
+
+            <!-- Aktif alarmlar (birincil eylemin hemen üstünde) -->
             <TextView
                 android:id="@+id/alerts_title"
+                style="@style/Coinvane.Caption"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="@string/alerts_title"
-                android:textAppearance="?attr/textAppearanceTitleSmall"
                 android:visibility="gone" />
 
             <com.google.android.material.chip.ChipGroup
@@ -186,20 +228,23 @@
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/set_alert"
-                style="@style/Widget.Material3.Button.TonalButton.Icon"
+                style="@style/Widget.Material3.Button.Icon"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="52dp"
                 android:layout_marginTop="12dp"
                 android:text="@string/set_alert"
-                app:icon="@drawable/ic_alarm_add" />
+                app:icon="@drawable/ic_bell" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/edit_holding"
                 style="@style/Widget.Material3.Button.OutlinedButton.Icon"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="52dp"
                 android:text="@string/holding_add"
-                app:icon="@drawable/ic_portfolio" />
+                android:textColor="@color/text_primary"
+                app:icon="@drawable/ic_nav_portfolio"
+                app:iconTint="@color/text_primary"
+                app:strokeColor="@color/outline" />
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 </LinearLayout>

@@ -51,9 +51,10 @@ public final class Money {
     public String format(double value) {
         NumberFormat f = currencyFormat();
         if (Math.abs(value) < 1 && value != 0) {
-            // Küçük fiyatlarda (ör. PEPE) anlamlı haneler kaybolmasın
+            // Küçük fiyatlarda (ör. PEPE, BTTC) en az 4 anlamlı hane kalsın; sıfıra yuvarlanmasın
+            int leadingZeros = (int) Math.ceil(-Math.log10(Math.abs(value)));
             f.setMinimumFractionDigits(4);
-            f.setMaximumFractionDigits(8);
+            f.setMaximumFractionDigits(Math.min(12, Math.max(4, leadingZeros + 3)));
         }
         return f.format(value);
     }

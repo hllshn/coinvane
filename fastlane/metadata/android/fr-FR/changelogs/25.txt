@@ -1,0 +1,1 @@
+Nouvelle interface : Accueil, Marchés, Explorer, Portefeuille et Profil. Hausses/Baisses sur 5 min à 7 jours, avec résumé du marché, mini-graphiques, filtres et tri. Performance 5 min–30 j sur chaque crypto. Répartition du portefeuille et ajout simplifié. Prix figés des cryptos retirées supprimés.

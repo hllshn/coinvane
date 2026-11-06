@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Alt menü: seçili öğe mor, diğerleri nötr gri -->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:color="@color/brand" android:state_checked="true" />
+    <item android:color="@color/text_secondary" />
+</selector>

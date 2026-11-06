@@ -8,7 +8,7 @@
     <string name="status_connecting">○ جارٍ الاتصال…</string>
     <string name="volume_short">الحجم %1$s</string>
     <string name="empty_results">لا توجد نتائج</string>
-    <string name="empty_favorites">لا توجد عملات مفضلة بعد.\nانقر على النجمة لإضافة عملة.</string>
+    <string name="empty_favorites">لم تُضف أي عملات مفضلة بعد</string>
     <string name="error_load">تعذّر تحميل الأسعار. تحقّق من اتصالك بالإنترنت.</string>
     <string name="retry">إعادة المحاولة</string>
     <string name="favorite">مفضلة</string>
@@ -47,8 +47,7 @@
     <string name="notifications_denied">لا يمكن للتنبيهات إعلامك دون إذن الإشعارات</string>
     <string name="portfolio">المحفظة</string>
     <string name="portfolio_total">إجمالي الرصيد</string>
-    <string name="portfolio_empty">محفظتك فارغة.\nافتح أي عملة وانقر على «إضافة إلى المحفظة».</string>
-    <string name="change_24h_value">24 س %1$s (%2$s)</string>
+    <string name="portfolio_empty">لا توجد أصول في محفظتك بعد</string>
     <string name="profit_value">الربح/الخسارة %1$s (%2$s)</string>
     <string name="holding_title">حيازتك</string>
     <string name="holding_add">إضافة إلى المحفظة</string>
@@ -60,14 +59,13 @@
     <string name="save">حفظ</string>
     <string name="remove">حذف</string>
     <string name="invalid_number">أدخل رقمًا صالحًا</string>
-    <string name="settings">الإعدادات</string>
     <string name="settings_language">اللغة</string>
     <string name="settings_currency">العملة</string>
     <string name="settings_theme">المظهر</string>
     <string name="settings_dynamic_colors">استخدام ألوان النظام</string>
     <string name="language_system">لغة النظام</string>
     <string name="widget_description">أسعار مباشرة لعملاتك المفضلة</string>
-    <string name="about_text"><![CDATA[Coinvane %1$s<br>بيانات السوق: <a href="https://www.binance.com">Binance</a> · أسعار الصرف: <a href="https://www.exchangerate-api.com">ExchangeRate-API</a> · الأيقونات: CoinCap، cryptocurrency-icons<br>الأسعار للعلم فقط وليست نصيحة استثمارية.]]></string>
+    <string name="about_text"><![CDATA[Coinvane %1$s<br>بيانات السوق: <a href="https://www.binance.com">Binance</a> · أسعار الصرف: <a href="https://www.exchangerate-api.com">ExchangeRate-API</a> · الأيقونات: Binance، CoinCap، cryptocurrency-icons<br>الأسعار للعلم فقط وليست نصيحة استثمارية.]]></string>
     <plurals name="status_live">
         <item quantity="zero">● مباشر · %d زوج</item>
         <item quantity="one">● مباشر · زوج واحد</item>
@@ -87,4 +85,113 @@
         <item>" مليار"</item>
         <item>" تريليون"</item>
     </string-array>
+    <!-- v8: navigasyon -->
+    <string name="nav_home">الرئيسية</string>
+    <string name="nav_markets">الأسواق</string>
+    <string name="nav_explore">استكشاف</string>
+    <string name="nav_profile">حسابي</string>
+    <!-- v8: dönemler (kısa) -->
+    <string name="period_5m">5د</string>
+    <string name="period_15m">15د</string>
+    <string name="period_1h">1س</string>
+    <string name="period_4h">4س</string>
+    <string name="period_24h">24س</string>
+    <string name="period_7d">7ي</string>
+    <string name="period_30d">30ي</string>
+    <string name="period_last">آخر %1$s</string>
+    <string name="change_period">تغير %1$s</string>
+    <string name="performance">الأداء</string>
+    <string name="chart_interval_note">فاصل الشموع، وليس فترة تغير السعر</string>
+    <!-- v8: Ana Sayfa -->
+    <string name="market_overview">نظرة عامة على السوق</string>
+    <string name="market_movement">حركة السوق</string>
+    <plurals name="movement_basis">
+        <item quantity="zero">حسب تغير %1$s · %2$d زوج</item>
+        <item quantity="one">حسب تغير %1$s · %2$d زوج</item>
+        <item quantity="two">حسب تغير %1$s · %2$d زوج</item>
+        <item quantity="few">حسب تغير %1$s · %2$d أزواج</item>
+        <item quantity="many">حسب تغير %1$s · %2$d زوجًا</item>
+        <item quantity="other">حسب تغير %1$s · %2$d زوج</item>
+    </plurals>
+    <string name="movement_basis_short">حسب تغير %1$s</string>
+    <string name="movement_up">صاعدة</string>
+    <string name="movement_down">هابطة</string>
+    <string name="movement_flat">دون تغيير</string>
+    <string name="volume_basis">مرتبة حسب حجم 24 س</string>
+    <string name="see_all_in_markets">عرض الكل في الأسواق</string>
+    <string name="see_all">عرض الكل</string>
+    <string name="loading">جارٍ التحميل…</string>
+    <string name="loading_period">جارٍ تحميل تغيرات %1$s…</string>
+    <string name="status_offline">غير متصل</string>
+    <!-- v8: Piyasalar -->
+    <string name="error_offline">لا يوجد اتصال. تعذّر تحميل الأسعار.</string>
+    <string name="empty_period">لا توجد بيانات كافية لهذه الفترة</string>
+    <string name="empty_gainers">لا توجد عملات صاعدة في هذه الفترة</string>
+    <string name="empty_losers">لا توجد عملات هابطة في هذه الفترة</string>
+    <string name="empty_filtered">لا توجد عملات مطابقة للفلاتر</string>
+    <string name="browse_markets">تصفّح الأسواق</string>
+    <string name="col_coin">العملة</string>
+    <string name="col_price">السعر</string>
+    <string name="col_change">التغير (%1$s)</string>
+    <string name="sort_by">الترتيب: %1$s</string>
+    <string name="close_search">إغلاق البحث</string>
+    <string name="filters">الفلاتر</string>
+    <string name="filter_min_volume">الحد الأدنى لحجم 24 س (%1$s)</string>
+    <string name="filter_any">الكل</string>
+    <string name="filter_sort">الترتيب حسب</string>
+    <string name="sort_default">الافتراضي</string>
+    <string name="sort_price_desc">السعر: من الأعلى إلى الأدنى</string>
+    <string name="sort_price_asc">السعر: من الأدنى إلى الأعلى</string>
+    <string name="sort_change_desc">التغير: من الأعلى إلى الأدنى</string>
+    <string name="sort_change_asc">التغير: من الأدنى إلى الأعلى</string>
+    <string name="filter_sort_note">يعتمد التغير على الفترة المحددة (%1$s)</string>
+    <string name="reset">إعادة تعيين</string>
+    <string name="done">تم</string>
+    <string name="active_min_volume">أدنى حجم 24 س: %1$s</string>
+    <!-- v8: Keşfet -->
+    <string name="explore_featured">قوائم مميزة</string>
+    <string name="featured_fast_gainers">صاعدة على المدى القصير</string>
+    <string name="featured_top_losers">الأكثر هبوطًا</string>
+    <string name="featured_volume_leaders">الأعلى حجمًا</string>
+    <string name="explore_movers">الأكثر حركة</string>
+    <string name="explore_movers_caption">الأكثر صعودًا خلال الساعة الأخيرة</string>
+    <string name="explore_volume_surge">قفزة في الحجم</string>
+    <string name="explore_volume_surge_caption">حجم الساعة الأخيرة مقارنةً بمتوسطه بالساعة خلال 24 س</string>
+    <string name="volume_ratio">حجم 1س %1$s× المتوسط</string>
+    <!-- v8: Portföy -->
+    <string name="change_24h_label">تغير 24 س</string>
+    <string name="total_pl_label">إجمالي الربح/الخسارة</string>
+    <string name="amount_percent">%1$s (%2$s)</string>
+    <string name="pl_no_cost">أضف أسعار الشراء لعرض الربح/الخسارة</string>
+    <string name="pl_partial_cost">تشمل فقط الأصول التي لها سعر شراء</string>
+    <string name="add_asset">إضافة أصل</string>
+    <string name="assets">الأصول</string>
+    <string name="allocation">التوزيع</string>
+    <string name="other">أخرى</string>
+    <string name="pick_coin">اختر عملة</string>
+    <string name="holding_add_coin">إضافة %1$s</string>
+    <string name="holding_edit_coin">تعديل %1$s</string>
+    <string name="holding_removed">أُزيل من المحفظة</string>
+    <string name="undo">تراجع</string>
+    <string name="more_options">خيارات إضافية</string>
+    <!-- v8: Profil ve alarmlar -->
+    <string name="price_alerts">تنبيهات الأسعار</string>
+    <string name="alerts_none">لا يوجد</string>
+    <plurals name="alerts_active">
+        <item quantity="zero">%d نشط</item>
+        <item quantity="one">%d نشط</item>
+        <item quantity="two">%d نشط</item>
+        <item quantity="few">%d نشطة</item>
+        <item quantity="many">%d نشطًا</item>
+        <item quantity="other">%d نشط</item>
+    </plurals>
+    <string name="alerts_empty">ليس لديك تنبيهات أسعار نشطة.\nافتح أي عملة لإنشاء تنبيه.</string>
+    <string name="alert_now">الآن %1$s</string>
+    <string name="notification_settings">إعدادات الإشعارات</string>
+    <string name="section_preferences">التفضيلات</string>
+    <string name="section_notifications">الإشعارات والتنبيهات</string>
+    <string name="section_about">حول التطبيق</string>
+    <string name="version">الإصدار</string>
+    <string name="licenses">تراخيص المصادر المفتوحة</string>
+    <string name="rate_app">قيّم Coinvane</string>
 </resources>

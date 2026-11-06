@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <!-- 1. Başlık: Piyasalar, sağda arama ve filtre -->
+    <LinearLayout
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingStart="16dp"
+        android:paddingEnd="4dp">
+
+        <TextView
+            style="@style/Coinvane.ScreenTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/nav_markets" />
+
+        <ImageButton
+            android:id="@+id/search"
+            style="@style/Coinvane.IconButton"
+            android:contentDescription="@string/search"
+            android:src="@drawable/ic_search" />
+
+        <ImageButton
+            android:id="@+id/filter"
+            style="@style/Coinvane.IconButton"
+            android:contentDescription="@string/filters"
+            android:src="@drawable/ic_tune" />
+    </LinearLayout>
+
+    <!-- Arama satırı (arama ikonuyla açılır) -->
+    <LinearLayout
+        android:id="@+id/search_bar"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingStart="16dp"
+        android:paddingEnd="4dp"
+        android:visibility="gone">
+
+        <EditText
+            android:id="@+id/query"
+            android:layout_width="0dp"
+            android:layout_height="44dp"
+            android:layout_weight="1"
+            android:autofillHints=""
+            android:background="@drawable/bg_segment"
+            android:drawableStart="@drawable/ic_search"
+            android:drawablePadding="8dp"
+            android:drawableTint="@color/text_secondary"
+            android:hint="@string/search"
+            android:imeOptions="actionSearch"
+            android:inputType="text|textNoSuggestions"
+            android:maxLines="1"
+            android:paddingHorizontal="12dp"
+            android:textAppearance="?attr/textAppearanceBodyLarge"
+            android:textColor="@color/text_primary"
+            android:textColorHint="@color/text_secondary" />
+
+        <ImageButton
+            android:id="@+id/close_search"
+            style="@style/Coinvane.IconButton"
+            android:contentDescription="@string/close_search"
+            android:src="@drawable/ic_close" />
+    </LinearLayout>
+
+    <!-- 2. Liste türü: Hacim | Favoriler | Yükselenler | Düşenler -->
+    <HorizontalScrollView
+        android:id="@+id/types_scroll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none">
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/types"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="16dp"
+            app:selectionRequired="true"
+            app:singleLine="true"
+            app:singleSelection="true" />
+    </HorizontalScrollView>
+
+    <!-- 3. Dönem (Yükselenler, Düşenler, Favoriler) -->
+    <include
+        android:id="@+id/periods"
+        layout="@layout/view_period_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="8dp" />
+
+    <TextView
+        android:id="@+id/volume_basis"
+        style="@style/Coinvane.Caption"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/volume_basis"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/active_filter"
+        style="@style/Coinvane.Caption"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="6dp"
+        android:textColor="@color/brand"
+        android:visibility="gone"
+        tools:text="Min. 24s hacim: ₺1 Mn" />
+
+    <!-- 4. Kolon başlıkları -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="4dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingStart="16dp"
+        android:paddingEnd="48dp">
+
+        <TextView
+            android:id="@+id/col_coin"
+            style="@style/Coinvane.Caption"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/col_coin" />
+
+        <TextView
+            android:id="@+id/col_price"
+            style="@style/Coinvane.Caption"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:background="?attr/selectableItemBackground"
+            android:drawablePadding="2dp"
+            android:gravity="center_vertical|end"
+            android:minWidth="48dp"
+            android:paddingHorizontal="6dp"
+            android:text="@string/col_price"
+            app:drawableEndCompat="@drawable/ic_sort"
+            app:drawableTint="@color/text_secondary" />
+
+        <TextView
+            android:id="@+id/col_change"
+            style="@style/Coinvane.Caption"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:background="?attr/selectableItemBackground"
+            android:drawablePadding="2dp"
+            android:gravity="center_vertical|end"
+            android:minWidth="48dp"
+            android:paddingStart="6dp"
+            android:paddingEnd="0dp"
+            app:drawableEndCompat="@drawable/ic_sort"
+            app:drawableTint="@color/text_secondary"
+            tools:text="Değişim (1s)" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/divider" />
+
+    <!-- 5. Liste -->
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/refresh"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/list"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:clipToPadding="false"
+                android:paddingBottom="8dp"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+            <LinearLayout
+                android:id="@+id/empty"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="32dp"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/empty_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:textAppearance="?attr/textAppearanceBodyLarge"
+                    android:textColor="@color/text_secondary"
+                    tools:text="Henüz favori coin eklemedin" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/empty_action"
+                    style="@style/Widget.Material3.Button.TonalButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:visibility="gone"
+                    tools:text="Piyasalara göz at" />
+            </LinearLayout>
+        </FrameLayout>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+</LinearLayout>

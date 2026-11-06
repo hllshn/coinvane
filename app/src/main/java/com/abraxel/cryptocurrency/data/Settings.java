@@ -52,9 +52,9 @@ public final class Settings {
         }
     }
 
-    /** AppCompatDelegate.MODE_NIGHT_* */
+    /** AppCompatDelegate.MODE_NIGHT_*. v8'den itibaren seçim yapmamış kullanıcı için varsayılan koyu tema. */
     public static int theme(Context context) {
-        return prefs(context).getInt("theme", AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
+        return prefs(context).getInt("theme", AppCompatDelegate.MODE_NIGHT_YES);
     }
 
     public static void setTheme(Context context, int mode) {
@@ -68,5 +68,26 @@ public final class Settings {
 
     public static void setDynamicColors(Context context, boolean enabled) {
         prefs(context).edit().putBoolean("dynamic_colors", enabled).apply();
+    }
+
+    // --- Ekranlar arası hatırlanan seçimler (liste türü, dönem, filtre) ---
+
+    /** Piyasalar'daki minimum 24s hacim eşikleri, kullanıcının para biriminde (0 = filtre yok). */
+    public static final double[] MIN_VOLUME_STEPS = {0, 100_000, 1_000_000, 10_000_000, 100_000_000};
+
+    public static String uiString(Context context, String key, String fallback) {
+        return prefs(context).getString("ui_" + key, fallback);
+    }
+
+    public static void setUiString(Context context, String key, String value) {
+        prefs(context).edit().putString("ui_" + key, value).apply();
+    }
+
+    public static int uiInt(Context context, String key, int fallback) {
+        return prefs(context).getInt("ui_" + key, fallback);
+    }
+
+    public static void setUiInt(Context context, String key, int value) {
+        prefs(context).edit().putInt("ui_" + key, value).apply();
     }
 }

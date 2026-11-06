@@ -1,0 +1,1 @@
+New design: Home, Markets, Explore, Portfolio and Profile tabs. Gainers/Losers now by 5m to 7d periods, with a market movement summary, mini charts, filters and sorting. 5m–30d performance on coin pages. Portfolio allocation and easier asset adding. Frozen prices of delisted coins removed.

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Coinvane ikon seti: 24dp, 1.8 çizgi, yuvarlak uçlar. Renk android:tint ile verilir. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp" android:height="24dp" android:viewportWidth="24" android:viewportHeight="24"
+    android:autoMirrored="false" android:tint="?attr/colorControlNormal">
+    <path android:pathData="M3.5,10.5 L12,3.5 L20.5,10.5" android:strokeColor="#FFFFFFFF" android:strokeWidth="1.8"
+        android:strokeLineCap="round" android:strokeLineJoin="round" />
+    <path android:pathData="M5.5,9 V20 H10 V14.5 H14 V20 H18.5 V9" android:strokeColor="#FFFFFFFF" android:strokeWidth="1.8"
+        android:strokeLineCap="round" android:strokeLineJoin="round" />
+</vector>

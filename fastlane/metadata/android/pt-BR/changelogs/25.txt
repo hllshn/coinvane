@@ -1,0 +1,1 @@
+Novo visual: Início, Mercados, Explorar, Carteira e Perfil. Altas/Baixas por períodos de 5 min a 7 dias, com resumo do mercado, minigráficos, filtros e ordenação. Desempenho de 5 min a 30 dias em cada moeda. Distribuição da carteira e inclusão de ativos mais fácil. Preços congelados de moedas deslistadas removidos.

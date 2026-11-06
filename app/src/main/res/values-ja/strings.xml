@@ -8,7 +8,7 @@
     <string name="status_connecting">○ 接続中…</string>
     <string name="volume_short">出来高 %1$s</string>
     <string name="empty_results">結果がありません</string>
-    <string name="empty_favorites">お気に入りはまだありません。\nコインの星をタップして追加してください。</string>
+    <string name="empty_favorites">お気に入りのコインはまだ追加されていません</string>
     <string name="error_load">価格を読み込めませんでした。インターネット接続を確認してください。</string>
     <string name="retry">再試行</string>
     <string name="favorite">お気に入り</string>
@@ -47,8 +47,7 @@
     <string name="notifications_denied">通知の許可がないとアラートを通知できません</string>
     <string name="portfolio">ポートフォリオ</string>
     <string name="portfolio_total">合計残高</string>
-    <string name="portfolio_empty">ポートフォリオは空です。\nコインを開いて「ポートフォリオに追加」をタップしてください。</string>
-    <string name="change_24h_value">24時間 %1$s (%2$s)</string>
+    <string name="portfolio_empty">ポートフォリオにはまだ資産がありません</string>
     <string name="profit_value">損益 %1$s (%2$s)</string>
     <string name="holding_title">保有</string>
     <string name="holding_add">ポートフォリオに追加</string>
@@ -60,14 +59,13 @@
     <string name="save">保存</string>
     <string name="remove">削除</string>
     <string name="invalid_number">有効な数値を入力してください</string>
-    <string name="settings">設定</string>
     <string name="settings_language">言語</string>
     <string name="settings_currency">通貨</string>
     <string name="settings_theme">テーマ</string>
     <string name="settings_dynamic_colors">システムの色を使用</string>
     <string name="language_system">システムのデフォルト</string>
     <string name="widget_description">お気に入りコインのリアルタイム価格</string>
-    <string name="about_text"><![CDATA[Coinvane %1$s<br>市場データ: <a href="https://www.binance.com">Binance</a> · 為替レート: <a href="https://www.exchangerate-api.com">ExchangeRate-API</a> · アイコン: CoinCap、cryptocurrency-icons<br>価格は情報提供のみを目的としており、投資助言ではありません。]]></string>
+    <string name="about_text"><![CDATA[Coinvane %1$s<br>市場データ: <a href="https://www.binance.com">Binance</a> · 為替レート: <a href="https://www.exchangerate-api.com">ExchangeRate-API</a> · アイコン: Binance、CoinCap、cryptocurrency-icons<br>価格は情報提供のみを目的としており、投資助言ではありません。]]></string>
     <plurals name="status_live">
         <item quantity="other">● ライブ · %d 銘柄</item>
     </plurals>
@@ -82,4 +80,103 @@
         <item>"B"</item>
         <item>"T"</item>
     </string-array>
+    <!-- v8: navigasyon -->
+    <string name="nav_home">ホーム</string>
+    <string name="nav_markets">マーケット</string>
+    <string name="nav_explore">探索</string>
+    <string name="nav_profile">プロフィール</string>
+    <!-- v8: dönemler (kısa) -->
+    <string name="period_5m">5分</string>
+    <string name="period_15m">15分</string>
+    <string name="period_1h">1時間</string>
+    <string name="period_4h">4時間</string>
+    <string name="period_24h">24時間</string>
+    <string name="period_7d">7日</string>
+    <string name="period_30d">30日</string>
+    <string name="period_last">直近%1$s</string>
+    <string name="change_period">%1$s変動</string>
+    <string name="performance">パフォーマンス</string>
+    <string name="chart_interval_note">ローソク足の間隔です（価格変動の期間ではありません）</string>
+    <!-- v8: Ana Sayfa -->
+    <string name="market_overview">マーケット概況</string>
+    <string name="market_movement">マーケットの動き</string>
+    <plurals name="movement_basis">
+        <item quantity="other">%1$s変動基準 · %2$dペア</item>
+    </plurals>
+    <string name="movement_basis_short">%1$s変動基準</string>
+    <string name="movement_up">上昇</string>
+    <string name="movement_down">下落</string>
+    <string name="movement_flat">変動なし</string>
+    <string name="volume_basis">24時間出来高順</string>
+    <string name="see_all_in_markets">マーケットですべて表示</string>
+    <string name="see_all">すべて表示</string>
+    <string name="loading">読み込み中…</string>
+    <string name="loading_period">%1$sの変動を読み込み中…</string>
+    <string name="status_offline">オフライン</string>
+    <!-- v8: Piyasalar -->
+    <string name="error_offline">接続されていません。価格を読み込めませんでした。</string>
+    <string name="empty_period">この期間のデータが不足しています</string>
+    <string name="empty_gainers">この期間に上昇したコインはありません</string>
+    <string name="empty_losers">この期間に下落したコインはありません</string>
+    <string name="empty_filtered">フィルターに一致するコインはありません</string>
+    <string name="browse_markets">マーケットを見る</string>
+    <string name="col_coin">コイン</string>
+    <string name="col_price">価格</string>
+    <string name="col_change">変動 (%1$s)</string>
+    <string name="sort_by">並び替え: %1$s</string>
+    <string name="close_search">検索を閉じる</string>
+    <string name="filters">フィルター</string>
+    <string name="filter_min_volume">最低24時間出来高 (%1$s)</string>
+    <string name="filter_any">指定なし</string>
+    <string name="filter_sort">並び替え</string>
+    <string name="sort_default">デフォルト</string>
+    <string name="sort_price_desc">価格: 高い順</string>
+    <string name="sort_price_asc">価格: 安い順</string>
+    <string name="sort_change_desc">変動: 大きい順</string>
+    <string name="sort_change_asc">変動: 小さい順</string>
+    <string name="filter_sort_note">変動は選択した期間 (%1$s) に基づきます</string>
+    <string name="reset">リセット</string>
+    <string name="done">完了</string>
+    <string name="active_min_volume">最低24時間出来高: %1$s</string>
+    <!-- v8: Keşfet -->
+    <string name="explore_featured">注目リスト</string>
+    <string name="featured_fast_gainers">短期上昇</string>
+    <string name="featured_top_losers">下落率上位</string>
+    <string name="featured_volume_leaders">出来高上位</string>
+    <string name="explore_movers">値動き上位</string>
+    <string name="explore_movers_caption">直近1時間の上昇率上位</string>
+    <string name="explore_volume_surge">出来高急増</string>
+    <string name="explore_volume_surge_caption">直近1時間の出来高と24時間の1時間あたり平均との比較</string>
+    <string name="volume_ratio">1時間 %1$s倍</string>
+    <!-- v8: Portföy -->
+    <string name="change_24h_label">24時間変動</string>
+    <string name="total_pl_label">合計損益</string>
+    <string name="amount_percent">%1$s (%2$s)</string>
+    <string name="pl_no_cost">購入価格を追加すると損益が表示されます</string>
+    <string name="pl_partial_cost">購入価格が入力された資産のみ含まれます</string>
+    <string name="add_asset">資産を追加</string>
+    <string name="assets">資産</string>
+    <string name="allocation">配分</string>
+    <string name="other">その他</string>
+    <string name="pick_coin">コインを選択</string>
+    <string name="holding_add_coin">%1$sを追加</string>
+    <string name="holding_edit_coin">%1$sを編集</string>
+    <string name="holding_removed">ポートフォリオから削除しました</string>
+    <string name="undo">元に戻す</string>
+    <string name="more_options">その他のオプション</string>
+    <!-- v8: Profil ve alarmlar -->
+    <string name="price_alerts">価格アラート</string>
+    <string name="alerts_none">なし</string>
+    <plurals name="alerts_active">
+        <item quantity="other">%d件有効</item>
+    </plurals>
+    <string name="alerts_empty">有効な価格アラートはありません。\nコインを開いてアラートを設定してください。</string>
+    <string name="alert_now">現在 %1$s</string>
+    <string name="notification_settings">通知設定</string>
+    <string name="section_preferences">環境設定</string>
+    <string name="section_notifications">通知とアラート</string>
+    <string name="section_about">このアプリについて</string>
+    <string name="version">バージョン</string>
+    <string name="licenses">オープンソースライセンス</string>
+    <string name="rate_app">Coinvaneを評価</string>
 </resources>

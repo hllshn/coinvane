@@ -8,7 +8,7 @@
     <string name="status_connecting">○ Conectando…</string>
     <string name="volume_short">Vol. %1$s</string>
     <string name="empty_results">Sin resultados</string>
-    <string name="empty_favorites">Aún no tienes favoritos.\nToca la estrella de una moneda para añadirla.</string>
+    <string name="empty_favorites">Aún no has añadido monedas favoritas</string>
     <string name="error_load">No se pudieron cargar los precios. Revisa tu conexión a Internet.</string>
     <string name="retry">Reintentar</string>
     <string name="favorite">Favorito</string>
@@ -47,8 +47,7 @@
     <string name="notifications_denied">Sin permiso de notificaciones, las alertas no pueden avisarte</string>
     <string name="portfolio">Cartera</string>
     <string name="portfolio_total">Saldo total</string>
-    <string name="portfolio_empty">Tu cartera está vacía.\nAbre una moneda y toca «Añadir a la cartera».</string>
-    <string name="change_24h_value">24 h %1$s (%2$s)</string>
+    <string name="portfolio_empty">Aún no hay activos en tu cartera</string>
     <string name="profit_value">G/P %1$s (%2$s)</string>
     <string name="holding_title">Tu posición</string>
     <string name="holding_add">Añadir a la cartera</string>
@@ -60,14 +59,13 @@
     <string name="save">Guardar</string>
     <string name="remove">Eliminar</string>
     <string name="invalid_number">Introduce un número válido</string>
-    <string name="settings">Ajustes</string>
     <string name="settings_language">Idioma</string>
     <string name="settings_currency">Moneda</string>
     <string name="settings_theme">Tema</string>
     <string name="settings_dynamic_colors">Usar colores del sistema</string>
     <string name="language_system">Idioma del sistema</string>
     <string name="widget_description">Precios en vivo de tus monedas favoritas</string>
-    <string name="about_text"><![CDATA[Coinvane %1$s<br>Datos de mercado: <a href="https://www.binance.com">Binance</a> · Tipos de cambio: <a href="https://www.exchangerate-api.com">ExchangeRate-API</a> · Iconos: CoinCap, cryptocurrency-icons<br>Los precios son solo informativos y no constituyen asesoramiento de inversión.]]></string>
+    <string name="about_text"><![CDATA[Coinvane %1$s<br>Datos de mercado: <a href="https://www.binance.com">Binance</a> · Tipos de cambio: <a href="https://www.exchangerate-api.com">ExchangeRate-API</a> · Iconos: Binance, CoinCap, cryptocurrency-icons<br>Los precios son solo informativos y no constituyen asesoramiento de inversión.]]></string>
     <plurals name="status_live">
         <item quantity="one">● En vivo · %d par</item>
         <item quantity="many">● En vivo · %d pares</item>
@@ -84,4 +82,107 @@
         <item>" mil M"</item>
         <item>" B"</item>
     </string-array>
+    <!-- v8: navigasyon -->
+    <string name="nav_home">Inicio</string>
+    <string name="nav_markets">Mercados</string>
+    <string name="nav_explore">Explorar</string>
+    <string name="nav_profile">Perfil</string>
+    <!-- v8: dönemler (kısa) -->
+    <string name="period_5m">5m</string>
+    <string name="period_15m">15m</string>
+    <string name="period_1h">1 h</string>
+    <string name="period_4h">4 h</string>
+    <string name="period_24h">24 h</string>
+    <string name="period_7d">7 d</string>
+    <string name="period_30d">30 d</string>
+    <string name="period_last">Periodo: %1$s</string>
+    <string name="change_period">Cambio %1$s</string>
+    <string name="performance">Rendimiento</string>
+    <string name="chart_interval_note">Intervalo de velas, no el periodo de cambio de precio</string>
+    <!-- v8: Ana Sayfa -->
+    <string name="market_overview">Resumen del mercado</string>
+    <string name="market_movement">Movimiento del mercado</string>
+    <plurals name="movement_basis">
+        <item quantity="one">Según el cambio %1$s · %2$d par</item>
+        <item quantity="other">Según el cambio %1$s · %2$d pares</item>
+        <item quantity="many">Según el cambio %1$s · %2$d pares</item>
+    </plurals>
+    <string name="movement_basis_short">Según el cambio %1$s</string>
+    <string name="movement_up">Al alza</string>
+    <string name="movement_down">A la baja</string>
+    <string name="movement_flat">Sin cambios</string>
+    <string name="volume_basis">Ordenado por volumen 24 h</string>
+    <string name="see_all_in_markets">Ver todo en Mercados</string>
+    <string name="see_all">Ver todo</string>
+    <string name="loading">Cargando…</string>
+    <string name="loading_period">Cargando cambios de %1$s…</string>
+    <string name="status_offline">Sin conexión</string>
+    <!-- v8: Piyasalar -->
+    <string name="error_offline">Sin conexión. No se pudieron cargar los precios.</string>
+    <string name="empty_period">No hay datos suficientes para este periodo</string>
+    <string name="empty_gainers">Ninguna moneda sube en este periodo</string>
+    <string name="empty_losers">Ninguna moneda baja en este periodo</string>
+    <string name="empty_filtered">Ninguna moneda coincide con los filtros</string>
+    <string name="browse_markets">Explorar mercados</string>
+    <string name="col_coin">Moneda</string>
+    <string name="col_price">Precio</string>
+    <string name="col_change">Cambio (%1$s)</string>
+    <string name="sort_by">Orden: %1$s</string>
+    <string name="close_search">Cerrar búsqueda</string>
+    <string name="filters">Filtros</string>
+    <string name="filter_min_volume">Volumen 24 h mínimo (%1$s)</string>
+    <string name="filter_any">Cualquiera</string>
+    <string name="filter_sort">Ordenar por</string>
+    <string name="sort_default">Predeterminado</string>
+    <string name="sort_price_desc">Precio: de mayor a menor</string>
+    <string name="sort_price_asc">Precio: de menor a mayor</string>
+    <string name="sort_change_desc">Cambio: de mayor a menor</string>
+    <string name="sort_change_asc">Cambio: de menor a mayor</string>
+    <string name="filter_sort_note">El cambio usa el periodo seleccionado (%1$s)</string>
+    <string name="reset">Restablecer</string>
+    <string name="done">Listo</string>
+    <string name="active_min_volume">Vol. 24 h mín.: %1$s</string>
+    <!-- v8: Keşfet -->
+    <string name="explore_featured">Listas destacadas</string>
+    <string name="featured_fast_gainers">Subidas a corto plazo</string>
+    <string name="featured_top_losers">Mayores caídas</string>
+    <string name="featured_volume_leaders">Líderes en volumen</string>
+    <string name="explore_movers">En movimiento</string>
+    <string name="explore_movers_caption">Mayores subidas de la última hora</string>
+    <string name="explore_volume_surge">Aumento de volumen</string>
+    <string name="explore_volume_surge_caption">Volumen de la última hora frente a su media horaria de 24 h</string>
+    <string name="volume_ratio">Vol. 1 h %1$s× media</string>
+    <!-- v8: Portföy -->
+    <string name="change_24h_label">Cambio 24 h</string>
+    <string name="total_pl_label">G/P total</string>
+    <string name="amount_percent">%1$s (%2$s)</string>
+    <string name="pl_no_cost">Añade precios de compra para ver ganancias/pérdidas</string>
+    <string name="pl_partial_cost">Solo se incluyen los activos con precio de compra</string>
+    <string name="add_asset">Añadir activo</string>
+    <string name="assets">Activos</string>
+    <string name="allocation">Distribución</string>
+    <string name="other">Otros</string>
+    <string name="pick_coin">Elige una moneda</string>
+    <string name="holding_add_coin">Añadir %1$s</string>
+    <string name="holding_edit_coin">Editar %1$s</string>
+    <string name="holding_removed">Eliminado de la cartera</string>
+    <string name="undo">Deshacer</string>
+    <string name="more_options">Más opciones</string>
+    <!-- v8: Profil ve alarmlar -->
+    <string name="price_alerts">Alertas de precio</string>
+    <string name="alerts_none">Ninguna</string>
+    <plurals name="alerts_active">
+        <item quantity="one">%d activa</item>
+        <item quantity="other">%d activas</item>
+        <item quantity="many">%d activas</item>
+    </plurals>
+    <string name="alerts_empty">No tienes alertas de precio activas.\nAbre una moneda para crear una.</string>
+    <string name="alert_now">Ahora %1$s</string>
+    <string name="notification_settings">Ajustes de notificaciones</string>
+    <string name="section_preferences">Preferencias</string>
+    <string name="section_notifications">Notificaciones y alertas</string>
+    <string name="section_about">Acerca de</string>
+    <string name="version">Versión</string>
+    <string name="licenses">Licencias de código abierto</string>
+    <string name="rate_app">Valorar Coinvane</string>
 </resources>

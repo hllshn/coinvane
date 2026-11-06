@@ -25,8 +25,17 @@ public class MoneyTest {
     public void usd_inEnglish() {
         Money usd = money("USD", 1, "en-US", EN);
         assertEquals("$77,123.45", usd.price(77123.45));
-        assertEquals("$0.00041235", usd.price(0.00041235));
+        assertEquals("$0.0004124", usd.price(0.00041236));
         assertEquals("$0.5000", usd.price(0.5));
+    }
+
+    @Test
+    public void tinyPrices_keepSignificantDigits() {
+        Money usd = money("USD", 1, "en-US", EN);
+        assertEquals("$0.000008901", usd.price(0.0000089012)); // PEPE: en az 4 anlamlı hane
+        assertEquals("$0.0000007123", usd.price(0.00000071234)); // BTTC: sıfıra yuvarlanmaz
+        assertEquals("$0.0270", usd.price(0.02699655));
+        assertEquals("$0.4837", usd.price(0.48373649));
     }
 
     @Test

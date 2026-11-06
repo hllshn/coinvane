@@ -1,18 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="brand">#AAB8FF</color>
-    <color name="brand_container">#24306B</color>
-    <color name="on_brand_container">#E0E5FF</color>
-    <color name="surface">#0E1117</color>
-    <color name="surface_card">#171B24</color>
+    <!-- Koyu tema (varsayılan görünüm): siyaha yakın lacivert zemin, biraz daha açık kartlar, düşük kontrastlı ayırıcılar. -->
+    <color name="brand">#9A91F5</color>
+    <color name="brand_strong">#6E63DB</color>
+    <color name="brand_container">#2A2656</color>
+    <color name="on_brand_container">#E4E1FF</color>
+    <color name="surface">#0C1019</color>
+    <color name="surface_card">#171C29</color>
+    <color name="surface_card_high">#1E2434</color>
+    <color name="text_primary">#E9EBF2</color>
+    <color name="text_secondary">#8C93A6</color>
+    <color name="outline">#2B3245</color>
+    <color name="divider">#1C2231</color>
     <color name="up">#2FD180</color>
     <color name="down">#FF5C70</color>
+    <color name="neutral">#8C93A6</color>
     <color name="up_container">#2E2FD180</color>
     <color name="down_container">#2EFF5C70</color>
-    <color name="chart_grid">#1FFFFFFF</color>
+    <color name="neutral_container">#2E8C93A6</color>
+    <color name="logo_accent">#2FD180</color>
+    <color name="chart_grid">#1AFFFFFF</color>
     <color name="chart_text">#8C93A6</color>
-    <color name="widget_bg">#FF171B24</color>
-    <color name="widget_text">#FFF1F3F9</color>
+    <color name="widget_bg">#FF171C29</color>
+    <color name="widget_text">#FFE9EBF2</color>
     <color name="widget_text_secondary">#FF8C93A6</color>
-    <color name="widget_accent">#FFAAB8FF</color>
+    <color name="widget_accent">#FF9A91F5</color>
 </resources>

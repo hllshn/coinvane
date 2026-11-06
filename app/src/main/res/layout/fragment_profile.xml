@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Profil: hesap/oturum yok; mevcut uygulama ayarlarının giriş noktası -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingHorizontal="16dp">
+
+        <TextView
+            style="@style/Coinvane.ScreenTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/nav_profile" />
+    </LinearLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingHorizontal="16dp"
+            android:paddingBottom="16dp">
+
+            <!-- 1. Tercihler -->
+            <TextView
+                style="@style/Coinvane.Caption"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="4dp"
+                android:text="@string/section_preferences" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/bg_card"
+                android:divider="@drawable/divider_inset"
+                android:orientation="vertical"
+                android:showDividers="middle">
+
+                <include android:id="@+id/language" layout="@layout/view_row" />
+
+                <include android:id="@+id/currency" layout="@layout/view_row" />
+
+                <include android:id="@+id/theme" layout="@layout/view_row" />
+
+                <LinearLayout
+                    android:id="@+id/dynamic_row"
+                    style="@style/Coinvane.Row">
+
+                    <ImageView
+                        style="@style/Coinvane.RowIcon"
+        android:contentDescription="@null"
+                        android:src="@drawable/ic_palette" />
+
+                    <com.google.android.material.materialswitch.MaterialSwitch
+                        android:id="@+id/dynamic_colors"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:minHeight="48dp"
+                        android:text="@string/settings_dynamic_colors"
+                        android:textAppearance="?attr/textAppearanceBodyLarge" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- 2. Bildirimler ve fiyat alarmları -->
+            <TextView
+                style="@style/Coinvane.Caption"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="20dp"
+                android:text="@string/section_notifications" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/bg_card"
+                android:divider="@drawable/divider_inset"
+                android:orientation="vertical"
+                android:showDividers="middle">
+
+                <include android:id="@+id/alerts" layout="@layout/view_row" />
+
+                <include android:id="@+id/notification_settings" layout="@layout/view_row" />
+            </LinearLayout>
+
+            <!-- 3. Hakkında -->
+            <TextView
+                style="@style/Coinvane.Caption"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="20dp"
+                android:text="@string/section_about" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/bg_card"
+                android:divider="@drawable/divider_inset"
+                android:orientation="vertical"
+                android:showDividers="middle">
+
+                <include android:id="@+id/version" layout="@layout/view_row" />
+
+                <include android:id="@+id/licenses" layout="@layout/view_row" />
+
+                <include android:id="@+id/rate" layout="@layout/view_row" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/about"
+                style="@style/Coinvane.Caption"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:paddingHorizontal="4dp"
+                android:textColorLink="@color/brand" />
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+</LinearLayout>

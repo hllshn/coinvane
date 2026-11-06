@@ -10,10 +10,19 @@ import java.util.Locale;
 public class FormatTest {
 
     @Test
-    public void percent_followsLocaleAndAlwaysShowsSign() {
+    public void percent_followsLocale_signOnlyWhenNotZero() {
         assertEquals("+1.38%", Format.percent(1.381, Locale.US));
         assertEquals("-0,50%", Format.percent(-0.5, Locale.forLanguageTag("tr-TR")));
-        assertEquals("+0.00%", Format.percent(0, Locale.US));
+        assertEquals("0.00%", Format.percent(0, Locale.US));
+        assertEquals("0,00%", Format.percent(-0.004, Locale.forLanguageTag("tr-TR"))); // 0,00 görünen değer nötr
+        assertEquals("+0.01%", Format.percent(0.005, Locale.US));
+    }
+
+    @Test
+    public void amount_usesLocaleSeparators() {
+        assertEquals("0,125", Format.amount(0.125, Locale.forLanguageTag("tr-TR")));
+        assertEquals("1.500", Format.amount(1500, Locale.forLanguageTag("tr-TR")));
+        assertEquals("0.00012345", Format.amount(0.00012345, Locale.US));
     }
 
     @Test

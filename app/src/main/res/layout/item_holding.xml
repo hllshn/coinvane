@@ -1,26 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- Varlık satırı: logo, kısaltma ve miktar; sağda güncel karşılık ve maliyet bazlı K/Z; tek işlem menüsü -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="?attr/selectableItemBackground"
     android:gravity="center_vertical"
-    android:minHeight="72dp"
+    android:minHeight="70dp"
     android:orientation="horizontal"
-    android:paddingHorizontal="16dp"
-    android:paddingVertical="10dp">
+    android:paddingVertical="8dp"
+    android:paddingStart="16dp"
+    android:paddingEnd="4dp">
 
     <ImageView
         android:id="@+id/icon"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:contentDescription="@null"
+        android:layout_width="34dp"
+        android:layout_height="34dp"
+        android:importantForAccessibility="no"
         android:src="@drawable/ic_coin_placeholder" />
 
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="14dp"
+        android:layout_marginStart="12dp"
         android:layout_weight="1"
         android:orientation="vertical">
 
@@ -28,16 +30,23 @@
             android:id="@+id/symbol"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="?attr/textAppearanceTitleMedium"
+            android:maxLines="1"
+            android:textAppearance="?attr/textAppearanceTitleSmall"
+            android:textColor="@color/text_primary"
+            android:textStyle="bold"
             tools:text="BTC" />
 
         <TextView
             android:id="@+id/amount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:ellipsize="end"
+            android:fontFeatureSettings="tnum"
+            android:maxLines="1"
             android:textAppearance="?attr/textAppearanceBodySmall"
-            android:textColor="?attr/colorOnSurfaceVariant"
-            tools:text="0.05 BTC" />
+            android:textColor="@color/text_secondary"
+            tools:text="0,125 BTC" />
     </LinearLayout>
 
     <LinearLayout
@@ -51,8 +60,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFeatureSettings="tnum"
-            android:textAppearance="?attr/textAppearanceTitleMedium"
-            tools:text="$3,210.00" />
+            android:maxLines="1"
+            android:textAppearance="?attr/textAppearanceTitleSmall"
+            android:textColor="@color/text_primary"
+            tools:text="₺486.248,71" />
 
         <TextView
             android:id="@+id/profit"
@@ -60,6 +71,17 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
-            tools:text="+3.88%" />
+            tools:text="+8,76%" />
     </LinearLayout>
+
+    <ImageButton
+        android:id="@+id/more"
+        android:layout_width="40dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="4dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:contentDescription="@string/more_options"
+        android:src="@drawable/ic_more_vert"
+        app:tint="@color/text_secondary"
+        xmlns:app="http://schemas.android.com/apk/res-auto" />
 </LinearLayout>

@@ -9,7 +9,7 @@
     <string name="status_connecting">○ Connecting…</string>
     <string name="volume_short">Vol %1$s</string>
     <string name="empty_results">No results</string>
-    <string name="empty_favorites">No favorites yet.\nTap the star on any coin to add it.</string>
+    <string name="empty_favorites">You haven’t added any favorite coins yet</string>
     <string name="error_load">Couldn’t load prices. Check your internet connection.</string>
     <string name="retry">Retry</string>
     <string name="favorite">Favorite</string>
@@ -48,8 +48,7 @@
     <string name="notifications_denied">Alerts can’t notify you without notification permission</string>
     <string name="portfolio">Portfolio</string>
     <string name="portfolio_total">Total balance</string>
-    <string name="portfolio_empty">Your portfolio is empty.\nOpen any coin and tap “Add to portfolio”.</string>
-    <string name="change_24h_value">24h %1$s (%2$s)</string>
+    <string name="portfolio_empty">There are no assets in your portfolio yet</string>
     <string name="profit_value">P/L %1$s (%2$s)</string>
     <string name="holding_title">Your holding</string>
     <string name="holding_add">Add to portfolio</string>
@@ -61,14 +60,13 @@
     <string name="save">Save</string>
     <string name="remove">Remove</string>
     <string name="invalid_number">Enter a valid number</string>
-    <string name="settings">Settings</string>
     <string name="settings_language">Language</string>
     <string name="settings_currency">Currency</string>
     <string name="settings_theme">Theme</string>
     <string name="settings_dynamic_colors">Use system colors</string>
     <string name="language_system">System default</string>
     <string name="widget_description">Live prices of your favorite coins</string>
-    <string name="about_text"><![CDATA[Coinvane %1$s<br>Market data: <a href="https://www.binance.com">Binance</a> · Exchange rates: <a href="https://www.exchangerate-api.com">ExchangeRate-API</a> · Icons: CoinCap, cryptocurrency-icons<br>Prices are for information only and are not investment advice.]]></string>
+    <string name="about_text"><![CDATA[Coinvane %1$s<br>Market data: <a href="https://www.binance.com">Binance</a> · Exchange rates: <a href="https://www.exchangerate-api.com">ExchangeRate-API</a> · Icons: Binance, CoinCap, cryptocurrency-icons<br>Prices are for information only and are not investment advice.]]></string>
     <plurals name="status_live">
         <item quantity="one">● Live · %d pair</item>
         <item quantity="other">● Live · %d pairs</item>
@@ -84,4 +82,107 @@
         <item>"B"</item>
         <item>"T"</item>
     </string-array>
+
+    <!-- v8: navigasyon -->
+    <string name="nav_home">Home</string>
+    <string name="nav_markets">Markets</string>
+    <string name="nav_explore">Explore</string>
+    <string name="nav_profile">Profile</string>
+    <!-- v8: dönemler (kısa) -->
+    <string name="period_5m">5m</string>
+    <string name="period_15m">15m</string>
+    <string name="period_1h">1h</string>
+    <string name="period_4h">4h</string>
+    <string name="period_24h">24h</string>
+    <string name="period_7d">7d</string>
+    <string name="period_30d">30d</string>
+    <string name="period_last">Last %1$s</string>
+    <string name="change_period">%1$s change</string>
+    <string name="performance">Performance</string>
+    <string name="chart_interval_note">Candle interval, not the price change period</string>
+    <!-- v8: Ana Sayfa -->
+    <string name="market_overview">Market overview</string>
+    <string name="market_movement">Market movement</string>
+    <plurals name="movement_basis">
+        <item quantity="one">By %1$s change · %2$d pair</item>
+        <item quantity="other">By %1$s change · %2$d pairs</item>
+    </plurals>
+    <string name="movement_basis_short">By %1$s change</string>
+    <string name="movement_up">Rising</string>
+    <string name="movement_down">Falling</string>
+    <string name="movement_flat">Unchanged</string>
+    <string name="volume_basis">Sorted by 24h volume</string>
+    <string name="see_all_in_markets">See all in Markets</string>
+    <string name="see_all">See all</string>
+    <string name="loading">Loading…</string>
+    <string name="loading_period">Loading %1$s changes…</string>
+    <string name="status_offline">Offline</string>
+    <!-- v8: Piyasalar -->
+    <string name="error_offline">No connection. Prices couldn’t be loaded.</string>
+    <string name="empty_period">Not enough data for this period</string>
+    <string name="empty_gainers">No coins are up in this period</string>
+    <string name="empty_losers">No coins are down in this period</string>
+    <string name="empty_filtered">No coins match the filters</string>
+    <string name="browse_markets">Browse markets</string>
+    <string name="col_coin">Coin</string>
+    <string name="col_price">Price</string>
+    <string name="col_change">Change (%1$s)</string>
+    <string name="sort_by">Sort: %1$s</string>
+    <string name="close_search">Close search</string>
+    <string name="filters">Filters</string>
+    <string name="filter_min_volume">Minimum 24h volume (%1$s)</string>
+    <string name="filter_any">Any</string>
+    <string name="filter_sort">Sort by</string>
+    <string name="sort_default">Default</string>
+    <string name="sort_price_desc">Price: high to low</string>
+    <string name="sort_price_asc">Price: low to high</string>
+    <string name="sort_change_desc">Change: high to low</string>
+    <string name="sort_change_asc">Change: low to high</string>
+    <string name="filter_sort_note">Change uses the selected period (%1$s)</string>
+    <string name="reset">Reset</string>
+    <string name="done">Done</string>
+    <string name="active_min_volume">Min. 24h volume: %1$s</string>
+    <!-- v8: Keşfet -->
+    <string name="explore_featured">Featured lists</string>
+    <string name="featured_fast_gainers">Short-term gainers</string>
+    <string name="featured_top_losers">Top losers</string>
+    <string name="featured_volume_leaders">Volume leaders</string>
+    <string name="explore_movers">Movers</string>
+    <string name="explore_movers_caption">Biggest gainers in the last hour</string>
+    <string name="explore_volume_surge">Volume surge</string>
+    <string name="explore_volume_surge_caption">Last hour’s volume compared with its 24h hourly average</string>
+    <string name="volume_ratio">1h vol. %1$s× avg</string>
+    <!-- v8: Portföy -->
+    <string name="change_24h_label">24h change</string>
+    <string name="total_pl_label">Total P/L</string>
+    <string name="amount_percent">%1$s (%2$s)</string>
+    <string name="pl_no_cost">Add buy prices to see profit/loss</string>
+    <string name="pl_partial_cost">Only assets with a buy price are included</string>
+    <string name="add_asset">Add asset</string>
+    <string name="assets">Assets</string>
+    <string name="allocation">Allocation</string>
+    <string name="other">Other</string>
+    <string name="pick_coin">Choose a coin</string>
+    <string name="holding_add_coin">Add %1$s</string>
+    <string name="holding_edit_coin">Edit %1$s</string>
+    <string name="holding_removed">Removed from portfolio</string>
+    <string name="undo">Undo</string>
+    <string name="more_options">More options</string>
+    <!-- v8: Profil ve alarmlar -->
+    <string name="price_alerts">Price alerts</string>
+    <string name="alerts_none">None</string>
+    <plurals name="alerts_active">
+        <item quantity="one">%d active</item>
+        <item quantity="other">%d active</item>
+    </plurals>
+    <string name="alerts_empty">You have no active price alerts.\nOpen any coin to set one.</string>
+    <string name="alert_row_title" translatable="false">%1$s  %2$s</string>
+    <string name="alert_now">Now %1$s</string>
+    <string name="notification_settings">Notification settings</string>
+    <string name="section_preferences">Preferences</string>
+    <string name="section_notifications">Notifications &amp; alerts</string>
+    <string name="section_about">About</string>
+    <string name="version">Version</string>
+    <string name="licenses">Open-source licenses</string>
+    <string name="rate_app">Rate Coinvane</string>
 </resources>

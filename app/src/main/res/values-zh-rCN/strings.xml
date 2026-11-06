@@ -8,7 +8,7 @@
     <string name="status_connecting">○ 连接中…</string>
     <string name="volume_short">成交额 %1$s</string>
     <string name="empty_results">无结果</string>
-    <string name="empty_favorites">暂无自选。\n点击币种旁的星标即可添加。</string>
+    <string name="empty_favorites">您还没有添加自选币种</string>
     <string name="error_load">无法加载价格，请检查网络连接。</string>
     <string name="retry">重试</string>
     <string name="favorite">自选</string>
@@ -47,8 +47,7 @@
     <string name="notifications_denied">未授予通知权限，价格提醒无法通知您</string>
     <string name="portfolio">资产组合</string>
     <string name="portfolio_total">总资产</string>
-    <string name="portfolio_empty">您的资产组合为空。\n打开任一币种并点击“添加到资产组合”。</string>
-    <string name="change_24h_value">24小时 %1$s (%2$s)</string>
+    <string name="portfolio_empty">您的资产组合中还没有资产</string>
     <string name="profit_value">盈亏 %1$s (%2$s)</string>
     <string name="holding_title">您的持仓</string>
     <string name="holding_add">添加到资产组合</string>
@@ -60,14 +59,13 @@
     <string name="save">保存</string>
     <string name="remove">删除</string>
     <string name="invalid_number">请输入有效数字</string>
-    <string name="settings">设置</string>
     <string name="settings_language">语言</string>
     <string name="settings_currency">计价货币</string>
     <string name="settings_theme">主题</string>
     <string name="settings_dynamic_colors">使用系统颜色</string>
     <string name="language_system">跟随系统</string>
     <string name="widget_description">自选币种实时价格</string>
-    <string name="about_text"><![CDATA[Coinvane %1$s<br>行情数据：<a href="https://www.binance.com">Binance</a> · 汇率：<a href="https://www.exchangerate-api.com">ExchangeRate-API</a> · 图标：CoinCap、cryptocurrency-icons<br>价格仅供参考，不构成投资建议。]]></string>
+    <string name="about_text"><![CDATA[Coinvane %1$s<br>行情数据：<a href="https://www.binance.com">Binance</a> · 汇率：<a href="https://www.exchangerate-api.com">ExchangeRate-API</a> · 图标：Binance、CoinCap、cryptocurrency-icons<br>价格仅供参考，不构成投资建议。]]></string>
     <plurals name="status_live">
         <item quantity="other">● 实时 · %d 个交易对</item>
     </plurals>
@@ -82,4 +80,103 @@
         <item>"B"</item>
         <item>"T"</item>
     </string-array>
+    <!-- v8: navigasyon -->
+    <string name="nav_home">首页</string>
+    <string name="nav_markets">行情</string>
+    <string name="nav_explore">发现</string>
+    <string name="nav_profile">我的</string>
+    <!-- v8: dönemler (kısa) -->
+    <string name="period_5m">5分</string>
+    <string name="period_15m">15分</string>
+    <string name="period_1h">1小时</string>
+    <string name="period_4h">4小时</string>
+    <string name="period_24h">24小时</string>
+    <string name="period_7d">7日</string>
+    <string name="period_30d">30日</string>
+    <string name="period_last">近%1$s</string>
+    <string name="change_period">%1$s涨跌幅</string>
+    <string name="performance">表现</string>
+    <string name="chart_interval_note">K线周期，并非价格涨跌的统计周期</string>
+    <!-- v8: Ana Sayfa -->
+    <string name="market_overview">市场概览</string>
+    <string name="market_movement">市场动向</string>
+    <plurals name="movement_basis">
+        <item quantity="other">按%1$s涨跌幅 · %2$d个交易对</item>
+    </plurals>
+    <string name="movement_basis_short">按%1$s涨跌幅</string>
+    <string name="movement_up">上涨</string>
+    <string name="movement_down">下跌</string>
+    <string name="movement_flat">持平</string>
+    <string name="volume_basis">按24小时成交额排序</string>
+    <string name="see_all_in_markets">在行情中查看全部</string>
+    <string name="see_all">查看全部</string>
+    <string name="loading">加载中…</string>
+    <string name="loading_period">正在加载%1$s涨跌幅…</string>
+    <string name="status_offline">离线</string>
+    <!-- v8: Piyasalar -->
+    <string name="error_offline">无网络连接，无法加载价格。</string>
+    <string name="empty_period">该周期数据不足</string>
+    <string name="empty_gainers">该周期内没有上涨的币种</string>
+    <string name="empty_losers">该周期内没有下跌的币种</string>
+    <string name="empty_filtered">没有符合筛选条件的币种</string>
+    <string name="browse_markets">浏览行情</string>
+    <string name="col_coin">币种</string>
+    <string name="col_price">价格</string>
+    <string name="col_change">涨跌幅 (%1$s)</string>
+    <string name="sort_by">排序：%1$s</string>
+    <string name="close_search">关闭搜索</string>
+    <string name="filters">筛选</string>
+    <string name="filter_min_volume">最低24小时成交额 (%1$s)</string>
+    <string name="filter_any">不限</string>
+    <string name="filter_sort">排序方式</string>
+    <string name="sort_default">默认</string>
+    <string name="sort_price_desc">价格：从高到低</string>
+    <string name="sort_price_asc">价格：从低到高</string>
+    <string name="sort_change_desc">涨跌幅：从高到低</string>
+    <string name="sort_change_asc">涨跌幅：从低到高</string>
+    <string name="filter_sort_note">涨跌幅按所选周期 (%1$s) 计算</string>
+    <string name="reset">重置</string>
+    <string name="done">完成</string>
+    <string name="active_min_volume">最低24小时成交额：%1$s</string>
+    <!-- v8: Keşfet -->
+    <string name="explore_featured">精选榜单</string>
+    <string name="featured_fast_gainers">短期涨幅榜</string>
+    <string name="featured_top_losers">跌幅榜</string>
+    <string name="featured_volume_leaders">成交额榜</string>
+    <string name="explore_movers">异动币种</string>
+    <string name="explore_movers_caption">近1小时涨幅最大</string>
+    <string name="explore_volume_surge">放量</string>
+    <string name="explore_volume_surge_caption">近1小时成交额与24小时内每小时平均值之比</string>
+    <string name="volume_ratio">1小时 %1$s倍</string>
+    <!-- v8: Portföy -->
+    <string name="change_24h_label">24小时涨跌</string>
+    <string name="total_pl_label">总盈亏</string>
+    <string name="amount_percent">%1$s (%2$s)</string>
+    <string name="pl_no_cost">添加买入价以查看盈亏</string>
+    <string name="pl_partial_cost">仅包含已填写买入价的资产</string>
+    <string name="add_asset">添加资产</string>
+    <string name="assets">资产</string>
+    <string name="allocation">分布</string>
+    <string name="other">其他</string>
+    <string name="pick_coin">选择币种</string>
+    <string name="holding_add_coin">添加%1$s</string>
+    <string name="holding_edit_coin">编辑%1$s</string>
+    <string name="holding_removed">已从资产组合中移除</string>
+    <string name="undo">撤销</string>
+    <string name="more_options">更多选项</string>
+    <!-- v8: Profil ve alarmlar -->
+    <string name="price_alerts">价格提醒</string>
+    <string name="alerts_none">无</string>
+    <plurals name="alerts_active">
+        <item quantity="other">%d个生效中</item>
+    </plurals>
+    <string name="alerts_empty">暂无生效的价格提醒。\n打开任一币种即可设置。</string>
+    <string name="alert_now">当前 %1$s</string>
+    <string name="notification_settings">通知设置</string>
+    <string name="section_preferences">偏好设置</string>
+    <string name="section_notifications">通知与提醒</string>
+    <string name="section_about">关于</string>
+    <string name="version">版本</string>
+    <string name="licenses">开源许可</string>
+    <string name="rate_app">为 Coinvane 评分</string>
 </resources>

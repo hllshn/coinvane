@@ -1,0 +1,1 @@
+Yeni arayüz: Ana Sayfa, Piyasalar, Keşfet, Portföy ve Profil sekmeleri. Yükselenler/Düşenler artık 5dk–7g dönemleriyle; piyasa hareketi özeti, mini grafikler, filtre ve sıralama. Coin detayında 5dk–30g performans. Portföyde dağılım ve kolay varlık ekleme. Delist edilmiş coinlerin donmuş fiyatları kaldırıldı.

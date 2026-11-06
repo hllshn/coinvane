@@ -28,12 +28,7 @@
             android:parentActivityName=".MainActivity" />
 
         <activity
-            android:name=".portfolio.PortfolioActivity"
-            android:exported="false"
-            android:parentActivityName=".MainActivity" />
-
-        <activity
-            android:name=".SettingsActivity"
+            android:name=".alerts.AlertsActivity"
             android:exported="false"
             android:parentActivityName=".MainActivity" />
 
